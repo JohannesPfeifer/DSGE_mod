@@ -8,5 +8,8 @@ Replicates Ascari, Guido and Sbordone, Argia M. (2014): "The Macroeconomics of T
 
 This mod-file shows how to access steady state variables in order to plot steady state dependences on parameters. It also shows how to manually do a stability mapping be iterating over a grid on the parameter space.
  
+## Gali_Monacelli_2014.mod
+Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies 72, pp. 707-734.
 
+This mod-file shows how to use Dynare's LaTeX-capacities
 
