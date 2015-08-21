@@ -13,3 +13,9 @@ Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and Exch
 
 This mod-file shows how to use Dynare's LaTeX-capacities
 
+## Aguiar_Gopinath_2007
+
+Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cycles: The Cycle is the Trend", Journal of Political Economy, 115(1), pp. 69-102.
+
+This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
+
