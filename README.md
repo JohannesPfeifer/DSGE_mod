@@ -19,3 +19,7 @@ Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cyc
 
 This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
 
+## Caldara_et_al_2012
+Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, Juan F. and Yao, Wen (2012): "Computing DSGE Models with Recursive Preferences and Stochastic Volatility", Review of Economic Dynamics, 15, pp. 188-206.
+
+This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
