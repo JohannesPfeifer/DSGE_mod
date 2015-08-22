@@ -12,6 +12,8 @@ dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3
 cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
+cd('../Hansen_1985')
+dynare Hansen_1985.mod
 cd('../RBC_capitalstock_shock')
 dynare RBC_capitalstock_shock.mod
 cd('../RBC_news_shock_model')
