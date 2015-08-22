@@ -4,6 +4,16 @@ A collection of Dynare models. It aims at demonstrating Dynare best practices
 and providing tractable replication files for important models that can be 
 useful for further model development. 
 
+## Replicability Issues
+
+The headers of the respective mod-files also note obvious mistakes and typos 
+in the respective papers.  
+
+## Compatibility
+
+These mod-files have been tested against the current unstable version, to be released
+as Dynare 4.5. Compatibility with earlier versions is not guaranteed.
+
 # Contributing your own mod-files
 
 Contributions of replication files to this collection are highly welcomed. 
