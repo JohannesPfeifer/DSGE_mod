@@ -23,3 +23,8 @@ This mod-file shows how to deal with trend growth and how to recover the non-sta
 Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, Juan F. and Yao, Wen (2012): "Computing DSGE Models with Recursive Preferences and Stochastic Volatility", Review of Economic Dynamics, 15, pp. 188-206.
 
 This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
+
+## SGU_2003
+
+Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
+open economy models", Journal of International Economics, 61, pp. 163-185. 
