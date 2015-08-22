@@ -50,3 +50,12 @@ Replicates the neoclassical growth model for Schmitt-Grohé/Uribe (2004):
 "Solving dynamic general equilibrium models using a second-order 
 approximation to the policy function", Journal of Economic Dynamics & 
 Control, 28, pp. 755 – 775 
+
+## Sims_2012 
+
+Replicates the results for the basic RBC model presented in Eric R. Sims 
+(2012): "New, Non-Invertibility, and Structural VARs", Advances in 
+Econometrics, Volume 28, 81–135 
+
+Requires the ABCD_test.m from the FV_et_al_2007-folder to be located in the 
+same folder. 
