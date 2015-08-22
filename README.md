@@ -28,3 +28,10 @@ This mod-file shows how to use auxiliary variables to deal with recursive prefer
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
 open economy models", Journal of International Economics, 61, pp. 163-185. 
+
+## SGU_2004
+
+Replicates the neoclassical growth model for Schmitt-Grohé/Uribe (2004): 
+"Solving dynamic general equilibrium models using a second-order 
+approximation to the policy function", Journal of Economic Dynamics & 
+Control, 28, pp. 755 – 775 
