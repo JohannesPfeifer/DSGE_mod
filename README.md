@@ -24,6 +24,21 @@ Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, Jua
 
 This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
 
+## Gali_2008
+
+### Gali_2008_chapter_2.mod
+
+Implements the baseline Classical Monetary Economy model of Jordi Galí 
+(2008): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Chapter 2 
+
+### Gali_2008_chapter_3.mod 
+
+Implements the baseline New Keynesian model of Jordi Galí (2008): Monetary  
+Policy, Inflation, and the Business Cycle, Princeton University Press, 
+Chapter 3 
+
+
 ## SGU_2003
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
