@@ -61,6 +61,16 @@ This mod-file shows how to use Dynare's LaTeX-capacities
 
 Implements a simple RBC model with a time t shock to the capital stock. 
 
+
+## RBC_news_shock_model.mod
+
+Implements a simple RBC model with additively separable utility and TFP news 
+calibrated to US data. It shows how to generate IRFs to a "pure" news shock 
+where an 8 period anticipated news shock does not materialize at time 0. This 
+is the type of policy experiment that is for example performed in Beaudry 
+Portier (2004): An exploration into Pigou’s theory of cycles, Journal of 
+Monetary Economics 51, pp. 1183–1216. 
+
 ## SGU_2003.mod 
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
