@@ -77,3 +77,10 @@ Econometrics, Volume 28, 81–135
 
 Requires the ABCD_test.m from the FV_et_al_2007-folder to be located in the 
 same folder. 
+
+## Smets_Wouters_2007.mod 
+
+Provides replication files for Smets, Frank and Wouters, Rafael (2007):  
+"Shocks and Frictions in US Business Cycles: A Bayesian DSGE Approach", 
+American Economic Review, 97(3), pp. 586-606, that are compatible with Dynare 
+4.2.5 onwards 
