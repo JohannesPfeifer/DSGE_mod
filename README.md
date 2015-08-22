@@ -57,7 +57,11 @@ Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies
 
 This mod-file shows how to use Dynare's LaTeX-capacities
 
-## SGU_2003.mod
+## RBC_capitalstock_shock.mod
+
+Implements a simple RBC model with a time t shock to the capital stock. 
+
+## SGU_2003.mod 
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
 open economy models", Journal of International Economics, 61, pp. 163-185. 
