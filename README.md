@@ -4,6 +4,13 @@ A collection of Dynare models. It aims at demonstrating Dynare best practices
 and providing tractable replication files for important models that can be 
 useful for further model development. 
 
+# Contributing your own mod-files
+
+Contributions of replication files to this collection are highly welcomed. 
+When doing do, e.g. through pull requests, please clearly line out which 
+results of the original paper are replicated so that correctness can be 
+verified.
+
 # Contained Mod-files
 
 ## Ascari_Sbordone_2014.mod
