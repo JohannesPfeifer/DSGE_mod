@@ -24,6 +24,15 @@ Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, Jua
 
 This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
 
+## FV_et_al_2007 
+
+Replicates the ABCD-test for the example of the permanent income model 
+provided in Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007), 
+"ABCs (and Ds) of Understanding VARs", American Economic Review, 97(3), pp. 
+1021-1026 
+
+Includes the ```ABCD_test.m```
+
 ## Gali_2008
 
 ### Gali_2008_chapter_2.mod
