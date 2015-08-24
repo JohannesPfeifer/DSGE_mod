@@ -1,4 +1,4 @@
-function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0,plot_dummy);
+function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0,plot_dummy)
 % Plots the policy function
 %
 % INPUTS
@@ -19,29 +19,29 @@ function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0
 % SPECIAL REQUIREMENTS
 %    none
 
-% Copyright (C) 2013 Dynare Team
+% Copyright (C) 2013-15 Johannes Pfeifer
 %
-% This file is part of Dynare.
-%
-% Dynare is free software: you can redistribute it and/or modify
+% This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
 % the Free Software Foundation, either version 3 of the License, or
 % (at your option) any later version.
 %
-% Dynare is distributed in the hope that it will be useful,
+% It is distributed in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
 %
-% You should have received a copy of the GNU General Public License
-% along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
+% For a copy of the GNU General Public License
+% see <http://www.gnu.org/licenses/>.
 
 global M_ options_ oo_
 
-if nargin<4
+if nargin<4 || isempty(y0)
     y0=oo_.dr.ys;
 end
-
+if nargin<5
+    plot_dummy=1; 
+end
 n_points=length(state_range);
 
 policyfun=zeros(M_.endo_nbr,n_points);
@@ -64,7 +64,7 @@ if ismember(state_name,M_.endo_names(order_var(k2),:))
     xlabelstring=[state_name,'(-1)'];
 elseif ismember(state_name,M_.exo_names)
     xlabelstring=[state_name];
-elseif ismember(state_name,M_.endo_names) & ~ismember(state_name,M_.endo_names(order_var(k2),:))
+elseif ismember(state_name,M_.endo_names) && ~ismember(state_name,M_.endo_names(order_var(k2),:))
     error([state_name,' is not a state variable'])
 else
     error(['Unknown Variable ',state_name])
