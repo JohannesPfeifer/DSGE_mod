@@ -32,12 +32,12 @@
 
 
 var pi ${\pi}$ (long_name='inflation')
-    y_gap ${}$ (long_name='output gap')
+    y_gap ${\tilde y}$ (long_name='output gap')
     y_nat ${y^{nat}}$ (long_name='natural output')      //(in contrast to the textbook defined in deviation from steady state)
     y ${y}$ (long_name='output')
     r_nat ${r^{nat}}$ (long_name='natural interest rate')
     r_real ${r^r}$ (long_name='//real interest rate')     
-    i ${i}$ (long_name='nominal interst rate')
+    i ${i}$ (long_name='nominal interrst rate')
     n ${n}$ (long_name='hours worked')
     m_growth_ann ${\Delta m}$ (long_name='money growth')
     nu ${\nu}$ (long_name='AR(1) monetary policy shock process')
