@@ -66,7 +66,21 @@ Implements the baseline New Keynesian model of Jordi Galí (2008): Monetary
 Policy, Inflation, and the Business Cycle, Princeton University Press, 
 Chapter 3 
 
-## Gali_Monacelli_2014.mod 
+### Gali_2008_chapter_5_discretion.mod 
+
+Implements the optimal monetary policy under discretion exercise of Jordi 
+Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Chapter 5.1.1. It shows how to use the 
+```discretionary_policy``` command.
+
+### Gali_2008_chapter_5_commitment.mod 
+
+Implements the optimal monetary policy under commitment exercise of Jordi 
+Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Chapter 5.1.2. It shows how to use the ```ramsey_policy``` 
+command. 
+
+## Gali_Monacelli_2005.mod 
 
 Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 
 Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies 
