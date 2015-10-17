@@ -29,7 +29,8 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-
+%define whether to use interest rate or money growth rate rule 
+@#define money_growth_rule=0
 
 var pi ${\pi}$ (long_name='inflation')
     y_gap ${\tilde y}$ (long_name='output gap')
@@ -39,8 +40,13 @@ var pi ${\pi}$ (long_name='inflation')
     r_real ${r^r}$ (long_name='//real interest rate')     
     i ${i}$ (long_name='nominal interrst rate')
     n ${n}$ (long_name='hours worked')
-    m_growth_ann ${\Delta m}$ (long_name='money growth')
-    nu ${\nu}$ (long_name='AR(1) monetary policy shock process')
+    m_real ${m-p}$ (long_name='real money stock')
+    m_growth_ann ${\Delta m}$ (long_name='money growth annualized')
+    @#if money_growth_rule==0
+        nu ${\nu}$ (long_name='AR(1) monetary policy shock process')    
+    @#else
+        money_growth  ${\Delta m_q}$ (long_name='money growth')
+    @#endif
     a  ${a}$ (long_name='AR(1) technology shock process')
     r_real_ann ${r^{r,ann}}$ (long_name='annualized real interest rate')
     i_ann ${i^{ann}}$ (long_name='annualized nominal interest rate')
@@ -49,12 +55,21 @@ var pi ${\pi}$ (long_name='inflation')
     ;     
 
 varexo eps_a ${\varepsilon_a}$   (long_name='technology shock')
-       eps_nu ${\varepsilon_\nu}$   (long_name='monetary policy shock');
+            @#if money_growth_rule==0
+                eps_nu ${\varepsilon_\nu}$   (long_name='monetary policy shock')
+            @#else   
+                eps_m ${\varepsilon_\m}$   (long_name='money growth rate shock')
+            @#endif
+       ;
 
 parameters alppha ${\alppha}$ (long_name='capital share')
     betta ${\beta}$ (long_name='discount factor')
     rho_a ${\rho_a}$ (long_name='autocorrelation technology shock')
-    rho_nu ${\rho_{\nu}}$ (long_name='autocorrelation monetary policy shock')
+    @#if money_growth_rule==0
+        rho_nu ${\rho_{\nu}}$ (long_name='autocorrelation monetary policy shock')
+    @#else   
+        rho_m ${\rho_{m}}$ (long_name='autocorrelation monetary growth rate shock')
+    @#endif
     siggma ${\sigma}$ (long_name='log utility')
     phi ${\phi}$ (long_name='unitary Frisch elasticity')
     phi_pi ${\phi_{\pi}}$ (long_name='inflation feedback Taylor Rule')
@@ -71,7 +86,12 @@ phi=1;
 phi_pi = 1.5;
 phi_y  = .5/4;
 theta=2/3;
-rho_nu = 0.5;
+@#if money_growth_rule==0
+    rho_nu =0.5;
+@#else   
+    rho_m=0.5;
+
+@#endif
 rho_a  = 0.9;
 betta = 0.99;
 eta  =4;
@@ -94,7 +114,9 @@ pi=betta*pi(+1)+kappa*y_gap;
 //2. Dynamic IS Curve eq. (22)
 y_gap=-1/siggma*(i-pi(+1)-r_nat)+y_gap(+1);
 //3. Interest Rate Rule eq. (25)
+@#if money_growth_rule==0
 i=phi_pi*pi+phi_y*y_gap+nu;
+@#endif
 //4. Definition natural rate of interest eq. (23)
 r_nat=siggma*psi_n_ya*(a(+1)-a);
 //5. Definition real interest rate
@@ -104,13 +126,24 @@ y_nat=phi*a;
 //7. Definition output gap
 y_gap=y-y_nat;
 //8. Monetary policy shock
-nu=rho_nu*nu(-1)+eps_nu;
+@#if money_growth_rule==0
+    nu=rho_nu*nu(-1)+eps_nu;
+@#endif
 //9. TFP shock
 a=rho_a*a(-1)+eps_a;
 //10. Production function (eq. 13)
 y=a+(1-alppha)*n;
 //11. Money growth (derived from eq. (4))
 m_growth_ann=4*(y-y(-1)-eta*(i-i(-1))+pi);
+//12. Real money demand (eq. 4)
+m_real=y-eta*i;
+@#if money_growth_rule==1
+//definition nominal money growth
+money_growth=m_real-m_real(-1)+pi;
+//exogenous process for money growth
+money_growth=rho_m*(money_growth(-1))+eps_m;
+@#endif
+
 //12. Annualized nominal interest rate
 i_ann=4*i;
 //13. Annualized real interest rate
@@ -127,7 +160,11 @@ end;
 
 
 shocks;
-var eps_nu = 0.25^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
+    @#if money_growth_rule==0
+        var eps_nu = 0.25^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
+    @#else   
+        var eps_m = 0.25^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
+    @#endif
 end;
 
 %----------------------------------------------------------------
@@ -138,19 +175,29 @@ steady;
 check;
 
 %----------------------------------------------------------------
-% generate IRFs, replicates Figures 3.1, p. 53
+% generate IRFs, replicates Figures 3.1, p. 53 (interest rate rule)
+% 3.3, p. 57 (money growth rule)
 %----------------------------------------------------------------
+@#if money_growth_rule==0
 stoch_simul(order = 1,irf=15) y_gap pi_ann i_ann r_real_ann m_growth_ann nu;
+@#else
+stoch_simul(order = 1,irf=15) y_gap pi_ann i_ann r_real_ann m_real money_growth;
+@#endif
 
 
 shocks;
-var eps_nu = 0;   //shut off monetary policy shock
+    @#if money_growth_rule==0
+        var eps_nu = 0;   //shut off monetary policy shock
+    @#else   
+        var eps_m = 0;   //shut off monetary policy shock
+    @#endif
 var eps_a  = 1^2; //unit shock to technology
 end;
 
 %----------------------------------------------------------------
-% generate IRFs, replicates Figures 3.2, p. 55
+% generate IRFs, replicates Figures 3.2, p. 55 (interest rate rule)
+% 3.4, p. 59 (money growth rule)
 %----------------------------------------------------------------
-stoch_simul(order = 1,irf=15) y_gap pi_ann y n i_ann r_real_ann m_growth_ann a ;
+stoch_simul(order = 1,irf=15,irf_plot_threshold=0) y_gap pi_ann y n i_ann r_real_ann m_growth_ann a ;
 write_latex_dynamic_model;
 
