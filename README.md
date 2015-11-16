@@ -26,7 +26,8 @@ verified.
 ## Ascari_Sbordone_2014.mod
 Replicates Ascari, Guido and Sbordone, Argia M. (2014): "The Macroeconomics of Trend Inflation", Journal of Economic Literature, 52(3), pp. 679-739.
 
-This mod-file shows how to access steady state variables in order to plot steady state dependences on parameters. It also shows how to manually do a stability mapping be iterating over a grid on the parameter space.
+This mod-file shows how to access steady state variables in order to plot steady state dependences on parameters. 
+It also shows how to manually do a stability mapping be iterating over a grid on the parameter space.
  
 ## Aguiar_Gopinath_2007.mod
 
@@ -41,7 +42,8 @@ Juan F. and Yao, Wen (2012): "Computing DSGE Models with Recursive
 Preferences and Stochastic Volatility", Review of Economic Dynamics, 15, pp. 
 188-206. 
 
-This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
+This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. 
+It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
 
 ## FV_et_al_2007 
 
@@ -56,33 +58,33 @@ Includes the ```ABCD_test.m```
 
 ### Gali_2008_chapter_2.mod
 
-Implements the baseline Classical Monetary Economy model of Jordi GalÃ­ 
+Implements the baseline Classical Monetary Economy model of Jordi Galí­ 
 (2008): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 2 
 
 ### Gali_2008_chapter_3.mod 
 
-Implements the baseline New Keynesian model of Jordi GalÃ­ (2008): Monetary  
+Implements the baseline New Keynesian model of Jordi Galí (2008): Monetary  
 Policy, Inflation, and the Business Cycle, Princeton University Press, 
 Chapter 3 
 
 ### Gali_2008_chapter_5_discretion.mod 
 
 Implements the optimal monetary policy under discretion exercise of Jordi 
-GalÃ­ (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 5.1.1. It shows how to use the 
 ```discretionary_policy``` command.
 
 ### Gali_2008_chapter_5_commitment.mod 
 
 Implements the optimal monetary policy under commitment exercise of Jordi 
-GalÃ­ (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 5.1.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
 ## Gali_Monacelli_2005.mod 
 
-Replicates GalÃ­, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 
+Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 
 Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies 
 72, pp. 707-734. 
 
@@ -119,26 +121,26 @@ Implements a simple RBC model with additively separable utility and TFP news
 calibrated to US data. It shows how to generate IRFs to a "pure" news shock 
 where an 8 period anticipated news shock does not materialize at time 0. This 
 is the type of policy experiment that is for example performed in Beaudry 
-Portier (2004): An exploration into Pigouâ€™s theory of cycles, Journal of 
-Monetary Economics 51, pp. 1183â€“1216. 
+Portier (2004): An exploration into Pigou's theory of cycles, Journal of 
+Monetary Economics 51, pp. 1183-1216. 
 
 ## SGU_2003.mod 
 
-Replicates Schmitt-GrohÃ©, Stephanie and Uribe, MartÃ­n (2003): "Closing small 
+Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
 open economy models", Journal of International Economics, 61, pp. 163-185. 
 
 ## SGU_2004.mod
 
-Replicates the neoclassical growth model for Schmitt-GrohÃ©/Uribe (2004): 
+Replicates the neoclassical growth model for Schmitt-Grohé/Uribe (2004): 
 "Solving dynamic general equilibrium models using a second-order 
 approximation to the policy function", Journal of Economic Dynamics & 
-Control, 28, pp. 755 â€“ 775 
+Control, 28, pp. 755-775 
 
 ## Sims_2012 
 
 Replicates the results for the basic RBC model presented in Eric R. Sims 
 (2012): "New, Non-Invertibility, and Structural VARs", Advances in 
-Econometrics, Volume 28, 81â€“135 
+Econometrics, Volume 28, 81-135 
 
 Requires the ABCD_test.m from the FV_et_al_2007-folder to be located in the 
 same folder. 
