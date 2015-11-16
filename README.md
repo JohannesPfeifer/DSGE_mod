@@ -88,6 +88,15 @@ Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies
 
 This mod-file shows how to use Dynare's LaTeX-capacities
 
+## GarciaCicco_et_al_2010.mod
+
+Replicates the model studied in García-Cicco, Javier and Pancrazi, Roberto and Uribe, Martín (2010): 
+"Real Business Cycles in Emerging Countries", American Economic Review, 100(5), pp. 2510-2531.
+ 
+It provides a replication code for the main results of the original paper for the case of Argentina. 
+
+This mod-file shows how to use the loglinear and logdata options of Dynare.
+
 ## Hansen_1985.mod
 
 Replicates the model studied in Hansen, Gary D. (1985): "Invisible labor and 

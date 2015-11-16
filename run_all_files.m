@@ -26,5 +26,6 @@ cd('../Sims_2012')
 dynare Sims_2012_RBC
 cd('../Smets_Wouters_2007')
 dynare Smets_Wouters_2007
-
+cd('../GarciaCicco_et_al_2010')
+dynare GarciaCicco_et_al_2010
 
