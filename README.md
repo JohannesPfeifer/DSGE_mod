@@ -45,6 +45,13 @@ Preferences and Stochastic Volatility", Review of Economic Dynamics, 15, pp.
 This mod-file shows how to use auxiliary variables to deal with recursive preferences and expected returns. 
 It also shows how to use the ```plot_policy_fun.m``` to plot the policy functions using Dynare
 
+## Chari_et_al_2007.mod
+
+Replicates Chari, V.V/Kehoe, Patrick J./McGrattan, Ellen (2007), "Business Cycle Accounting", Econometrica, 75(3), pp. 781-836. 
+
+It demonstrates how to use the linearized benchmark model estimated using Maximum Likelihood to conduct the 
+Business Cycle Accounting  as is done in the paper for the 1982 recession.
+
 ## FV_et_al_2007 
 
 Replicates the ABCD-test for the example of the permanent income model 

@@ -28,4 +28,6 @@ cd('../Smets_Wouters_2007')
 dynare Smets_Wouters_2007
 cd('../GarciaCicco_et_al_2010')
 dynare GarciaCicco_et_al_2010
+cd('../Chari_et_al_2007')
+dynare Chari_et_al_2007
 
