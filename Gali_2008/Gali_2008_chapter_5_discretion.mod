@@ -17,6 +17,8 @@
  *      - Note that the autocorrelation coefficient used in Figure 5.2 is 0.8 
  *        and not 0.5 as stated in the text. This can be inferred from the decay
  *        time of the cost push shock in the same figure
+ *      - Section 5.1 has an undistorted steady state so that the efficient and the 
+ *        natural level of output coincide.
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
@@ -110,7 +112,7 @@ model(linear);
 //1. Definition efficient interest rate, below equation (4)
 r_e=siggma*(y_e(+1)-y_e);
 
-//2. Definition efficient output
+//2. Definition efficient output. p. 112
 y_e=psi_n_ya*a;
 
 //3. Definition linking various output gaps, bottom page 96
@@ -129,7 +131,7 @@ r_nat=siggma*psi_n_ya*(a(+1)-a);
 r_real=i-pi(+1);
 
 //8. Natural output
-y_nat=phi*a;
+y_nat=psi_n_ya*a;
 
 //9. Definition output gap
 y_gap=y-y_nat;

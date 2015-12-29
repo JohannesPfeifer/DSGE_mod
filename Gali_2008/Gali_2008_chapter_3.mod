@@ -121,8 +121,8 @@ i=phi_pi*pi+phi_y*y_gap+nu;
 r_nat=siggma*psi_n_ya*(a(+1)-a);
 //5. Definition real interest rate
 r_real=i-pi(+1);
-//6. 
-y_nat=phi*a;
+//6. Definition natural output, eq. (19)
+y_nat=psi_n_ya*a;
 //7. Definition output gap
 y_gap=y-y_nat;
 //8. Monetary policy shock
