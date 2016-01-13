@@ -23,10 +23,10 @@
  *      which is the reason a steady state-file is used.
  * - All data are in logs and linearly detrended, while their counterparts in the model are in levels.
  *      The only exception is government spending, which enters in logs in the model.
- * - In the original paper, the treatment of durables services and durables consumption/depreication in the quarterly 
+ * - In the original paper, the treatment of durables services and durables consumption/depreciation in the quarterly 
  *      model is wrong. They enter with a weight of 1% instead of 100% due to omission of the fact 
  *      that the deflator has a base level of 100 (lines 39 and 40 of their mleqtrly/usdata.m). As the durables stock is relatively
- *      acyclical, this is mostly inconsequential for the results. The 
+ *      acyclical, this is mostly inconsequential for the results. 
  * - The original paper attempts to normalize output to 1 in 1979(1) in the data treatment, but actually 
  *      normalizes it to 1*(1+gamma), which is why log output in 1979Q1, i.e. y(81) is equal 
  *      to log(1.016^(1/4))=0.004
