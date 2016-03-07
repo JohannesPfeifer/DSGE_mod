@@ -1,5 +1,5 @@
 /*
- * This file implements the optimal monetary policy under discretion exercise 
+ * This file implements the optimal monetary policy under commitment exercise 
  * in Jordi Galí (2008): Monetary Policy, Inflation, and the Business Cycle, 
  * Princeton University Press, Chapter 5.1.2
  *
