@@ -6,6 +6,8 @@
  * To replicate the full results, you have to get back to the original replication files available at
  * https://www.aeaweb.org/articles.php?doi=10.1257/aer.97.3.586 and include the respective estimation commands and mode-files.
  *
+ * Notes: Please see the header to the Smets_Wouters_2007_45.mod for more details and a fully documented version.
+ *
  * This file was originally written by Frank Smets and Rafeal Wouters and has been updated by
  * Johannes Pfeifer. 
  *
