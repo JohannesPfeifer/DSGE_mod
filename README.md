@@ -89,6 +89,16 @@ Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton
 University Press, Chapter 5.1.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
+## Gali_2015
+
+### Gali_2015_chapter_4.mod
+Implements the welfare analysis of Chapter 4.4 on simple rules in the baseline New Keynesian model
+of Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
+
+### Gali_2015_chapter_8.mod
+Implements the baseline New Keynesian small open economy model of Chapter 8 of
+Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
+
 ## Gali_Monacelli_2005.mod 
 
 Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 

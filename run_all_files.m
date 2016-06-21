@@ -10,6 +10,9 @@ dynare FV_et_al_2007_ABCD
 cd('../Gali_2008')
 dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3
+cd('../Gali_2015')
+dynare Gali_2015_Chapter_4
+dynare Gali_2015_Chapter_8
 cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
 cd('../Hansen_1985')
