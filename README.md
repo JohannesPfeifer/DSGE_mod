@@ -91,6 +91,11 @@ command.
 
 ## Gali_2015
 
+### Gali_2015_chapter_3.mod 
+
+Implements the baseline New Keynesian model of Jordi Gali (2015): Monetary Policy, 
+Inflation, and the Business Cycle, Princeton University Press, Second Edition, Chapter 3 
+
 ### Gali_2015_chapter_4.mod
 Implements the welfare analysis of Chapter 4.4 on simple rules in the baseline New Keynesian model
 of Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
