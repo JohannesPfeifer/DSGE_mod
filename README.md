@@ -100,6 +100,21 @@ Inflation, and the Business Cycle, Princeton University Press, Second Edition, C
 Implements the welfare analysis of Chapter 4.4 on simple rules in the baseline New Keynesian model
 of Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
 
+### Gali_2015_chapter_6.mod
+Implements the New Keynesian model with price and wage rigidities 
+of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Second Edition, Chapter 6
+
+### Gali_2015_chapter_6_4.mod
+Implements the New Keynesian model with price and wage rigidities under optimal policy 
+with commitment (Ramsey) of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Second Edition, Chapter 6.4
+
+### Gali_2015_chapter_6_5.mod
+Implements the New Keynesian model with price and wage rigidities under under simple rules
+of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Second Edition, Chapter 6.5
+
 ### Gali_2015_chapter_8.mod
 Implements the baseline New Keynesian small open economy model of Chapter 8 of
 Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
