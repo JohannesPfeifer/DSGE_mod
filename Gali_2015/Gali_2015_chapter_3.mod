@@ -46,7 +46,7 @@ var pi          ${\pi}$                 (long_name='inflation')
     r_real      ${r^r}$                 (long_name='real interest rate')     
     i           ${i}$                   (long_name='nominal interrst rate')
     n           ${n}$                   (long_name='hours worked')
-    m_real      ${(m-p)}$                 (long_name='real money stock')
+    m_real      ${m-p}$                 (long_name='real money stock')
     m_growth_ann ${\Delta m}$           (long_name='money growth annualized')
     m_nominal   ${m}$                   (long_name='nominal money stock')
     @#if money_growth_rule==0
@@ -65,6 +65,8 @@ var pi          ${\pi}$                 (long_name='inflation')
     w           ${w}$                   (long_name='nominal wage')
     c           ${c}$                   (long_name='consumption')
     w_real      ${\frac{w}{p}}$         (long_name='real wage')
+    mu          ${\mu}$                 (long_name='markup')
+    mu_hat      ${\hat \mu}$            (long_name='markup gap')
 ;     
 
 varexo  eps_a       ${\varepsilon_a}$       (long_name='technology shock')
@@ -184,6 +186,10 @@ w-p=siggma*c+varphi*n;
 w_real=w-p;
 [name='definition nominal money stock']
 m_nominal=m_real+p;
+[name='average price markup, eq. (18)']
+mu=-(siggma+(varphi+alppha)/(1-alppha))*y+(1+varphi)/(1-alppha)*a;
+[name='average price markuo, eq. (20)']
+mu_hat=-(siggma+(varphi+alppha)/(1-alppha))*y_gap;
 end;
 
 
@@ -212,7 +218,7 @@ check;
 % 3.4, p. 76 (money supply rule)
 %----------------------------------------------------------------
 @#if money_growth_rule==0
-    stoch_simul(order = 1,irf=15);% y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal nu;
+    stoch_simul(order = 1,irf=15) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal nu;
 @#else
     stoch_simul(order = 1,irf=15) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal money_growth_ann;
 @#endif
@@ -249,5 +255,3 @@ end;
 
 stoch_simul(order = 1,irf=15,irf_plot_threshold=0) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal a;
 
-write_latex_dynamic_model;
-collect_LaTeX_Files(M_);    
