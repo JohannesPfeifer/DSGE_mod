@@ -35,7 +35,7 @@
  */
 
 %define whether to use interest rate or money growth rate rule 
-@#define money_growth_rule=1
+@#define money_growth_rule=0
 
 var pi          ${\pi}$                 (long_name='inflation')
     y_gap       ${\tilde y}$            (long_name='output gap')
@@ -46,7 +46,7 @@ var pi          ${\pi}$                 (long_name='inflation')
     r_real      ${r^r}$                 (long_name='real interest rate')     
     i           ${i}$                   (long_name='nominal interrst rate')
     n           ${n}$                   (long_name='hours worked')
-    m_real      ${m-p}$                 (long_name='real money stock')
+    m_real      ${(m-p)}$                 (long_name='real money stock')
     m_growth_ann ${\Delta m}$           (long_name='money growth annualized')
     m_nominal   ${m}$                   (long_name='nominal money stock')
     @#if money_growth_rule==0
@@ -76,7 +76,7 @@ varexo  eps_a       ${\varepsilon_a}$       (long_name='technology shock')
         eps_z       ${\varepsilon_z}$   (long_name='preference shock innovation')
        ;
 
-parameters alppha       ${\alppha}$     (long_name='capital share')
+parameters alppha       ${\alpha}$     (long_name='capital share')
     betta               ${\beta}$       (long_name='discount factor')
     rho_a               ${\rho_a}$      (long_name='autocorrelation technology shock')
     @#if money_growth_rule==0
@@ -178,11 +178,11 @@ yhat=y-steady_state(y);
 pi=p-p(-1);
 [name='resource constraint, eq. (12)']
 y=c;
-[name='resource constraint, eq. (12)']
+[name='FOC labor, eq. (2)']
 w-p=siggma*c+varphi*n;
 [name='definition real wage']
 w_real=w-p;
-[name='definition real wage']
+[name='definition nominal money stock']
 m_nominal=m_real+p;
 end;
 
@@ -212,7 +212,7 @@ check;
 % 3.4, p. 76 (money supply rule)
 %----------------------------------------------------------------
 @#if money_growth_rule==0
-    stoch_simul(order = 1,irf=15) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal nu;
+    stoch_simul(order = 1,irf=15);% y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal nu;
 @#else
     stoch_simul(order = 1,irf=15) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal money_growth_ann;
 @#endif
@@ -249,3 +249,5 @@ end;
 
 stoch_simul(order = 1,irf=15,irf_plot_threshold=0) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal a;
 
+write_latex_dynamic_model;
+collect_LaTeX_Files(M_);    
