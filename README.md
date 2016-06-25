@@ -115,6 +115,11 @@ Implements the New Keynesian model with price and wage rigidities under under si
 of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Second Edition, Chapter 6.5
 
+### Gali_2015_chapter_7.mod
+Implements the New Keynesian model with price and wage rigidities and unemployment 
+of Chapter 7 of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+University Press, Second Edition.
+
 ### Gali_2015_chapter_8.mod
 Implements the baseline New Keynesian small open economy model of Chapter 8 of
 Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
