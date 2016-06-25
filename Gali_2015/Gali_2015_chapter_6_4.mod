@@ -229,9 +229,6 @@ plot(1:options_.irf,oo_baseline.irfs.w_real_eps_a,'-o',1:options_.irf,oo_flexibl
 title('Real wage')
 
 
-
-
-
 %----------------------------------------------------------------
 % generate first row of Table 6.1, p. 186
 %----------------------------------------------------------------

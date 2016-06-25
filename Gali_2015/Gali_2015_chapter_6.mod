@@ -33,9 +33,6 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-%define whether to use interest rate or money growth rate rule 
-@#define money_growth_rule=1
-
 var pi_p        ${\pi^p}$               (long_name='price inflation')
     y_gap       ${\tilde y}$            (long_name='output gap')
     y_nat       ${y^{nat}}$             (long_name='natural output')      //(in contrast to the textbook defined in deviation from steady state)
@@ -127,6 +124,7 @@ y_gap=-1/siggma*(i-pi_p(+1)-r_nat)+y_gap(+1);
 i=phi_pi*pi_p+phi_y*yhat+nu;
 [name='Definition natural rate of interest eq. (24)']
 r_nat=-siggma*psi_n_ya*(1-rho_a)*a+(1-rho_z)*z;
+[name='Definition wage gap, eq (21)']
 w_gap=w_gap(-1)+pi_w-pi_p-(w_nat-w_nat(-1));
 [name='Definition natural wage, eq (16)']
 w_nat=psi_n_wa*a;
