@@ -8,6 +8,12 @@
  *      to the chapter, the nominal interest rate, natural output, and the natural real wage are not in log-levels, but rather mean 0
  *  - in the LOM for the discount rate shock z the shock enters with a minus sign in this mod-file to generate the 
  *      IRF to a -0.5% shock
+ *  - on p. 168 in the first-order condition for the optimal wage (the equation above equation (11)) 
+ *      it should be a minus sign in the middle term, i.e. 
+ *          -M_w*N^{phi}_{t+k|t}
+ *      instead of 
+ *          +M_w*N^{phi}_{t+k|t}
+  *     Equation (11) is correct again.
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
