@@ -11,6 +11,7 @@ cd('../Gali_2008')
 dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3
 cd('../Gali_2015')
+dynare Gali_2015_Chapter_2
 dynare Gali_2015_Chapter_3
 dynare Gali_2015_Chapter_4
 dynare Gali_2015_Chapter_6

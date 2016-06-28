@@ -91,8 +91,11 @@ command.
 
 ## Gali_2015
 
-### Gali_2015_chapter_3.mod 
+### Gali_2015_chapter_2.mod 
+Implements the baseline Classical Monetary Economy of Jordi Gali (2015): Monetary Policy, 
+Inflation, and the Business Cycle, Princeton University Press, Second Edition, Chapter 2
 
+### Gali_2015_chapter_3.mod 
 Implements the baseline New Keynesian model of Jordi Gali (2015): Monetary Policy, 
 Inflation, and the Business Cycle, Princeton University Press, Second Edition, Chapter 3 
 
