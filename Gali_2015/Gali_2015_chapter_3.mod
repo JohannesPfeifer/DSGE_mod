@@ -142,7 +142,7 @@ y_nat=psi_n_ya*a;
 [name='Definition output gap']
 y_gap=y-y_nat;
 @#if money_growth_rule==0
-    [name='8. Monetary policy shock']
+    [name='Monetary policy shock']
     nu=rho_nu*nu(-1)+eps_nu;
 @#endif
 [name='TFP shock']
