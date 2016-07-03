@@ -115,6 +115,12 @@ Implements the optimal monetary policy under commitment exercise of Jordi Gali (
 and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
+### Gali_2015_chapter_5_discretion_ZLB.mod 
+
+Implements the optimal monetary policy at the ZLB under discretion exercise 
+Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
+Chapter 5.4.1. It shows how to solve a perfect foresight model with a zero lower bound on interest rates.
+
 ### Gali_2015_chapter_6.mod
 Implements the New Keynesian model with price and wage rigidities 
 of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
