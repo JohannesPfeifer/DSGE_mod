@@ -103,6 +103,18 @@ Inflation, and the Business Cycle, Princeton University Press, Second Edition, C
 Implements the welfare analysis of Chapter 4.4 on simple rules in the baseline New Keynesian model
 of Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
 
+### Gali_2015_chapter_5_discretion.mod 
+
+Implements the optimal monetary policy under discretion exercise of Jordi Gali (2015): Monetary Policy, Inflation, 
+and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.1. It shows how to use the 
+```discretionary_policy``` command.
+
+### Gali_2015_chapter_5_commitment.mod 
+
+Implements the optimal monetary policy under commitment exercise of Jordi Gali (2015): Monetary Policy, Inflation, 
+and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.2. It shows how to use the ```ramsey_policy``` 
+command. 
+
 ### Gali_2015_chapter_6.mod
 Implements the New Keynesian model with price and wage rigidities 
 of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 

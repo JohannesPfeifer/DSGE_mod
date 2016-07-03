@@ -11,14 +11,16 @@ cd('../Gali_2008')
 dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3
 cd('../Gali_2015')
-dynare Gali_2015_Chapter_2
-dynare Gali_2015_Chapter_3
-dynare Gali_2015_Chapter_4
-dynare Gali_2015_Chapter_6
-dynare Gali_2015_Chapter_6_4
-dynare Gali_2015_Chapter_6_5
-dynare Gali_2015_Chapter_7
-dynare Gali_2015_Chapter_8
+dynare Gali_2015_chapter_2
+dynare Gali_2015_chapter_3
+dynare Gali_2015_chapter_4
+dynare Gali_2015_chapter_5_discretion
+dynare Gali_2015_chapter_5_commitment
+dynare Gali_2015_chapter_6
+dynare Gali_2015_chapter_6_4
+dynare Gali_2015_chapter_6_5
+dynare Gali_2015_chapter_7
+dynare Gali_2015_chapter_8
 cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
 cd('../Hansen_1985')

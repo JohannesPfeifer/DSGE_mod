@@ -1,0 +1,9 @@
+*.eps
+checksum
+*.log
+*.aux
+*.pdf
+*.synctex
+*.bbl
+*.blg
+*.tex
