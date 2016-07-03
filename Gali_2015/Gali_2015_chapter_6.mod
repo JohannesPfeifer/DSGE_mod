@@ -230,4 +230,4 @@ plot(1:options_.irf,oo_baseline.irfs.w_real_eps_nu,'-o',1:options_.irf,oo_flexib
 title('Real wage')
 
 write_latex_dynamic_model;
-collect_LaTeX_Files(M_);    
+collect_latex_files;    

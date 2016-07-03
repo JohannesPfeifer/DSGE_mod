@@ -204,7 +204,7 @@ write_latex_definitions;
 
 stoch_simul(TeX,order=1,irf=20,irf_plot_threshold=0) pih x pi s e r ph p a;
 
-collect_LaTeX_Files(M_);
+collect_latex_files;
 
 //Uncomment the following lines to generate a PDF file using PDFLaTeX (if installed)
 % if system(['pdflatex -halt-on-error ' M_.fname '_TeX_binder.TeX'])

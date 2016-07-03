@@ -256,7 +256,7 @@ check;
 
 write_latex_parameter_table;
 write_latex_dynamic_model;
-collect_LaTeX_Files(M_);    
+collect_latex_files;    
 
 %----------------------------------------------------------------
 % generate IRFs
