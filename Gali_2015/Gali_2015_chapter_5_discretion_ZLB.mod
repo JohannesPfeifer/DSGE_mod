@@ -82,8 +82,11 @@ model;
 pi=betta*pi(+1)+kappa*x;
 [name='Dynamic IS Curve eq. (30)']
 x=x(+1)-1/siggma*(max(i*ZLB_indicator+(1-ZLB_indicator)*i_taylor,0)-pi(+1)-r_nat);
+[name='FOC, eq. (33)']
 vartheta*x=-kappa*pi-xi_2;
+[name='Complementary slackness condition']
 max(xi_2,0)*i=0;
+[name='Taylor rule']
 i_taylor=1+phi_pi*pi;
 [name='Annualized natural interest rate']
 r_nat_ann=4*r_nat;
