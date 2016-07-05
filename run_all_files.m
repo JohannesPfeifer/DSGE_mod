@@ -17,6 +17,7 @@ dynare Gali_2015_chapter_4
 dynare Gali_2015_chapter_5_discretion
 dynare Gali_2015_chapter_5_commitment
 dynare Gali_2015_chapter_5_discretion_ZLB
+dynare Gali_2015_chapter_5_commitment_ZLB
 dynare Gali_2015_chapter_6
 dynare Gali_2015_chapter_6_4
 dynare Gali_2015_chapter_6_5

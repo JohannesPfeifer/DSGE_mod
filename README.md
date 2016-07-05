@@ -119,7 +119,15 @@ command.
 
 Implements the optimal monetary policy at the ZLB under discretion exercise 
 Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
-Chapter 5.4.1. It shows how to solve a perfect foresight model with a zero lower bound on interest rates.
+Chapter 5.4.1. It shows how to solve a perfect foresight model with a Levenberg-Marquardt mixed complementarity problem (lmmcp)
+approach to deal with the zero lower bound on interest rates.
+
+### Gali_2015_chapter_5_commitment_ZLB.mod 
+
+Implements the optimal monetary policy at the ZLB under commitment exercise 
+Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
+Chapter 5.4.2. It shows how to solve a perfect foresight model with a Levenberg-Marquardt mixed complementarity problem (lmmcp)
+approach to deal with the zero lower bound on interest rates.
 
 ### Gali_2015_chapter_6.mod
 Implements the New Keynesian model with price and wage rigidities 
