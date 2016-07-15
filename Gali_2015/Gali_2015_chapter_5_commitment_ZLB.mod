@@ -3,6 +3,8 @@
  * in Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, 
  * Princeton University Press, Second Edition, Chapter 5.4.2
  *
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ *
  * Notes:
  *  - This mod-file makes use of the Levenberg-Marquardt mixed complementarity problem (lmmcp)
  *      approach to deal with the ZLB constraint. For this purpose, the Lagrangian is written to 

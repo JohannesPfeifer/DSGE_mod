@@ -4,6 +4,8 @@
  * When the preprocessor variable FDIT is set 1, it replicates Figure 8.1. For each monetary policy rule, it allows
  * replicating the results from Table 8.1. 
  *
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ *
  * Notes:
  * - all model variables are expressed in deviations from steady state, i.e. in contrast to
  *      to the chapter, both the nominal interest rate and natural output are not in log-levels, but rather mean 0

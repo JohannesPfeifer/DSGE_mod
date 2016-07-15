@@ -5,6 +5,8 @@
  *
  * It demonstrates how to use the discretionary_policy command of Dynare.
  *
+ *  THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ *
  * Notes:
  *      - all model variables are expressed in deviations from steady state, i.e. 
  *        in contrast to to the chapter, both the nominal interest rate and 
