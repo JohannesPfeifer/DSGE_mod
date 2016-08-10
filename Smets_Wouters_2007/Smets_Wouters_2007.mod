@@ -176,6 +176,16 @@ labobs = lab + constelab;
 
 end; 
 
+steady_state_model;
+dy=ctrend;
+dc=ctrend;
+dinve=ctrend;
+dw=ctrend;
+pinfobs = constepinf;
+robs = (((1+constepinf/100)/((1/(1+constebeta/100))*(1+ctrend/100)^(-csigma)))-1)*100;
+labobs = constelab;
+end;
+
 shocks;
 var ea;
 stderr 0.4618;
