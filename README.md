@@ -238,3 +238,10 @@ header to Smets_Wouters_2007_45.mod for additional remarks.
 Provides replication files that are compatible with Dynare 
 4.5 onwards and make full use of Dynare's LaTeX-capabilities to better 
 document the original replication files. 
+
+## Woodford_2007_Chapter_7.mod
+
+Implements the deterministic optimal policy exercise in Figure 7.1 of Michael Woodford (2003): 
+"Interest and prices", Princeton University Press, page 476. The same figure is reproduced as 
+Figure 2 in Michael Woodford (2010): "Optimal Monetary Stabilization Policy", Chapter 14 of the 
+Handbook of Monetary Economics, Volume 3B, Elsevier

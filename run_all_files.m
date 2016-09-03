@@ -39,8 +39,10 @@ cd('../Sims_2012')
 dynare Sims_2012_RBC
 cd('../Smets_Wouters_2007')
 dynare Smets_Wouters_2007
+dynare Smets_Wouters_2007_45
 cd('../GarciaCicco_et_al_2010')
 dynare GarciaCicco_et_al_2010
 cd('../Chari_et_al_2007')
 dynare Chari_et_al_2007
-
+cd('../Woodford_2003')
+dynare Woodford_2003_Chapter_7
