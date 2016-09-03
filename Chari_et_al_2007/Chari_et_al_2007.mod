@@ -34,7 +34,11 @@
  *      wedge component entering the VAR process
  * - CKM use a penalty function that punishes eigenvalues of the VAR processes for the wedges bigger 
  *      than 0.995 (see footnote a) to Table I, p. 800). Because this cannot be easily done in Dynare 
- *      the penalty is omitted, leading to a somewhat bigger maximum eigenvalue.
+ *      the penalty is omitted, leading to a somewhat bigger maximum eigenvalue. However, this pushes the 
+ *      VAR coefficients closer to the boundary of the stability region. While hardly affecting the point estimates
+ *      and conclusion of the paper, it makes the Hessian at the mode not positive definite and renders the standard errors 
+ *      invalid.
+ *      and the standard errors 
  * - CKM use the linearized model only to extract the investment wedge and the decision rules. All other wedges
  *      are computed based on the original nonlinear model equations. For this purpose, the capital stock is 
  *      initialized at the steady state value in the first period and then iterated forwards. This mod-file also 
