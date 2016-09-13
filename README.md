@@ -187,6 +187,12 @@ Review of Economics and Statistics, 86(4), pp. 923-936
 
 This mod-file shows how to estimate DSGE models using maximum likelihood in Dynare.
 
+## RBC_baseline.mod
+
+This file presents a baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1. 
+The model setup is described in Handout_RBC_model.pdf and resembles the one in King/Rebelo (1999): Resuscitating Real Business Cycles, Handbook of Macroeconomics, Volume 1, and
+Romer (2012), Advanced macroeconomics, 4th edition. The driving processes are estimated as AR(1)-processes on linearly detrended data.
+
 ## RBC_capitalstock_shock.mod
 
 Implements a simple RBC model with a time t shock to the capital stock. 
