@@ -8,6 +8,12 @@
  *
  * Notes:
  * - This file has been tested with Dynare 4.4.3
+ * - SGU on page 169 define the trade balance as 1-(c+i)/y. This in principle neglects the resource costs 
+ *      imposed by capital adjustment costs (thanks to Sidney Caetano for pointing this out). The present mod-
+ *      file therefore uses the correct definition     
+ *          tb_y = 1-(c+i+(phi/2)*(k-k(-1))^2)/y;
+ *      Note that this change does not affect any of the results presented in the paper, because they were obtained at first order
+ *      and the first order derivative of this term is 0.
  *   
  * This implementation was written by Johannes Pfeifer. If you spot any mistakes, 
  * email me at jpfeifer@gmx.de.
@@ -112,7 +118,7 @@ model;
     exp(r) = r_bar;
 
     //11. p. 169, Definition of trade balance to ouput ratio
-    tb_y = 1-((exp(c)+exp(i))/exp(y));
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d);                                   
 end;
 
@@ -165,7 +171,7 @@ model;
     exp(r) = r_bar;
 
     //12. p. 169, Definition of trade balance to ouput ratio
-    tb_y = 1-((exp(c)+exp(i))/exp(y));
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     //13. Definition of current account to ouput ratio
     ca_y = (1/exp(y))*(d(-1)-d);                                   
 end;
@@ -217,7 +223,7 @@ model;
     riskpremium = psi_2*(exp(d-d_bar)-1);
 
     //11. p. 169, Definition of trade balance to ouput ratio
-    tb_y = 1-((exp(c)+exp(i))/exp(y));
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d);                                   
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
@@ -269,7 +275,7 @@ model;
     exp(r) = r_bar;
 
     //11. p. 169, Definition of trade balance to ouput ratio
-    tb_y = 1-((exp(c)+exp(i))/exp(y));
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d); 
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
@@ -312,7 +318,7 @@ model;
     //7. Eq. (14), Law of motion for TFP
     a = rho*a(-1)+sigma_tfp*e; 
     //8. p. 169, Definition of trade balance to ouput ratio
-    tb_y = 1-((exp(c)+exp(i))/exp(y));
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
 
