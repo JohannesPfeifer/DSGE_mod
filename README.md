@@ -245,6 +245,26 @@ Provides replication files that are compatible with Dynare
 4.5 onwards and make full use of Dynare's LaTeX-capabilities to better 
 document the original replication files. 
 
+## Solow_model
+
+Various mod-files related to the basic Solow-Swan model, using Dynare's perfect
+foresight routines to study steady state transitions when e.g. parameters change
+
+### Solow_SS_transition.mod 
+Studies the transition behavior of a simple Solow-Swan economy with Cobb-Douglas 
+production function to its steady state when started with a capital stock different
+from steady state.
+
+### Solow_growth_rate_changes.mod 
+Studies the transition behavior of a simple Solow-Swan economy with Cobb-Douglas production 
+function after unanticipated for changes in technology or population growth. 
+
+### Solow_nonstationary.mod 
+Studies the transition behavior of a simple Solow-Swan economy with Cobb-Douglas production 
+function to its balanced growth path (BGP). The Solow model is solved here in aggregate, 
+i.e. non-detrended form along its balanced growth path. For that purpose, trending labor-augmenting
+technology and population processes are defined.
+
 ## Woodford_2007_Chapter_7.mod
 
 Implements the deterministic optimal policy exercise in Figure 7.1 of Michael Woodford (2003): 

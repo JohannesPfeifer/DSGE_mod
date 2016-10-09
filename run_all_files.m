@@ -46,5 +46,9 @@ cd('../GarciaCicco_et_al_2010')
 dynare GarciaCicco_et_al_2010
 cd('../Chari_et_al_2007')
 dynare Chari_et_al_2007
+cd('../Solow_model')
+dynare Solow_SS_transition
+dynare Solow_growth_rate_changes
+dynare Solow_nonstationary
 cd('../Woodford_2003')
 dynare Woodford_2003_Chapter_7
