@@ -75,7 +75,6 @@ theta=7.88;     %taken from Woodford (1999)
 
     planner_objective(0.5*(pi^2+lambda*(x-x_star)^2));
     ramsey_model(planner_discount=0.99);
-    options_.ramsey_policy=1;
     steady;
     simul(periods=50);
 @#else
