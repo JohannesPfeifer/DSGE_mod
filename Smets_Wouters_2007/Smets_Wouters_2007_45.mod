@@ -188,6 +188,11 @@ cmaw  = 0;
 
 constelab=0;
 
+%% Added by JP to provide full calibration of model before estimation
+constepinf=0.7;
+constebeta=0.7420;
+ctrend=0.3982;
+
 model(linear); 
 //deal with parameter dependencies; taken from usmodel_stst.mod 
 #cpie=1+constepinf/100;         %gross inflation rate
