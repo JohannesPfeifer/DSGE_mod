@@ -187,6 +187,23 @@ Review of Economics and Statistics, 86(4), pp. 923-936
 
 This mod-file shows how to estimate DSGE models using maximum likelihood in Dynare.
 
+
+## Jermann_Quadrini_2012
+
+Provides replication files for Pfeifer, Johannes (2016): "Macroeconomic effects effects of financial 
+shocks: A comment", Dynare Working Paper 50. This paper replicates and corrects the results obtained in 
+Jermann/Quadrini (2012): "Macroeconomic effects of financial shocks", American Economic Review, 102(1): 
+238-271.
+
+### Jermann_Quadrini_2012_RBC
+Implements the RBC model of Jermann/Quadrini (2012). It allows replicating the original results and 
+generates the results of Pfeifer (2016), who documents a mistake in the TFP-construction of JQ 
+that requires recalibrating the model.
+
+### Jermann_Quadrini_2012_NK
+This file replicates the estimation of the New Keynesian model of Jermann/Quadrini (2012) conducted and 
+described in Pfeifer (2016).
+
 ## RBC_baseline.mod
 
 This file presents a baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1. 
