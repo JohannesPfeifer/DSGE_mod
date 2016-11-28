@@ -100,6 +100,7 @@ parameters alppha       ${\alpha}$      (long_name='capital share')
     eta                 ${\eta}$        (long_name='semi-elasticity of money demand')
     epsilon             ${\epsilon}$    (long_name='demand elasticity')
     theta               ${\theta}$      (long_name='Calvo parameter')
+    tau                 ${\tau}$      (long_name='labor subsidy')
     ;
     
 %----------------------------------------------------------------
@@ -121,7 +122,7 @@ betta  = 0.99;
 eta  =3.77; %footnote 11, p. 115
 alppha=1/4;
 epsilon=9;
-
+tau=0; //1/epsilon;
 
 %----------------------------------------------------------------
 % First Order Conditions
@@ -167,7 +168,7 @@ model;
     [name='LOM price dispersion']
     S=(1-theta)*Pi_star^(-epsilon/(1-alppha))+theta*Pi^(epsilon/(1-alppha))*S(-1);
     [name='FOC price setting']
-    Pi_star^(1+epsilon*(alppha/(1-alppha)))=x_aux_1/x_aux_2*epsilon/(epsilon-1);
+    Pi_star^(1+epsilon*(alppha/(1-alppha)))=x_aux_1/x_aux_2*(1-tau)*epsilon/(epsilon-1);
     [name='Auxiliary price setting recursion 1']
     x_aux_1=C^(-siggma)*Y*MC+betta*theta*Pi(+1)^(epsilon+alppha*epsilon/(1-alppha))*x_aux_1(+1);
     [name='Auxiliary price setting recursion 2']
@@ -208,7 +209,7 @@ Z=1;
 S=1;
 Pi_star=1;
 P=1;
-MC=(epsilon-1)/epsilon;
+MC=(epsilon-1)/epsilon/(1-tau);
 R=1/betta;
 Pi=1;
 Q=1/R;
