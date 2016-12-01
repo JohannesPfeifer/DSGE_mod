@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{caption}
+\usepackage{booktabs,multirow,longtable}
+\usepackage{csquotes}
+\usepackage{textcomp}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{hyperref,xcolor}
+\usepackage{url}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\PassOptionsToPackage{hyphens}{url}
+
+\usepackage[citestyle=authoryear-comp,bibstyle=../../JME_lowercase,maxbibnames=5,minbibnames=1,maxcitenames=2, minnames=1,datezeros=false,date=long,isbn=false,natbib=true,url=false,backend=bibtex]{biblatex}
+\addglobalbib{../../Macro_database_biblatex.bib}	
+
+\begin{document}
+\noindent Prof. Dr. Johannes Pfeifer \hfill Fall Term 2015\\
+University of Mannheim \hfill M.Sc. Program
+\vspace{0.4cm}
+
+\begin{center}
+\textbf{\Large{Typos in Jermann/Quadrini}}\\
+\vspace{0.4cm}
+\end{center}
+
+%\section*{Chapter 1}
+%\begin{itemize}
+%  \item
+%\end{itemize}
+
+\begin{itemize}
+  \item Figure 6: Top y-tick for ``Hours worked'' should read 0.4 instead of 0.8
+  \item Figure 6: The definition of ``Equity value'' is ``V/(K-B)'', i.e. the Y should not be there.
+  \item Figure 6: The y-ticks for ``Equity value'' are incorrectly centered and should range from -0.2 to plus 0.3
+  \item In equation (17), the $\hat \nu$ should be a $\hat \upsilon$
+  \item p. 260: In the household's budget constraint, equation (14), there is a $P_t$ missing in front of the real dividends $d_t$ as the budget constraint is nominal (the budget constraint in the Technical Appendix (14) is correct)
+  \item p. 261: In equation (15) and below it, the $\textcolor{red}{N_t}$ should be $\textcolor{red}{n_t}$ to be consistent with the appendix and the $\hat n_t$ in equation (17)
+  \item p. 261: In equation (16), the $\textcolor{red}{L}_{t+s}$ should be $\textcolor{red}{n}_{t+s}$ 
+  \item p. 261: Below equation (17), the $\upsilon$ in the definition of $\Psi$ should be $\bar \upsilon$
+  \item p. 261: In equations (20) and (21) as well as in the intermediate text below the two equations, the $y_t$ should be $Y_{t+1}$ to be consistent with subsequent equations.
+  \item p. 263: For capital utilization to be 1 in steady state, it needs to be the case that $\vartheta={\frac{{1 \textcolor{red}{- \bar \xi \bar \mu} }}{\beta} - \left( {1 - \delta } \right)}$
+  \item p.264: The Taylor rule, equation (28) should read:
+  \[
+  \frac{{1 + {r_t}}}{{1 + \bar r}} = {\left( {\frac{{1 + {r_{t - 1}}}}{{1 + \bar r}}} \right)^{{\rho _R}}}{\left[ {\left( {\frac{{{\pi _t}}}{{\bar \pi }}}\right)^{\nu_1}{{\left( {\frac{{{Y_t}}}{\textcolor{red}{Y_t^*}}} \right)}^{{\nu _2}}}} \right]^{1 - {\rho _R}}}\textcolor{red}{\left( \frac{\frac{Y_t}{Y_{t}^*}}{\frac{Y_{t-1}}{Y_{t - 1}^*}} \right)^{{\nu _3}}}\varsigma_t
+  \]
+  so that it is consistent with \citet{SmetsWouters2007}
+  \item p.267: In Table 3, the parameter $\rho_{Gz}$ should be $\rho_{\textcolor{red}{g}z}$ and $\epsilon_G$ should be $\epsilon_{\textcolor{red}{g}}$  correspond to equation 27.
+  \item p.267: In Table 3, the prior distributions for $\bar \upsilon$ and $\bar \eta$ should presumably be generalized beta distributions on the interval $[1,2]$
+  \item In Table 3, the $\lambda$ refers to the habit parameter $h$ in the utility function and equation (17)
+\end{itemize}
+Appendix
+\begin{enumerate}
+  \item p. 5: The parameter $A$ in the $U_3$ term should be the $\alpha$ used in the paper
+  \item \label{eq:errorcapacity} p. 7: in the FOC for capacity utilization (third equation from top), there should be no $\lambda_tP_t$ dividing $\Psi_{u,t}k_t$
+  \item p. 7: in the FOC for capital (sixth equation from top), it should be $\Psi(u_{\textcolor{red}{t+1}})$
+  \item p. 7: in the FOC for capital utilization, equation (2), there should be no $\varphi_{d,t}$ multiplying $\Psi_{u,t}k_t$ as this results from replacing the wrong term in \ref{eq:errorcapacity}
+  \item p. 7: in the FOC for capital, equation (3), it should be $\Psi_{\textcolor{red}{t+1}}$
+  \item p. 8: in the FOC for wages, equation (6), i) the hats are missing on every variable
+  \item p. 9: in the firm's budget constraint, equation (13), the $G_t$ refers to the price adjustment cost function $G(p_{t-1},p_t)$ (equation (25) in the paper), not government spending
+  \item p. 9: in the Taylor rule, equation (16), the hats are missing on every variable (this is important only for $r_t$ and $r_{t-1}$ which should be replaced by $r_t-\bar r$ and $r_{t-1}-\bar r$, respectively)
+  \item p. 9: in the government budget constraint, equation (15), it should be  $R_{\textcolor{red}{t}}$
+  \item The treatment of $b_t$ and $B_t$ in equations (14), (15), and (18) is inconsistent. $B_t$ has been defined in the paper as nominal bonds. Assuming that $B_t=b_t$ in order to be consistent with the nominal budget constraints, there is a price level $P_t$ missing in the definition of debt repurchases, equation (18), in order to obtain real bonds over real GDP.
+\end{enumerate}
+\end{document}
