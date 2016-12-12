@@ -35,6 +35,17 @@ Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cyc
 
 This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
 
+## Born_Pfeifer_2014.mod
+
+Replicates Benjamin Born and Johannes Pfeifer (2014): "Risk Matters: A comment", 
+American Economic Review, 104(12), pp. 4231-4239.
+
+This mod-file shows how to estimate a model solved with third order perturbation using the
+Simulated Method of Moments. It also shows how to generate IRFs at the stochastic steady state (ergodic
+mean in the absence of shocks (EMAS) in the terminology of the paper). For practical purposes it is
+highly recommended to use the standard Andreasen et al. (2013) pruning scheme available in Dynare's `simult_.m` 
+instead of the FGRU version in `simult_FGRU.m` (see the comments in the mod-file).
+
 ## Caldara_et_al_2012.mod
 
 Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, 
