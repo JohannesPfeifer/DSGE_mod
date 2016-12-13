@@ -29,6 +29,9 @@
  *  - Chib/Ramamurthy (2010): "Tailored randomized block MCMC methods with application to DSGE models", Journal of Econometrics, 155, pp. 19-38
  *      have pointed out that the mode reported in the original Smets/Wouters (2007) paper is not actually the mode. \bar \pi (constepinf) is estimated lower
  *      while \bar \l (constelab) is higher.
+ *  - Note that at the prior mean, [cmap,crhopinf] and [cmaw,crhow] are pairwise collinear. Thus, running identification at the prior
+ *      mean will return a warning. But this is only a local issue. These parameters are only indistinguishable at the prior mean, but not 
+ *      at different points.
  *
  * This file was originally written by Frank Smets and Rafeal Wouters and has been updated by
  * Johannes Pfeifer. 
