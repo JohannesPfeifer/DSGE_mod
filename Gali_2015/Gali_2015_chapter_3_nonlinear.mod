@@ -12,6 +12,8 @@
  *      IRF to a -0.5% shock
  *  - the IRF for the nominal rate in Figure 3.6 "Dynamic Responses to a Technology Shock: Money Supply Rule", p. 81
  *      is wrong. It should be identically 0 as can be seen in this mod-file and Galí's slide set accompanying this chapter
+ *  - For nonlinear models, the proper way to specify standard deviations is in the form 0.01 for 1%. One must not multiply by 
+ *      100 here, because the uncertainty correct will be wrong in this case.
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
@@ -248,9 +250,9 @@ check;
 
 shocks;
     @#if money_growth_rule==0
-        var eps_nu = 0.25^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
+        var eps_nu = 0.0025^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
     @#else   
-        var eps_m = 0.25^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
+        var eps_m = 0.0025^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
     @#endif
 end;
 
@@ -282,7 +284,7 @@ shocks;
     @#else   
         var eps_m = 0;   //shut off monetary policy shock
     @#endif
-var eps_z  = 0.5^2; //unit shock to technology
+var eps_z  = 0.005^2; //unit shock to technology
 end;
 
 stoch_simul(order = 1,irf=15,irf_plot_threshold=0) pi_ann log_y log_N log_W_real log_P i_ann r_real_ann log_m_nominal log_Z;
@@ -298,7 +300,7 @@ shocks;
     @#else   
         var eps_z = 0;   //shut off monetary policy shock
     @#endif
-var eps_a  = 1^2; //unit shock to technology
+var eps_a  = 0.01^2; //unit shock to technology
 end;
 
 stoch_simul(order = 1,irf=15,irf_plot_threshold=0) pi_ann log_y log_N log_W_real log_P i_ann r_real_ann log_m_nominal log_A;
