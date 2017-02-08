@@ -295,11 +295,7 @@ stoch_simul(order = 1,irf=15,irf_plot_threshold=0) pi_ann log_y log_N log_W_real
 % 3.6, p. 81 (money supply rule)
 %----------------------------------------------------------------
 shocks;
-    @#if money_growth_rule==0
-        var eps_z = 0;   //shut off monetary policy shock
-    @#else   
-        var eps_z = 0;   //shut off monetary policy shock
-    @#endif
+var eps_z = 0;   //shut off discount rate shock
 var eps_a  = 0.01^2; //unit shock to technology
 end;
 
