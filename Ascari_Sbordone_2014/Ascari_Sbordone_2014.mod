@@ -125,7 +125,9 @@ phi_par_ss=1;
 var_rho_ss = 0;
 trend_inflation_ss=0;
 
-Pi_bar = (1+0/100)^(trend_inflation_ss/4); %set Pi_bar to reflect quarterly inflation
+%%compute labor disutility parameter under benchmark of 0 steady state
+%%inflation
+Pi_bar = (1+0/100)^(1/4); %set Pi_bar to reflect quarterly inflation
 p_star_ss=((1-theta_ss*Pi_bar^((epsilon_ss-1)*(1-var_rho_ss)))/(1-theta_ss))^(1/(1-epsilon_ss));
 s_ss=(1-theta_ss)/(1-theta_ss*Pi_bar^((epsilon_ss*(1-var_rho_ss))/(1-alpha_ss)))*p_star_ss^(-epsilon_ss/(1^-alpha_ss));
 N_ss=1/3;
