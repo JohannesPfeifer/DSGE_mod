@@ -107,6 +107,9 @@ Real_Business_value_added=Nominal_Business_value_added./(Business_Price_index.*4
 capital_GDP_ratio=Real_Capital_stock_end_period./Real_Business_value_added;
 debt_GDP_ratio=Real_Debt_stock_end_period./Real_Business_value_added;
 
+%Note: Real_GDP is not transformed from an annual to a quarterly rate here,
+%because in logs this simply shifts the mean, which is subtracted in any
+%case
 log_TFP_total_GDP_end_of_period_capital=log(Real_GDP)-(1-theta)*log(Total_Private_hours)-theta*log(Real_Capital_stock_end_period);
 log_TFP_total_GDP_beginning_of_period_capital=log(Real_GDP)-(1-theta)*log(Total_Private_hours)-theta*log(Real_Capital_stock_beginning_period(1:end-1));
 log_TFP_total_GDP_end_of_period_capital_detrended=detrend(log_TFP_total_GDP_end_of_period_capital(timeline>start_date,:));
