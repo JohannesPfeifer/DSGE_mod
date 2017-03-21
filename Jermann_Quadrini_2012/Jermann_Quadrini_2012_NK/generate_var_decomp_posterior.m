@@ -59,7 +59,7 @@ headers=M_.exo_names_tex;
 headers = char(' ',headers);
 labels = deblank(var_list);
 lh = size(labels,2)+2;
-dyn_latex_table(M_,title,'posterior_var_decomp_uncond',headers,labels,mean(var_decom_array_posterior,3),lh,8,2);
+dyn_latex_table(M_,options_,title,'posterior_var_decomp_uncond',headers,labels,mean(var_decom_array_posterior,3),lh,8,2);
 
 %% %%%%%%%%%%%%%%%%%% Do prior predictive plot %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 oo_ = execute_prior_posterior_function('posterior_variance_decomposition', M_, options_, oo_, estim_params_, bayestopt_, dataset_, dataset_info, 'prior');
@@ -114,6 +114,7 @@ ylabel('Density Estimate')
 x_mode=load('Jermann_Quadrini_2012_NK_mode');
 M_local = set_all_parameters(x_mode.xparam1,estim_params_,M_);
 [dr,info,M_local,options_local,oo_local] = resol(0,M_local,options_,oo_);
+options_local=select_qz_criterium_value(options_);
 oo_local=disp_th_moments(dr,var_list,M_local,options_local,oo_local);
 hold on
 plot([oo_local.variance_decomposition(y_pos,xi_pos) oo_local.variance_decomposition(y_pos,xi_pos)],[0 0.17],'g--')

@@ -22,8 +22,9 @@ function output_cell = posterior_variance_decomposition(xparam1,M_,options_,oo_,
 var_list=char('y_obs','c_obs','invest_obs','pi_obs','r_obs','n_obs','W_obs','debt_repurchase_obs');
 M_ = set_all_parameters(xparam1,estim_params_,M_);
 options_.noprint=1;
+options_=select_qz_criterium_value(options_);
 [dr,info,M_local,options_local,oo_local] = resol(0,M_,options_,oo_);
-if ~info
+if ~info(1)
     oo_local=disp_th_moments(dr,var_list,M_local,options_local,oo_local);
     output_cell={oo_local.variance_decomposition,xparam1};
 else
