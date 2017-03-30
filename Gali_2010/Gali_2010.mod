@@ -7,28 +7,43 @@
  * and calls a numerical solver on some of the nonlinear steady state equations to get the corresponding parameters 
  * that make the steady state satisfy the targets.
  *
+ * Special thanks go to Jordi Gali for providing his original codes, which allowed to clarify important calibration questions.
+ *
  * Notes:
- * We were not able to exactly replicate the figures from the published paper. When writing this file, we encountered
- * the following issues:
- *  1. p. 516 states that Theta=0.0014. But Theta is chosen to satisfy the calibration targets given
- *          - labor share S_n=1/3
+ *  1. While the figures in the paper can be replicated, they are strictly speaking not consistent with the stated calibration
+ *      targets:
+ *      a) p. 516 states that Theta=0.0014. But Theta is in principle chosen to satisfy the calibration targets given
+ *          - labor share S_n=2/3
  *          - share of hiring costs to wage (W_div_PG)^-1=0.045
- *      Thus, Theta needs to satisfy
- *          Theta=delta*(W_div_PG)^-1*S_n=0.12*0.045*2/3=0.0036
- *      As the present file works with the calibration targets, the number presumably differs from Gali's
+ *         Taking the formula at face value, Theta would need to satisfy
+ *          Theta=delta*N*G/Y=delta*W/P/(W/P)*N/Y*G=delta*(W/(PG))^-1*S_n=0.12*0.045*2/3=0.0036
+ *         The present mod-file uses Theta=0.0014.
+ *      b) The calibration treats the labor share S_n as a free parameter in Theta, while it is endogenous to the 
+            model calibration as S_n=W/P*N/Y. The reason is presumably that the model abstracts from capital and 
+            therefore misses the capital income. But the above expansion of Theta relies on the actual labor share. 
+            Thus, when continuing the model calibration under the false pretense that in the model W/P*N/Y is 
+            actually equal to S_n=2/3, the resulting ratio of hiring costs to GDP in the model 
+            is 0.018 instead of 0.045.
  *  2. On page 510, Upsilon is defined as the coefficient in front of the MRS and is used that 
  *      way when defining the slope of the New Keynesian Phillips Curve lambda_w. But in the Appendix on p. 542, 
  *      (1-Upsilon) instead of Upsilon denotes the coefficient on the MRS. For consistency, the formulation in 
  *      the main text is used.
- *  3. The described numbers in Gali (2010) for psi and chi do not satisfy the nonlinear steady state conditions (48-52).
- *      The present mod-file solves these equations for the correct parameters using a numerical solver
- *  4. Equation (38) should have big Phi instead of phi after (1-Upsilon)
- *  5. The definition of the unemployment rate on p. 541 
+ *  3. Equation (38) should have big Phi instead of phi after (1-Upsilon)
+ *  4. The definition of the unemployment rate on p. 541 
  *          urhat=fhat-nhat;
- *      implies that UR=F/N. But it should be UR=U/F, i.e. 
+ *      involves an approximation error. The unemployment rate is defined as UR_t=U_t/F_t=(F_t-N_t)/U_t
+ *      A first order Taylor approximation and expanding the RHS variables by their steady state yields 
+ *          ur_t=U/F*u_hat_t-U/F*f_hat_t
+ *      where ur_t is the absolute deviation of the unemployment rate from its steady state and therefore 
+ *      in percentage points. Using the definition of the loglinearized labor force we have 
+            U/F*u_hat_t=f_hat_t-N/F*n_hat_t
+ *      this can be written as
+ *          ur_t=f_hat_t-N/F*n_hat_t-U/F*f_hat_t=N/F*f_hat_t-N/F*n_hat_t
+ *      As N/F is very close to 1, this is approximately
  *          urhat=uhat-fhat
- *      which is used here
- *  6. p. 516: in the definition of delta, it should be x/(1-x)*U/N, i.e. the brackets are missing
+ *      which is the equation used in Gali. Here, we use full
+ *          ur_t=U/F*u_hat_t-U/F*f_hat_t
+ *  5. p. 516: in the definition of delta, it should be x/(1-x)*U/N, i.e. the brackets are missing
  * 
  * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
  *
@@ -72,6 +87,7 @@ var y_gap       ${\hat y}$              (long_name='output')
     uhat        ${\hat u}$              (long_name='unemployment')
     uhat_0      ${\hat u^0}$            (long_name='unemployment in the begining of the period')
     urhat       ${\hat {ur}}$           (long_name='unemployment rate')
+    urhat_Gali  ${\hat {ur_{gali}}}$    (long_name='unemployment rate')
     xhat        ${\hat x}$              (long_name='job finding rate')
     ghat        ${\hat g}$              (long_name='cost of hiring')
     hhat        ${\hat h}$              (long_name='new hiring')
@@ -83,7 +99,6 @@ var y_gap       ${\hat y}$              (long_name='output')
     pi_w        ${\pi^w}$               (long_name='wage inflation')
     pi_p        ${\pi^p}$               (long_name='price inflation')
     nu          ${\nu}$                 (long_name='monetary policy shock')
-    urate_percentage ${U}$            (long_name='Unemployment rate in percentage points')
 ;
 
 %--------------------------------------------------------------------------
@@ -113,13 +128,15 @@ parameters
     phi_y           ${\phi_y}$              (long_name='Taylor rule coeff of output gap')
     Gamma           ${\Gamma}$              (long_name='proportionality coefficient hiring cost, p. 499 bottom')
     Theta           ${\Theta}$              (long_name='share of hiring costs to GDP, p.516')
+    Upsilon         ${\Upsilon}$            (long_name='Composite parameter, eq. (35), p.510')
+    Phi             ${\Phi}$                (long_name='share of hiring costs to hiring costs plus wage, eq. (13)')
+    Xi              ${\Xi}$                 (long_name='Coefficient optimal participation condition, bottom p. 541')
     chi             ${\chi}$                (long_name='labor disutility parameter')
     N               ${N}$                   (long_name='employment rate')
     U               ${U}$                   (long_name='unemployment rate')
     F               ${F}$                   (long_name='definition labor force, p. 516')
     L               ${L}$                   (long_name='labor in utility function, eq. (52)')
     x               ${x}$                   (long_name='steady state job finding rate')
-    PG_div_W        ${\frac{PG}{W}}$        (long_name='inverse of hiring cost to wage')
     S_n             ${S^n}$                 (long_name='labor income share')
         ;
 
@@ -137,8 +154,8 @@ varphi=5;       %p. 515
 theta_w=0.75;   %p. 515    
 theta_p=0.75;   %p. 515
 gammma=1;       %p. 515
-PG_div_W=0.045; %p. 515
-S_n=2/3;        %p. 515
+Theta=0.0014;   %p. 515; in principle set to satisfy calibration target, see Header 
+% S_n=2/3;        %p. 515
 @#if low_psi_calibration==0
     xi=0.5;      %p. 515
     psi=0;       %set in steady state file to satisfy calibration target
@@ -152,25 +169,17 @@ phi_pi=1.5;     %p. 516
 phi_y=0.5/4;    %p. 516
 rho_a=0.9;      %p. 517
 rho_nu=0.5;     %p. 517
+Upsilon=0;      %set in steady state file to satisfy calibration target
+Phi=0;          %set in steady state file to satisfy calibration target
+Xi=0;           %set in steady state file to satisfy calibration target
 
 %--------------------------------------------------------------------------
                              %MODEL
 %--------------------------------------------------------------------------
 model;
 
-//Coefficient optimal participation condition, bottom p. 541 
-#Xi=(xi/(PG_div_W*(1-xi)))*(theta_w/((1-theta_w)*(1-betta*theta_w*(1-delta))));
-
 //Slope of PC, p. 498 below equation (9)
 #lambda_p=(1-theta_p)*(1-betta*theta_p)/theta_p;
-
-//equation (24) in steady state: xi*psi*MRS=(1-xi)*x/(1-x)*G implies MRS=(1-xi)/(xi*psi)*x/(1-x)*G
-//p. 510 below (35): Upsilon=xi*MRS/(W/P) with MRS from previous line: Upsilon=xi*((1-xi)/(xi*psi)*x/(1-x)*G)/(W/P)=Upsilon=(1-xi)/psi*x/(1-x)*(W/(PG))^(-1)
-#Upsilon=(1-xi)/psi*x/(1-x)*PG_div_W;
-
-//p. 501: in steady state: B=(1-(1-delta)*betta)*G
-//p. 502 using B: Phi=B/(W/P+B)=1/((W/P)/B+1)=1/((W/P)/((1-(1-delta)*betta)*G)+1)
-#Phi=1/(PG_div_W^(-1)/((1-(1-delta)*betta))+1);
 
 //Slope of Wage PC, p. 511 below equation (40)
 #lambda_w=(1-betta*(1-delta)*theta_w)*(1-theta_w)/(theta_w*(1-(1-Upsilon)*(1-Phi)));
@@ -200,7 +209,8 @@ fhat=(N/F)*nhat+(U/F)*uhat;
 uhat=uhat_0-(x/(1-x))*xhat;
 
 [name='9. Unemployment rate'] 
-urhat=uhat-fhat;
+urhat=U/F*uhat-U/F*fhat;
+urhat_Gali=fhat-nhat;
 
 [name='10. Euler equation']
 chat=chat(+1)-rhat;
@@ -238,7 +248,6 @@ nu=rho_nu*nu(-1)+eps_nu;
 [name='20. Definition of technology process']
 a=rho_a*a(-1)+eps_a;
 
-urate_percentage=U/F*urhat;
 % 21. 22. Efficiency Conditions']
 %log(a)-alfa*nhat=(1-Omega)*(chat+varphi*lhat)+Omega*bhat;
 %chat+varphi*lhat=(1/(1-0.7))*xhat+ghat;
@@ -261,5 +270,5 @@ collect_latex_files;
 %----------------------------------------------------------------
 % generate IRFs for monetary policy shock, replicates Figures 2A+B/3A+B
 %----------------------------------------------------------------
-stoch_simul(order = 1,irf=12) y_gap urhat urate_percentage nhat fhat pi_p hatw_real;
+stoch_simul(order = 1,irf=12) y_gap urhat nhat fhat pi_p hatw_real;
   
