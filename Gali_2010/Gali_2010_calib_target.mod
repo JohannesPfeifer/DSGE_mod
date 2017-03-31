@@ -2,6 +2,11 @@
  * This file implements the baseline sticky wage model of Jordi Galí (2010): Monetary Policy and Unemployment,
  * Handbook of Monetary Economics, Volume 3A, Chapter 10, pp. 487-546
  *
+ * It demonstrates how in a linearized model a steady_state-file can be used to set the deep parameters of the
+ * model to satisfy calibration targets on the non-linear model. The steady_state-file takes the calibration targets 
+ * and calls a numerical solver on some of the nonlinear steady state equations to get the corresponding parameters 
+ * that make the steady state satisfy the targets.
+ *
  * Special thanks go to Jordi Gali for providing his original codes, which allowed to clarify important calibration questions.
  *
  * Notes:
@@ -12,12 +17,13 @@
  *          - share of hiring costs to wage (W_div_PG)^-1=0.045
  *         Taking the formula at face value, Theta would need to satisfy
  *          Theta=delta*N*G/Y=delta*W/P/(W/P)*N/Y*G=delta*(W/(PG))^-1*S_n=0.12*0.045*2/3=0.0036
- *         The present mod-file uses Theta=0.0014.
  *      b) The calibration treats the labor share S_n as a free parameter in Theta, while it is endogenous to the 
  *          model calibration as S_n=W/P*N/Y. But the above expansion of Theta relies on the actual labor share. 
  *          Thus, when continuing the model calibration under the false pretense that in the model W/P*N/Y is 
  *          actually equal to S_n=2/3, the resulting ratio of hiring costs to GDP in the model 
  *          is 0.018 instead of 0.045.
+ *     The present mod-file thus considers the labor share as endogenous and computes the necessary parameters to satisfy
+ *      the calibration target of hiring costs of 4.5% of the quarterly wage
  *  2. On page 510, Upsilon is defined as the coefficient in front of the MRS and is used that 
  *      way when defining the slope of the New Keynesian Phillips Curve lambda_w. But in the Appendix on p. 542, 
  *      (1-Upsilon) instead of Upsilon denotes the coefficient on the MRS. For consistency, the formulation in 
@@ -69,7 +75,7 @@
 %--------------------------------------------------------------------------
                             % Endogenous Varibales
 %--------------------------------------------------------------------------
-@#define low_psi_calibration=0
+@#define low_psi_calibration=1
 
 var y_gap       ${\hat y}$              (long_name='output')
     chat        ${\hat c}$              (long_name='consumption')
@@ -131,6 +137,7 @@ parameters
     F               ${F}$                   (long_name='definition labor force, p. 516')
     L               ${L}$                   (long_name='labor in utility function, eq. (52)')
     x               ${x}$                   (long_name='steady state job finding rate')
+    hiring_cost_share ${\frac{G}{W}}$         (long_name='hiring cost to quarterly wage')
         ;
 
 %--------------------------------------------------------------------------
@@ -147,7 +154,8 @@ varphi=5;       %p. 515
 theta_w=0.75;   %p. 515    
 theta_p=0.75;   %p. 515
 gammma=1;       %p. 515
-Theta=0.0014;   %p. 515; in principle set to satisfy calibration target, see Header 
+Theta=0;        %p. 515; set in steady state to satisfy calibration target, see Header 
+hiring_cost_share= 0.045;        %p. 515
 @#if low_psi_calibration==0
     xi=0.5;      %p. 515
     psi=0;       %set in steady state file to satisfy calibration target
@@ -157,7 +165,7 @@ Theta=0.0014;   %p. 515; in principle set to satisfy calibration target, see Hea
     psi=0;       %set in steady state file to satisfy calibration target
     chi=0;       %set in steady state file to satisfy calibration target
 @#endif
-phi_pi=1.5;     %p. 521
+phi_pi=1.5;     %p. 516
 phi_y=0.5/4;    %p. 516
 rho_a=0.9;      %p. 517
 rho_nu=0.5;     %p. 517

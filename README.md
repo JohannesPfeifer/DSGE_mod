@@ -100,17 +100,22 @@ Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton
 University Press, Chapter 5.1.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
-### Gali_2010.mod 
+## Gali_2010
 
-This file was written together with Lahcen Bounader and implements the baseline sticky wage model 
+### Gali_2010.mod 
+This file was written together with Lahcen Bounader. It replicates the results of the baseline sticky wage model 
 of Jordi Galí (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
 Chapter 10, pp. 487-546.
+Please see the header of the mod-file for additional remarks.
+
+### Gali_2010_calib_target.mod 
+This file was written together with Lahcen Bounader. It implements the baseline sticky wage model 
+of Jordi Galí (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
+Chapter 10, pp. 487-546. When doing so, it corrects issues with the original calibration of Gali (2010).
 It demonstrates how in a linearized model a steady_state-file can be used to set the deep parameters of the
 model to satisfy calibration targets on the non-linear model. The steady_state-file takes the calibration targets 
 and calls a numerical solver on some of the nonlinear steady state equations to get the corresponding parameters 
 that make the steady state satisfy the targets.
-
-Please see the header of the mod-file for additional remarks.
 
 ## Gali_2015
 

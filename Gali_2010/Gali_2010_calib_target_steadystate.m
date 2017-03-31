@@ -1,6 +1,6 @@
-function [ys,check] = Gali_2010_steadystate(ys,exo)
-% function [ys,check] = Gali_2010_steadystate(ys,exo)
-% uses a numerical solver to get the steady state for the nonlinear version of Gali_2010_steadystate.mod 
+function [ys,check] = Gali_2010_calib_target_steadystate(ys,exo)
+% function [ys,check] = Gali_2010_calib_target_steadystate(ys,exo)
+% uses a numerical solver to get the steady state for the nonlinear version of Gali_2010_calib_target_steadystate.mod 
 % in order to set the required parameters matching the calibration
 % Inputs: 
 %   - ys        [vector] vector of initial values for the steady state of
@@ -45,48 +45,56 @@ F=N+U;
 % steady state separation rate, p.516
 delta=x/(1-x)*U/N;        
 
-% proportionality coefficient hiring cost, p. 499 bottom
-Gamma=Theta/(N^alfa*x^gammma*delta);
+
+%% solve (48) to (52) for psi, chi, C, L numerically
+if matlab_ver_less_than('9.1')
+    options=optimset('TolFun',1e-10,'TolX',1e-10);
+else
+    options=optimoptions('fsolve','FunctionTolerance',1e-15,'OptimalityTolerance',1e-15);
+end
+[outvalue,fval,exitflag]=fsolve(@(par_vec)solve_calibration(par_vec,betta,delta,hiring_cost_share,x,alfa,N,xi,U,varphi),[0.041;15.5;0.7;0.05],options);
+if exitflag <1
+    %indicate the SS computation was not sucessful; this would also be detected by Dynare
+    %setting the indicator here shows how to use this functionality to
+    %filter out parameter draws
+    check=1; %set failure indicator
+    return; %return without updating steady states
+end
+
+psi=outvalue(1);
+chi=outvalue(2);
+G=outvalue(3);
+C=outvalue(4);
 
 %p. 499 bottom in steady state 
-G=Gamma*x^gammma;
-
-B=(1-betta*(1-delta))*G;
+Gamma=G/x^gammma;
 
 MRPN=(1-alfa)*N^(-alfa);
-
-%from (48)
-C=N^(1-alfa)-delta*N*G;
-
-% this part computes the analytical solution for phi and psi
-psi     = (1-xi)*G*x/((1-x)*(xi*MRPN-B)) ;
 %equation (51), p. 515
 L=N+psi*U;
-chi     = (1-xi)*G*(x/(1-x))/(xi*psi*C*L^varphi) ;
-
 MRS   = chi*C*L^varphi;
-W_div_P    = xi*MRS + (1-xi)*MRPN;
-
-Upsilon=xi*MRS/W_div_P;%p. 510 below (35)
-
+W_div_P    = xi*MRS + (1-xi)*MRPN; % 
+Upsilon=xi*MRS/W_div_P; %p. 510 below (35)
+B=(1-betta*(1-delta))*G;
 Phi=B/(W_div_P+B);% p. 502
-
+Y=N^(1-alfa);
 %Coefficient optimal participation condition, bottom p. 541 
 Xi=(xi*W_div_P/(G*(1-xi)))*(theta_w/((1-theta_w)*(1-betta*theta_w*(1-delta))));
-
+Theta=delta*N*G/Y;
 fprintf('The ratio of average hiring costs to quarterly wage is %4.3f\n',G/W_div_P)
-% %% The conditions that need to be satisfied
-% residuals=NaN(5,1);
-% residuals(1)=N^(1-alfa)-(C+delta*N*Gamma*x^gammma); %(48)
-% residuals(2)=(1-betta*(1-delta))*Gamma*x^gammma-xi*((1-alfa)*N^(-alfa)-chi*C*L^varphi);%(49)
-% residuals(3)=(1-x)*xi*psi*chi*C*L^varphi-(1-xi)*Gamma*x^(1+gammma); %(50)
-% residuals(4)=x*U-(1-x)*delta*N; %(51)
-% residuals(5)=L-(N+psi*U); %(52)
-% 
-% if max(abs(residuals)>1e-6)
-%     check=1; %set failure indicator
-%     return; %return without updating steady states
-% end
+%% The conditions that need to be satisfied
+residuals=NaN(6,1);
+residuals(1)=N^(1-alfa)-(C+delta*N*Gamma*x^gammma); %(48)
+residuals(2)=(1-betta*(1-delta))*Gamma*x^gammma-xi*((1-alfa)*N^(-alfa)-chi*C*L^varphi);%(49)
+residuals(3)=(1-x)*xi*psi*chi*C*L^varphi-(1-xi)*Gamma*x^(1+gammma); %(50)
+residuals(4)=x*U-(1-x)*delta*N; %(51)
+residuals(5)=L-(N+psi*U); %(52)
+residuals(6)=G/W_div_P-hiring_cost_share;
+
+if max(abs(residuals)>1e-6)
+    check=1; %set failure indicator
+    return; %return without updating steady states
+end
 
 
 %% end own model equations
