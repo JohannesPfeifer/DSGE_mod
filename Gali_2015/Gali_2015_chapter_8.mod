@@ -105,7 +105,7 @@ var y_gap       ${\tilde{y}}$   (long_name='output gap')
 
 varexo eps_nu       ${\varepsilon^\nu}$     (long_name='monetary policy shock')
        eps_a        ${\varepsilon^a}$       (long_name='technology shock')
-       eps_y_star   ${\varepsilon^y}$       (long_name='world output growth shock')
+%        eps_y_star   ${\varepsilon^y}$       (long_name='world output growth shock')
        eps_z        ${\varepsilon^z}$       (long_name='preference shock')
        p_star       ${p^*}$                 (long_name='world price level')
        ;
@@ -274,7 +274,7 @@ set_param_value('upsilon',0.4);
 shocks;
     var eps_a = 1; //1 percent shock
     var eps_nu = 0; 
-    var eps_y_star = 0;
+%     var eps_y_star = 0;
     var eps_z = 0;
     var p_star = 0;
 end;
