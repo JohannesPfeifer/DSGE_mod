@@ -335,6 +335,7 @@ end;
 
 estimation(datafile=data_argentina,
         xls_range=G2:J107, 
+        loglinear,
         logdata, //data is already logged, loglinear option would otherwise log the data
         mode_check,
         mode_compute=6,
