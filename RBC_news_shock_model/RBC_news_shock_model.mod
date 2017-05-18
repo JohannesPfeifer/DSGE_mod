@@ -132,7 +132,7 @@ stoch_simul(order=1,irf=40);
 
 //initialize IRF generation
 initial_condition_states = repmat(oo_.dr.ys,1,M_.maximum_lag);
-shock_matrix = zeros(options_.irf,M_.exo_nbr); %create shock matrix with number of time periods in colums
+shock_matrix = zeros(options_.irf,M_.exo_nbr); %create shock matrix with number of time periods in columns
 
 // set shocks for pure news 
 shock_matrix(1,strmatch('eps_z_news',M_.exo_names,'exact')) = 1; %set news shock to 1 (use any shock size you want)
