@@ -3,6 +3,8 @@ cd('Ascari_Sbordone_2014')
 dynare Ascari_Sbordone_2014
 cd('../Aguiar_Gopinath_2007')
 dynare Aguiar_Gopinath_2007
+cd('../Born_Pfeifer_2014')
+dynare Born_Pfeifer_RM_Comment.mod
 cd('../Caldara_et_al_2012')
 dynare Caldara_et_al_2012
 cd('../FV_et_al_2007')
@@ -10,6 +12,9 @@ dynare FV_et_al_2007_ABCD
 cd('../Gali_2008')
 dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3
+cd('../Gali_2010')
+dynare Gali_2010
+dynare Gali_2010_calib_target
 cd('../Gali_2015')
 dynare Gali_2015_chapter_2
 dynare Gali_2015_chapter_3
@@ -27,6 +32,9 @@ cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
 cd('../Hansen_1985')
 dynare Hansen_1985.mod
+cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')
+construct_data
+dynare Jermann_Quadrini_2012_RBC.mod
 cd('../RBC_capitalstock_shock')
 dynare RBC_capitalstock_shock.mod
 cd('../RBC_news_shock_model')
