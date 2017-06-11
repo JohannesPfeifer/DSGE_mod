@@ -5,7 +5,7 @@
  * The mod-file also replicates the variance decompositions and IRFs for the respective samples.
  *
  * Notes: 
- *      - The mod-file requires Dynare > 4.4.3, i.e. currently the unstable version. Otherwise, you will get error like 
+ *      - The mod-file requires Dynare 4.5 or higher. Otherwise, you will get error like 
  *          "Check whether your model in truly linear" 
  *      - The original paper is not explicit how the constant in the observation equations are treated during estimation.
  *          It turns out that Ireland individally demeans the observables for each sample so that the observation equations

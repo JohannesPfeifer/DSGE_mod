@@ -39,7 +39,7 @@
  *          ur_t=U/F*u_hat_t-U/F*f_hat_t
  *  5. p. 516: in the definition of delta, it should be x/(1-x)*U/N, i.e. the brackets are missing
  * 
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * This implementation was written by Lahcen Bounader and Johannes Pfeifer. In case you spot mistakes,
  * email Johannes Pfeifer at jpfeifer@gmx.de

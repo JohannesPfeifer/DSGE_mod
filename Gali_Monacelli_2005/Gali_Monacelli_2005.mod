@@ -10,7 +10,7 @@
  *  - Table 2: Contribution to welfare losses
  * 
  * Notes:
- * - The mod-file has been tested with the current unstable version (to be released as Dynare 4.5)
+ * - The mod-file has been tested with Dynare 4.5
  * - To generate the replication Tables and the Figure, run all four policy cases by setting the respective indicators (OPTIMAL,DITR,CITR,PEG)
  *      in turn to 1. When the code detects all four saved results files, the figure and tables will be displayed
  * - The IRFs in Figure 1 were generated with a persistence of 0.9. This can be inferred from the optimal case

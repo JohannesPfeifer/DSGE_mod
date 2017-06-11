@@ -17,7 +17,7 @@
  *      did the same)
  *  - As described in Pfeifer (2016), compared to the first order conditions presented in the 
  *      Technical Appendix of JQ (2012), three typos have been corrected
- *  - Requires Dynare 4.5
+ *  - Requires Dynare 4.5 or higher
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de

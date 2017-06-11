@@ -7,7 +7,7 @@
  *
  * It demonstrate the neutrality of money by showing that real variables do not move after a monetary policy shock
  * 
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de

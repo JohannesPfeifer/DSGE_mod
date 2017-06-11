@@ -2,7 +2,7 @@
  * This file implements the baseline New Keynesian model of Jordi Galí (2015): Monetary Policy, Inflation,
  * and the Business Cycle, Princeton University Press, Second Edition, Chapter 3
  * 
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * Notes:
  *  - all model variables are expressed in deviations from steady state, i.e. in contrast to

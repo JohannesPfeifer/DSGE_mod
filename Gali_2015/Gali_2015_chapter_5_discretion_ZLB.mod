@@ -3,7 +3,7 @@
  * in Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, 
  * Princeton University Press, Second Edition, Chapter 5.4.1
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * Notes:
  *  - This mod-file makes use of the Levenberg-Marquardt mixed complementarity problem (lmmcp)

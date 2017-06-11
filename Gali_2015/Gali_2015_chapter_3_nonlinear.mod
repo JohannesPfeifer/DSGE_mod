@@ -5,7 +5,7 @@
  * Note that this mod-file implements the non-linear first order conditions and that the IRFs show the log-deviations
  * from steady state.
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * Notes:
  *  - in the LOM for the discount rate shock z the shock enters with a minus sign in this mod-file to generate the 

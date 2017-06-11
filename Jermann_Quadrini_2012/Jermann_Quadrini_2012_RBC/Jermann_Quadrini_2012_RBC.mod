@@ -9,7 +9,7 @@
  * Notes: 
  *  - before running this mod-file, the construct_data.m must be executed first with the respective dummy 
  *      having been set
- *  - Requires Dynare 4.5
+ *  - Requires Dynare 4.5 or higher
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de

@@ -11,8 +11,8 @@ in the respective papers.
 
 ## Compatibility
 
-These mod-files have been tested against the current unstable version, to be released
-as Dynare 4.5. Compatibility with earlier versions is not guaranteed.
+These mod-files have been tested against Dynare 4.5. Compatibility with 
+earlier versions is not guaranteed. 
 
 # Contributing your own mod-files
 

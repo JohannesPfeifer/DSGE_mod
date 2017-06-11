@@ -6,7 +6,7 @@
  * It provides a replication code for the main results of the original paper  
  * for the case of Argentina. 
  *
- * This mod-file shows how to use the loglinear and logdata options of Dynare (implemented in the unstable version/Dynare 4.5).
+ * This mod-file shows how to use the loglinear and logdata options of Dynare (implemented since Dynare 4.5).
  * 
  * Notes:
  * - The estimation results reported in Table 3 of the paper are not easily replicable. The authors are currently working on an Erratum. The standard deviations of

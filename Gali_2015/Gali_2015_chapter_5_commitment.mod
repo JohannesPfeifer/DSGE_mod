@@ -5,7 +5,7 @@
  *
  * It demonstrates how to use the ramsey_policy command of Dynare.
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * Notes:
  *      - all model variables are expressed in deviations from steady state, i.e. 

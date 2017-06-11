@@ -18,7 +18,7 @@
  * It also shows how to manually do a stability mapping be iterating over a grid on the parameter space.
  * 
  * Notes:
- * - The mod-file requires Dynare > 4.4.3, i.e. currently the unstable version. Otherwise, you will get error like 
+ * - The mod-file requires Dynare 4.5 or higher. Otherwise, you will get error like 
  *      "ERROR: in the 'steady_state' block, variable 'pi' is undefined in the declaration of variable 'pi'"
  * - The results from the nonlinear model have been cross-checked with the linearized 
  *      version presented in the paper and the replication files provided by the authors
