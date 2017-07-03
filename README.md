@@ -242,6 +242,10 @@ Romer (2012), Advanced macroeconomics, 4th edition. The driving processes are es
 
 Implements a simple RBC model with a time t shock to the capital stock. 
 
+## RBC_IRF_matching.mod
+
+This file takes the baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1 and
+estimates the persistence of the AR(2) government spending shock via impulse response function (IRF) matching. 
 
 ## RBC_news_shock_model.mod
 
