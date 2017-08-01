@@ -232,11 +232,17 @@ that requires recalibrating the model.
 This file replicates the estimation of the New Keynesian model of Jermann/Quadrini (2012) conducted and 
 described in Pfeifer (2016).
 
-## RBC_baseline.mod
+## RBC_baseline
+
+### RBC_baseline.mod
 
 This file presents a baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1. 
 The model setup is described in Handout_RBC_model.pdf and resembles the one in King/Rebelo (1999): Resuscitating Real Business Cycles, Handbook of Macroeconomics, Volume 1, and
 Romer (2012), Advanced macroeconomics, 4th edition. The driving processes are estimated as AR(1)-processes on linearly detrended data.
+
+### RBC_baseline_first_diff_bayesian
+
+Estimates the baseline RBC model on simulated data.
 
 ## RBC_capitalstock_shock.mod
 
