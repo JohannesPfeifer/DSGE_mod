@@ -21,8 +21,7 @@
  *          easily verified by using equation (5) on page 130:
  *              x=-kappa/(kappa^2+vartheta*(1-betta*rho_u))*u
  *          and is done below
- *      - Section 5.2 has an undistorted steady state so that the efficient and the 
- *        natural level of output coincide.
+ *      - Section 5.2 has an undistorted steady state
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
@@ -56,7 +55,6 @@ var pi          ${\pi}$         (long_name='inflation')
     r_e         ${r^{e}}$       (long_name='efficient interest rate')
     y_e         ${y^{nat}}$     (long_name='efficient output') 
     x           ${x}$           (long_name='welfare-relevant output gap')
-    r_nat       ${r^{nat}}$     (long_name='natural interest rate')
     r_real      ${r^r}$         (long_name='real interest rate')     
     i           ${i}$           (long_name='nominal interest rate')
     n           ${n}$           (long_name='hours worked')
@@ -65,7 +63,6 @@ var pi          ${\pi}$         (long_name='inflation')
     a           ${a}$           (long_name='AR(1) technology shock process')
     r_real_ann  ${r^{r,ann}}$   (long_name='annualized real interest rate')
     i_ann       ${i^{ann}}$     (long_name='annualized nominal interest rate')
-    r_nat_ann   ${r^{nat,ann}}$ (long_name='annualized natural interest rate')
     pi_ann      ${\pi^{ann}}$   (long_name='annualized inflation rate')
     p           ${p}$           (long_name='price level')
     z           ${z}$           (long_name='AR(1) preference shock process')
@@ -126,8 +123,6 @@ y_gap=x+(y_e-y_nat);
 pi=betta*pi(+1)+kappa*x + u;
 [name='Dynamic IS Curve eq. (7)']
 x=x(+1)-1/siggma*(i-pi(+1)-r_e);
-[name='Definition natural rate of interest, Ch. 3, eq. (24)']
-r_nat=-siggma*psi_n_ya*(1-rho_a)*a+(1-rho_z)*z;
 [name='Definition real interest rate']
 r_real=i-pi(+1);
 [name='Definition natural output, eq. (20)']
@@ -146,8 +141,6 @@ m_growth_ann=4*(y-y(-1)-eta*(i-i(-1))+pi);
 i_ann=4*i;
 [name='Annualized real interest rate']
 r_real_ann=4*r_real;
-[name='Annualized natural interest rate']
-r_nat_ann=4*r_nat;
 [name='Annualized inflation']
 pi_ann=4*pi;
 [name='Definition price level']
