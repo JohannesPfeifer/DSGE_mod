@@ -41,6 +41,9 @@ cd('../RBC_news_shock_model')
 dynare RBC_news_shock_model
 cd('../RBC_baseline')
 dynare RBC_baseline
+dynare RBC_baseline_first_diff_bayesian
+cd('../RBC_baseline_welfare')
+dynare RBC_baseline_welfare
 cd('../SGU_2003')
 dynare SGU_2003.mod
 cd('../SGU_2004')

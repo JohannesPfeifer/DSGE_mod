@@ -244,6 +244,15 @@ Romer (2012), Advanced macroeconomics, 4th edition. The driving processes are es
 
 Estimates the baseline RBC model on simulated data.
 
+## RBC_baseline_welfare
+
+Computes the welfare-maximizing optimal labor tax rate in a baseline RBC model with only TFP shocks. It does
+so by defining welfare recursively in the model block and calling an optimizer to find the parameter for the 
+steady state tax rate that maximizes welfare.
+
+
+Estimates the baseline RBC model on simulated data.
+
 ## RBC_capitalstock_shock.mod
 
 Implements a simple RBC model with a time t shock to the capital stock. 
