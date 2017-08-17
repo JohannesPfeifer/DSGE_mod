@@ -33,16 +33,43 @@
 //Define variables
 //****************************************************************************
 
-var y c k l z ghat r w  invest log_y log_k log_c log_l log_w log_invest;
-varexo eps_z eps_g;
+var y           ${y}$ (long_name='output')
+    c           ${c}$ (long_name='consumption')
+    k           ${k}$ (long_name='capital')
+    l           ${l}$ (long_name='hours')
+    z           ${z}$ (long_name='TFP')
+    ghat        ${\hat g}$ (long_name='government spending')
+    r           ${r}$ (long_name='annualized interest rate')
+    w           ${w}$ (long_name='real wage')
+    invest      ${i}$ (long_name='investment') 
+    log_y       ${\log(y)}$ (long_name='log output')
+    log_k       ${\log(k)}$ (long_name='log capital stock')
+    log_c       ${\log(c)}$ (long_name='log consumption')
+    log_l       ${\log(l)}$ (long_name='log labor')
+    log_w       ${\log(w)}$ (long_name='log real wage')
+    log_invest  ${\log(i)}$ (long_name='log investment')
+    ;
 
-//****************************************************************************
-//Define parameters
-//****************************************************************************
-
-parameters beta psi sigma delta alpha rhoz rhog gammax
-    gshare n x i_y k_y g_ss;
-
+varexo eps_z ${\varepsilon_z}$ (long_name='TFP shock')
+       eps_g ${\varepsilon_g}$ (long_name='government spending shock')
+    ;
+    
+parameters 
+    beta    ${\beta}$   (long_name='discount factor')
+    psi     ${\psi}$    (long_name='labor disutility parameter')
+    sigma   ${\sigma}$  (long_name='risk aversion')
+    delta   ${\delta}$  (long_name='depreciation rate')
+    alpha   ${\alpha}$  (long_name='capital share')
+    rhoz    ${\rho_z}$  (long_name='persistence TFP shock')
+    rhog    ${\rho_g}$  (long_name='persistence G shock')
+    gammax  ${\gamma_x}$ (long_name='composite growth rate')
+    gshare  ${\frac{G}{Y}}$ (long_name='government spending share')
+    n       ${n}$       (long_name='population growth')
+    x       ${x}$       (long_name='technology growth (per capita output growth)')
+    i_y     ${\frac{I}{Y}}$ (long_name='investment-output ratio')
+    k_y     ${\frac{K}{Y}}$ (long_name='capital-output ratio')
+    g_ss    ${\bar G}$ (long_name='government spending in steady state')
+    ;
 //****************************************************************************
 //Set parameter values
 //****************************************************************************
@@ -75,7 +102,7 @@ y=invest+c+g_ss*exp(ghat);
 y=exp(z)*k(-1)^alpha*l^(1-alpha);
 [name='real wage/firm FOC labor']
 w=(1-alpha)*y/l;
-[name='annualized real interst rate/firm FOC capital']
+[name='annualized real interest rate/firm FOC capital']
 r=4*alpha*y/k(-1);
 [name='exogenous TFP process']
 z=rhoz*z(-1)+eps_z;
