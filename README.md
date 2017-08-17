@@ -35,6 +35,11 @@ Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cyc
 
 This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
 
+## Basu_Bundick_2017.mod
+
+Replicates the Generalized Impulse Response Functions (GIRFs) at the stochastic steady/ergodic mean in the absence of shocks by Basu/Bundick (2017): 
+"Uncertainty shocks in a model of effective demand", Econometrica, 85(3), pp. 937-958
+
 ## Born_Pfeifer_2014.mod
 
 Replicates Benjamin Born and Johannes Pfeifer (2014): "Risk Matters: A comment", 
@@ -240,11 +245,11 @@ This file presents a baseline RBC model with TFP and government spending shocks,
 The model setup is described in Handout_RBC_model.pdf and resembles the one in King/Rebelo (1999): Resuscitating Real Business Cycles, Handbook of Macroeconomics, Volume 1, and
 Romer (2012), Advanced macroeconomics, 4th edition. The driving processes are estimated as AR(1)-processes on linearly detrended data.
 
-### RBC_baseline_first_diff_bayesian
+### RBC_baseline_first_diff_bayesian.mod
 
 Estimates the baseline RBC model on simulated data.
 
-## RBC_baseline_welfare
+## RBC_baseline_welfare.mod
 
 Computes the welfare-maximizing optimal labor tax rate in a baseline RBC model with only TFP shocks. It does
 so by defining welfare recursively in the model block and calling an optimizer to find the parameter for the 
