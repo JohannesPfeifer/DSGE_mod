@@ -1,0 +1,123 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.54cm]{geometry} % DON'T use a4wide package, it's deprecated!
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,epsfig}
+\usepackage{rotating,multirow}
+\usepackage{csquotes}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{booktabs}
+\usepackage{epstopdf}
+\usepackage[subrefformat=parens,labelformat=parens]{subfig}
+\usepackage{placeins}
+\usepackage{dsfont}
+\usepackage{float}
+
+\begin{document}
+\noindent Prof. Dr. Johannes Pfeifer \hfill University of Cologne \\
+Dr. Dmitry Matveev \hfill Bank of Canada
+\vspace{0.4cm}
+
+\begin{center}
+\textbf{\Large{Derivation of the recursive pricing equation for Galí (2015), Chapter 3}}\\
+\end{center}
+\section{Aggregation}
+\begin{equation}
+{N_t} = {\left( {\frac{{{Y_t}}}{{{A_t}}}} \right)^{\frac{1}{{1 - \alpha }}}}\int_0^1 {{{\left( {\frac{{{P_t}\left( i \right)}}{{{P_t}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di}
+\end{equation}
+From this follows
+
+\begin{equation}
+{Y_t} = {A_t}{\left( {\frac{{{N_t}}}{{\int_0^1 {{{\left( {\frac{{{P_t}\left( i \right)}}{{{P_t}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di} }}} \right)^{1 - \alpha }}
+\end{equation}
+Define the term in the denominator as $S_t$
+we get
+\begin{equation}{N_{t + k}} = {\left( {\frac{{{Y_{t + k}}}}{{{A_{t + k}}}}} \right)^{\frac{1}{{1 - \alpha }}}}{S_{t+k}}\end{equation}
+where
+\begin{align}
+  {S_t} &= \int_0^1 {{{\left( {\frac{{{P_t}\left( i \right)}}{{{P_t}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di}  \hfill \\
+   &= \left( {1 - \theta } \right){\left( {\frac{{P_t^*}}{{{P_t}}}} \right)^{ - \frac{\varepsilon }{{1 - \alpha }}}} + \int_{S\left( i \right)}^{} {{{\left( {\frac{{{P_{t - 1}}\left( i \right)}}{{{P_t}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di}  \\
+   &= \left( {1 - \theta } \right){\left( {\frac{{P_t^*}}{{{P_t}}}} \right)^{ - \frac{\varepsilon }{{1 - \alpha }}}} + \int_{S\left( i \right)}^{} {{{\left( {\frac{{{P_{t - 1}}}}{{{P_t}}}\frac{{{P_{t - 1}}\left( i \right)}}{{{P_{t - 1}}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di}  \hfill \\
+   &= \left( {1 - \theta } \right){\left( {\frac{{P_t^*}}{{{P_t}}}} \right)^{ - \frac{\varepsilon }{{1 - \alpha }}}} + \Pi _t^{\frac{\varepsilon }{{1 - \alpha }}}\int_{S\left( i \right)}^{} {{{\left( {\frac{{{P_{t - 1}}\left( i \right)}}{{{P_{t - 1}}}}} \right)}^{ - \frac{\varepsilon }{{1 - \alpha }}}}di}  \\
+   &= \left( {1 - \theta } \right){\left( {\frac{{P_t^*}}{{{P_t}}}} \right)^{ - \frac{\varepsilon }{{1 - \alpha }}}} + \theta \Pi _t^{\frac{\varepsilon }{{1 - \alpha }}}{S_{t - 1}}
+\end{align}
+From the demand function follows:
+
+\begin{equation}{A_{t + k}}N_{t + k|t}^{1 - \alpha } = {Y_{t + k|t}} = {\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)^{ - \varepsilon }}{Y_{t + k}}\end{equation}
+which implies
+\begin{equation}
+{N_{t + k|t}} = {\left( {{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}\frac{{{Y_{t + k}}}}{{{A_{t + k}}}}} \right)^{\frac{1}{{1 - \alpha }}}}
+\end{equation}
+Therefore
+\begin{equation}\frac{{{N_{t + k|t}}}}{{{N_{t + k}}}} = \frac{{{{\left( {{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}\frac{{{Y_{t + k}}}}{{{A_{t + k}}}}} \right)}^{\frac{1}{{1 - \alpha }}}}}}{{{{\left( {\frac{{{Y_{t + k}}}}{{{A_{t + k}}}}} \right)}^{\frac{1}{{1 - \alpha }}}}{S_t}}} = \frac{{{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{\frac{{ - \varepsilon }}{{1 - \alpha }}}}}}{{{S_t}}}\end{equation}
+Marginal costs are given by:
+\[\begin{gathered}
+  M{C_{t + k|t}} = \frac{{{W_{t + k}}}}{{\frac{{\left( {1 - \alpha } \right){Y_{t + k|t}}}}{{{N_{t + k|t}}}}}} = \frac{{{W_{t + k}}}}{{\left( {1 - \alpha } \right){A_{t + k}}N_{t + k|t}^{ - \alpha }}} = \frac{{{W_{t + k}}}}{{\left( {1 - \alpha } \right){A_{t + k}}N_{t + k}^{ - \alpha }}}\frac{{N_{t + k}^{ - \alpha }}}{{N_{t + k|t}^{ - \alpha }}} \hfill \\
+   = \frac{{{W_{t + k}}}}{{\left( {1 - \alpha } \right){A_{t + k}}N_{t + k}^{ - \alpha }}}{\left( {\frac{{{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{\frac{{ - \varepsilon }}{{1 - \alpha }}}}}}{{{S_{t + k}}}}} \right)^\alpha } = M{C_{t + k}}{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)^{\frac{{ - \alpha \varepsilon }}{{1 - \alpha }}}} \hfill \\
+\end{gathered} \]
+where
+\[
+M{C_t} = \frac{{{W_t}}}{{\left( {1 - \alpha } \right){A_t}N_t^{ - \alpha }S_t^\alpha }} = \frac{{{W_{t + k}}}}{{\left( {1 - \alpha } \right)\frac{{{Y_t}}}{{{N_t}}}{S_t}}}
+\]
+\section{Pricing FOC}
+The pricing FOC is given by
+\begin{equation}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\Lambda _{t,t + k}}{Y_{t + k|t}}\frac{1}{{{P_{t + k}}}}\left( {P_t^* - \frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}{P_{t + k}}} \right)} \right]}  = 0\end{equation}
+where ${M{C_{t + k|t}}}$ is real marginal costs. Using the demand function, this is
+\begin{equation}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\Lambda _{t,t + k}}{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}{Y_{t + k}}\frac{1}{{{P_{t + k}}}}\left( {P_t^* - \frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}{P_{t + k}}} \right)} \right]}  = 0\end{equation}
+or
+\begin{equation}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\Lambda _{t,t + k}}{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}{{\left( {\frac{{P_t^*}}{{{P_t}}}} \right)}^{ - \varepsilon }}{Y_{t + k}}\frac{{{P_t}}}{{{P_{t + k}}}}\left( {\frac{{P_t^*}}{{{P_t}}} - \frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}\frac{{{P_{t + k}}}}{{{P_t}}}} \right)} \right]}  = 0\end{equation}
+Now plug in for the stochastic discount factor $\Lambda_{t,t+k}$:
+\begin{equation}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}\frac{{C_{t + k}^{ - \sigma }}}{{C_t^{ - \sigma }}}{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\frac{{P_t^*}}{{{P_t}}}} \right)}^{ - \varepsilon }}{Y_{t + k}}\left( {\frac{{P_t^*}}{{{P_t}}} - \frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}\frac{{{P_{t + k}}}}{{{P_t}}}} \right)} \right]}  = 0\end{equation}
+Next, multiply by $C_t^{-\sigma}$ and collect terms:
+\begin{equation}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\frac{{P_t^*}}{{{P_t}}}} \right)}^{ - \varepsilon }}{Y_{t + k}}\left( {\frac{{P_t^*}}{{{P_t}}} - \frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}\frac{{{P_{t + k}}}}{{{P_t}}}} \right)} \right]}  = 0\end{equation}
+Using \begin{equation}
+{\Pi _t^*}={\frac{{P_t^*}}{{{P_t}}}}
+\end{equation}
+we can write this as
+\begin{equation}\begin{gathered}
+  \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  =  \hfill \\
+  \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{ - \varepsilon }}{Y_{t + k}}\frac{\varepsilon }{{\varepsilon  - 1}}M{C_{t + k|t}}} \right]}  \hfill \\
+\end{gathered} \end{equation}
+Now replace idiosyncratic by average marginal costs:
+\begin{equation}\begin{gathered}
+  \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  =  \hfill \\
+  \frac{\varepsilon }{{\varepsilon  - 1}}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{ - \varepsilon }}{Y_{t + k}}M{C_{t + k}}{{{\left( {\frac{{P_t^*}}{{{P_{t + k}}}}} \right)}^{\frac{{ - \alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+\end{gathered} \end{equation}
+Expand the fraction to get $\Pi_t^*$:
+\begin{equation}\begin{gathered}
+  \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  =  \hfill \\
+  \frac{\varepsilon }{{\varepsilon  - 1}}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{ - \varepsilon }}{Y_{t + k}}M{C_{t + k}}{{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{\frac{{ - \alpha \varepsilon }}{{1 - \alpha }}}}{{\left( {\frac{{P_t^*}}{{{P_t}}}} \right)}^{\frac{{ - \alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+\end{gathered} \end{equation}
+and bring $\Pi_t^*$ to the left:
+\begin{equation}\begin{gathered}
+  \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{{\left( {\Pi _t^*} \right)}^{1 + \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}{Y_{t + k}}} \right]}  =  \hfill \\
+  \frac{\varepsilon }{{\varepsilon  - 1}}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {\beta ^k}C_{t + k}^{ - \sigma }{Y_{t + k}}M{C_{t + k}}{{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+\end{gathered} \end{equation}
+Factoring out, we get
+\begin{equation}\begin{gathered}
+  {\left( {\Pi _t^*} \right)^{1 + \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  =  \hfill \\
+  \frac{\varepsilon }{{\varepsilon  - 1}}\sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {\beta ^k}C_{t + k}^{ - \sigma }{Y_{t + k}}M{C_{t + k}}{{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+\end{gathered} \end{equation}
+which, defining two auxiliary variables we write this as:
+\begin{equation}{\left( {\Pi _t^*} \right)^{1 + \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}{x_{2,t}} = \frac{\varepsilon }{{\varepsilon  - 1}}{x_{1,t}}\end{equation}
+where
+\begin{align}
+  {x_{2,t}} &= {E_t}\sum\limits_{k = 0}^\infty  {{\theta ^k}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }{Y_t} + {E_t}\sum\limits_{k = 1}^\infty  {{\theta ^k}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }{Y_t} + {E_t}{\left( {\frac{{{P_t}}}{{{P_{t + 1}}}}} \right)^{1 - \varepsilon }}\sum\limits_{k = 1}^\infty  {{\theta ^k}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{{\left( {\frac{{{P_{t + 1}}}}{{{P_{t + k}}}}} \right)}^{1 - \varepsilon }}{Y_{t + k}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }{Y_t} + \beta \theta {E_t}\Pi _{t + 1}^{\varepsilon  - 1}{x_{2,t + 1}}
+\end{align}
+and
+\begin{align}
+  {x_{1,t}} &= \sum\limits_{k = 0}^\infty  {{\theta ^k}{E_t}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{Y_{t + k}}M{C_{t + k}}{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }M{C_t}{Y_t} + {E_t}\sum\limits_{k = 1}^\infty  {{\theta ^k}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{Y_{t + k}}M{C_{t + k}}{{\left( {\frac{{{P_t}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }M{C_t}{Y_t} + {E_t}{\left( {\frac{{{P_t}}}{{{P_{t + 1}}}}} \right)^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}\sum\limits_{k = 1}^\infty  {{\theta ^k}\left[ {{\beta ^k}C_{t + k}^{ - \sigma }{Y_{t + k}}M{C_{t + k}}{{\left( {\frac{{{P_{t + 1}}}}{{{P_{t + k}}}}} \right)}^{ - \varepsilon  - \frac{{\alpha \varepsilon }}{{1 - \alpha }}}}} \right]}  \hfill \\
+   &= C_t^{ - \sigma }M{C_t}{Y_t} + \beta \theta {E_t}\Pi _{t + 1}^{\varepsilon  + \frac{{\alpha \varepsilon }}{{1 - \alpha }}}{x_{1,t + 1}} \hfill \\
+   &= C_t^{ - \sigma }M{C_t}{Y_t} + \beta \theta {E_t}\Pi _{t + 1}^{\frac{\varepsilon }{{1 - \alpha }}}{x_{1,t + 1}}
+\end{align}
+
+\end{document} 
