@@ -35,8 +35,6 @@
  * - As described in footnote 54, the determinacy region in Figure 11 is actually the "determinacy and stability region", i.e. it does not distinguish
  *      whether the Blanchard-Kahn conditions fail because of too many unstable roots (instability, info==3) or because of too few unstable roots (indeterminacy, info==4).
  *      The is replicated in Dynare but not distinguishing between the error codes 3 and 4 returned by resol.m.
- * - Changing the risk aversion parameter from the current log-utility specification requires manually changing the definition of the utility function in 
- *      equation 12 and in the steady_state_model-block. Simply replace the log-utility definition by the commented general CRRA definition.
  *
  * This implementation was written by Johannes Pfeifer. I thank Guido Ascari for providing important clarifications.
  *
@@ -47,7 +45,7 @@
  */
 
 /*
- * Copyright (C) 2014-15 Johannes Pfeifer
+ * Copyright (C) 2014-17 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,51 +66,58 @@
 %required for TFP shock where three different non-baseline parametrizations are considered
 
 @# define MP_shock=1 
-%set to 0 for MP-shock and to 1 for TFP shock
+%set to 1 for MP-shock and to 0 for TFP shock
 
 @# define determinacy_plot=1 
 %set to 1 if determinacy region should be mapped
 
-var y $y$ //output
-    i $i$ //investment
-    pi $\pi$ //inflation
-    N $N$ //hours worked
-    w $w$ //real wage
-    p_star ${p^*}$ //target price
-    psi $\psi$  //recursive auxiliary variable 1 price setting 
-    phi $\phi$ //recursive auxiliary variable 2 price setting 
-    A $A$ //TFP
-    MC_real $MC$ //real marginal costs 
-    real_interest $r$ //real interest rate
-    zeta $\zeta$ //preference shock
-    s $s$ //price dispersion term
-    v $\nu$ //monetary policy shock
-    A_tilde ${\tilde A}$ //"effective aggregate productivity"
-    Utility $U$ //lifetime utility, recursively defined
+@# define log_utility=1
+%set to 1 for log utility, set to 0 for general CRRA
+
+var y       $y$     (long_name='output')
+    i       $i$     (long_name='interest rate')
+    pi      $\pi$   (long_name='inflation')
+    N       $N$     (long_name='hours worked')
+    w       $w$     (long_name='real wage')
+    p_star  ${p^*}$ (long_name='target price')
+    psi     $\psi$  (long_name='recursive auxiliary variable 1 price setting')
+    phi     $\phi$ 	(long_name='recursive auxiliary variable 2 price setting')
+    A       $A$     (long_name='TFP')
+    MC_real $MC$ 	(long_name='real marginal costs')
+    real_interest $r$   (long_name='real interest rate')
+    zeta    $\zeta$ (long_name='preference shock')
+    s       $s$     (long_name='price dispersion term')
+    v       $\nu$   (long_name='monetary policy shock')
+    A_tilde ${\tilde A}$    (long_name='effective aggregate productivity')
+    Utility $U$     (long_name='lifetime utility, recursively defined')
     Average_markup 
     Marginal_markup 
     price_adjustment_gap;
 
-varexo e_v e_a e_zeta;
+varexo e_v      ${\varepsilon_\nu}$ (long_name='monetary policy shock')
+        e_a     ${\varepsilon_A}$   (long_name='TFP shock')
+        e_zeta  ${\varepsilon_\zeta}$ (long_name='preference shock')
+        ;
 
 parameters trend_inflation 
-    beta $\beta$ //discount factor 
-    alpha $\alpha$ //capital share
-    phi_par $\varphi$ //Frisch elasticity
-    theta $\theta$ //Calvo parameter
-    sigma $\sigma$ //Risk aversion
-    epsilon $\varepsilon$ //Elasticity of substitution
-    Pi_bar ${\bar \pi}$ //gross quarterly steady state inflation
-    rho_v ${\rho_\nu}$ //autocorrelation of monetary shock
-    rho_a ${\rho_a}$ //autocorrelation of technology shock
-    rho_zeta ${\rho_\zeta}$ //autocorrelation of preference shock
-    phi_pi ${\phi_\pi}$ //Taylor rule feedback inflation
-    phi_y ${\phi_y}$ //Taylor rule output
-    Y_bar ${\bar Y}$ //steady state output, set in steady state model block
-    var_rho ${\varrho}$ //degree of indexing
-    i_bar ${\bar i}$ //steady state interest rate, set in steady state model block
-    d_n ${d_n}$ //labor disutility parameter
-    rho_i ${\rho_i}$; //interest rate smoothing parameter
+    beta    $\beta$     (long_name='discount factor')
+    alpha   $\alpha$ 	(long_name='capital share')
+    phi_par $\varphi$   (long_name='Frisch elasticity')
+    theta   $\theta$    (long_name='Calvo parameter')
+    sigma   $\sigma$    (long_name='Risk aversion')
+    epsilon $\varepsilon$   (long_name='Elasticity of substitution')
+    Pi_bar  ${\bar \pi}$    (long_name='gross quarterly steady state inflation')
+    rho_v   ${\rho_\nu}$    (long_name='autocorrelation of monetary shock')
+    rho_a   ${\rho_a}$      (long_name='autocorrelation of technology shock')
+    rho_zeta ${\rho_\zeta}$ (long_name='autocorrelation of preference shock')
+    phi_pi  ${\phi_\pi}$    (long_name='Taylor rule feedback inflation')
+    phi_y   ${\phi_y}$      (long_name='Taylor rule output')
+    Y_bar   ${\bar Y}$      (long_name='steady state output, set in steady state model block')
+    var_rho ${\varrho}$     (long_name='degree of indexing')
+    i_bar   ${\bar i}$      (long_name='steady state interest rate, set in steady state model block')
+    d_n     ${d_n}$         (long_name='labor disutility parameter')
+    rho_i   ${\rho_i}$      (long_name='interest rate smoothing parameter')
+    ;
 
 
 %fix labor to 1/3 in zero trend inflation steady state with Frisch elasticity of 1#
@@ -146,7 +151,11 @@ beta = 0.99;
 alpha = 0;
 theta = 0.75;
 epsilon = 10;
-sigma = 1; %different utility than log case implies that model utility function and its steady state must be manually changed
+@# if log_utility==1
+    sigma = 1; %log case
+@# else
+    sigma = 2; 
+@# endif
 
 rho_v = 0;
 rho_a = 0;
@@ -184,39 +193,42 @@ rho_i=0;
 var_rho = 0;
 
 model;
-//1. Euler equation
+[name='1. Euler equation']
 1/(exp(y)^(sigma)) = beta*(1+exp(i))/(exp(pi(+1))*(exp(y(+1))^(sigma)));
-//2. Labor FOC
+[name='2. Labor FOC']
 exp(w) = d_n*exp(zeta)*(exp(N)^phi_par)*(exp(y)^sigma);
-//3. Optimal price
+[name='3. Optimal price']
 exp(p_star) = ((1-theta*(exp(pi(-1))^((1-epsilon)*var_rho))*(exp(pi)^(epsilon-1)))/(1-theta))^(1/(1-epsilon));
-//4. FOC price setting
+[name='4. FOC price setting']
 (exp(p_star))^(1+((epsilon*alpha)/(1-alpha))) = (epsilon/((epsilon-1)*(1-alpha)))*exp(psi)/exp(phi);
-//5. Recursive LOM price setting for psi
+[name='5. Recursive LOM price setting for psi']
 exp(psi) = exp(w)*((exp(A))^(-1/(1-alpha)))*(exp(y)^((1/(1-alpha))-sigma))
             +theta*beta*(exp(pi))^((-var_rho*epsilon)/(1-alpha))*exp(pi(+1))^(epsilon/(1-alpha))*exp(psi(+1));
-//6. Recursive LOM price setting for phi
+[name='6. Recursive LOM price setting for phi']
 exp(phi) = exp(y)^(1-sigma)+theta*beta*exp(pi)^(var_rho*(1-epsilon))*exp(pi(+1))^(epsilon-1)*exp(phi(+1));
-//7. Aggregate production function
+[name='7. Aggregate production function']
 exp(N)=exp(s)*(exp(y)/exp(A))^(1/(1-alpha));
-//8. LOM price dispersion
+[name='8. LOM price dispersion']
 exp(s) = (1-theta)*exp(p_star)^(-epsilon/(1-alpha))
         +theta*exp(pi(-1))^((-epsilon*var_rho)/(1-alpha))*exp(pi)^(epsilon/(1-alpha))*exp(s(-1));
-//9. Monetary policy rule; reflects FN69
+[name='9. Monetary policy rule; reflects FN69']
 (1+exp(i))/(1+i_bar)=((1+exp(i(-1)))/(1+i_bar))^rho_i*((exp(pi)/Pi_bar)^(phi_pi)*(exp(y)/Y_bar)^(phi_y))^(1-rho_i)*exp(v);
 
-//10. Definition real marginal costs
+[name='10. Definition real marginal costs']
 exp(MC_real)=1/(1-alpha)*exp(w)*exp(A)^(1/(alpha-1))*exp(y)^(alpha/(1-alpha));
-//11. Definition real interest rate
+[name='11. Definition real interest rate']
 exp(real_interest)=(1+exp(i))/(exp(pi(+1)));
-//12. Define utility, do not log it as it can be negative; this is the log case
-Utility=y-d_n*exp(zeta)*exp(N)^(1+phi_par)/(1+phi_par)+beta*Utility(+1);
-// Utility=exp(y)^(1-sigma)/(1-sigma)-d_n*exp(zeta)*exp(N)^(1+phi_par)/(1+phi_par)+beta*Utility(+1);
-//13. Monetary shock
+[name='12. Define utility, do not log it as it can be negative; this is the log case']
+@# if log_utility==1
+    Utility=y-d_n*exp(zeta)*exp(N)^(1+phi_par)/(1+phi_par)+beta*Utility(+1);
+@# else
+    Utility=exp(y)^(1-sigma)/(1-sigma)-d_n*exp(zeta)*exp(N)^(1+phi_par)/(1+phi_par)+beta*Utility(+1);
+@# endif
+[name='13. Monetary shock']
 v = rho_v*v(-1) + e_v;
-//14. Technology shock
+[name='14. Technology shock']
 A = rho_a*A(-1) + e_a;
-//15. Preference shock
+[name='15. Preference shock']
 zeta = rho_zeta*zeta(-1) + e_zeta;
 
 exp(A_tilde)=exp(A)/exp(s);
@@ -235,21 +247,24 @@ i=1/beta*Pi_bar-1;
 i_bar=i;
 p_star=((1-theta*Pi_bar^((epsilon-1)*(1-var_rho)))/(1-theta))^(1/(1-epsilon));
 s=(1-theta)/(1-theta*Pi_bar^((epsilon*(1-var_rho))/(1-alpha)))*p_star^(-epsilon/(1^-alpha));
-y=(p_star^(1+(epsilon*alpha)/(1-alpha))*(epsilon/((epsilon-1)*(1-alpha))*((1-beta*theta*Pi_bar^((epsilon-1)*(1-var_rho)))/(1-beta*theta*Pi_bar^(epsilon*(1-var_rho)/(1-alpha))))*d_n*s^phi_par)^(-1))^((1-alpha)/(phi_par+1));
+y=(p_star^(1+(epsilon*alpha)/(1-alpha))*(epsilon/((epsilon-1)*(1-alpha))*((1-beta*theta*Pi_bar^((epsilon-1)*(1-var_rho)))/(1-beta*theta*Pi_bar^(epsilon*(1-var_rho)/(1-alpha))))*d_n*s^phi_par)^(-1))
+    ^(((phi_par+1)/(1-alpha)-(1-sigma))^(-1));
 N=s*y^(1/(1-alpha));
 Y_bar=y;
 phi=y^(1-sigma)/(1-theta*beta*Pi_bar^((epsilon-1)*(1-var_rho)));
 psi=p_star^(1+epsilon*alpha/(1-alpha))*phi/(epsilon/((epsilon-1)*(1-alpha)));
-//w=psi*(1-theta*beta*Pi_bar^((epsilon*(1-var_rho))/(1-alpha)))/(A^(-1/(1-alpha))*y^(1/(1-alpha)-sigma));
-w=d_n*N^phi_par*y^sigma;
+w=(psi-theta*beta*pi^((-var_rho*epsilon)/(1-alpha))*pi^(epsilon/(1-alpha))*psi)/(A^(-1/(1-alpha))*y^((1/(1-alpha))-sigma));
 MC_real=1/(1-alpha)*w*A^(1/(alpha-1))*y^(alpha/(1-alpha));
 Average_markup=1/MC_real;
 Marginal_markup=p_star/MC_real;
 real_interest=(1+i)/pi;
 price_adjustment_gap=1/p_star;
 A_tilde=A/s;
-Utility=(1-beta)^(-1)*(log(y)-d_n*N^(1+phi_par)/(1+phi_par));
-// Utility=(1-beta)^(-1)*(y^(1-sigma)/(1-sigma)-N^(1-phi_par)/(1+phi_par)); %needed for non-log case
+@# if log_utility==1
+    Utility=(1-beta)^(-1)*(log(y)-d_n*N^(1+phi_par)/(1+phi_par));
+@# else
+    Utility=(1-beta)^(-1)*(y^(1-sigma)/(1-sigma)-d_n*N^(1+phi_par)/(1+phi_par));
+@# endif
 A=log(A);
 i=log(i);
 p_star=log(p_star);
