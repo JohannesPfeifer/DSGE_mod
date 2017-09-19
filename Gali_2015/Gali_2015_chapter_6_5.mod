@@ -243,11 +243,12 @@ shocks;
     var eps_z       = 0; 
 end;
 
+
+stoch_simul(order=1,irf=0,noprint) y_gap pi_p pi_w;
+
 y_gap_pos=strmatch('y_gap',var_list_ ,'exact');
 pi_p_pos=strmatch('pi_p',var_list_ ,'exact');
 pi_w_pos=strmatch('pi_w',var_list_ ,'exact');
-
-stoch_simul(order=1,irf=0,noprint) y_gap pi_p pi_w;
 
 %read out current parameter values
 par.alppha=M_.params(strmatch('alppha',M_.param_names,'exact'));
