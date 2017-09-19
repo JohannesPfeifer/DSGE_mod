@@ -181,6 +181,7 @@ pi_w=betta*pi_w(+1)+aleph_w*y_gap-lambda_w*w_gap;
 y_gap=-1/siggma*(i-pi_p(+1)-r_nat)+y_gap(+1);
 [name='Definition natural rate of interest eq. (24)']
 r_nat=-siggma*psi_n_ya*(1-rho_a)*a+(1-rho_z)*z;
+[name='Definition wage gap, eq (21)']
 w_gap=w_gap(-1)+pi_w-pi_p-(w_nat-w_nat(-1));
 [name='Definition natural wage, eq (16)']
 w_nat=psi_n_wa*a;
