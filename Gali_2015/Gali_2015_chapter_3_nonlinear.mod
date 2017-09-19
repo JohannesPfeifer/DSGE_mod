@@ -63,7 +63,7 @@ var C               ${C}$           (long_name='Consumption')
     r_real_ann      ${r^{r,ann}}$   (long_name='annualized real interest rate')
     P               ${P}$           (long_name='price level')
     log_m_nominal   ${log(M)}$      (long_name='log nominal money stock')
-    log_y           ${log(M)}$      (long_name='log output')
+    log_y           ${log(Y)}$      (long_name='log output')
     log_W_real      ${log(W/P)}$    (long_name='log real wage')
     log_N           ${log(N)}$      (long_name='log hours')
     log_P           ${log(P)}$      (long_name='log price level')
@@ -172,9 +172,9 @@ model;
     [name='FOC price setting']
     Pi_star^(1+epsilon*(alppha/(1-alppha)))=x_aux_1/x_aux_2*(1-tau)*epsilon/(epsilon-1);
     [name='Auxiliary price setting recursion 1']
-    x_aux_1=C^(-siggma)*Y*MC+betta*theta*Pi(+1)^(epsilon+alppha*epsilon/(1-alppha))*x_aux_1(+1);
+    x_aux_1=Z*C^(-siggma)*Y*MC+betta*theta*Pi(+1)^(epsilon+alppha*epsilon/(1-alppha))*x_aux_1(+1);
     [name='Auxiliary price setting recursion 2']
-    x_aux_2=C^(-siggma)*Y+betta*theta*Pi(+1)^(epsilon-1)*x_aux_2(+1);
+    x_aux_2=Z*C^(-siggma)*Y+betta*theta*Pi(+1)^(epsilon-1)*x_aux_2(+1);
     [name='Definition log output']
     log_y = log(Y);
     [name='Definition log real wage']
@@ -303,12 +303,12 @@ stoch_simul(order = 1,irf=15,irf_plot_threshold=0) pi_ann log_y log_N log_W_real
 
 % if exist('Gali_2015_chapter_3_results.mat','file')
 %     oo_linear=load('Gali_2015_chapter_3_results.mat','oo_')
-%     if max(abs(oo_linear.oo_.irfs.y_eps_m-oo_.irfs.log_y_eps_m))>1e-10 || ...
-%             max(abs(oo_linear.oo_.irfs.y_eps_z-oo_.irfs.log_y_eps_z))>1e-10 || ...
-%             max(abs(oo_linear.oo_.irfs.y_eps_a-oo_.irfs.log_y_eps_a))>1e-10 || ...
-%             max(abs(oo_linear.oo_.irfs.p_eps_m-oo_.irfs.log_P_eps_m))>1e-10 || ...
-%             max(abs(oo_linear.oo_.irfs.p_eps_z-oo_.irfs.log_P_eps_z))>1e-10 || ...
-%             max(abs(oo_linear.oo_.irfs.p_eps_a-oo_.irfs.log_P_eps_a))>1e-10
+%     if max(abs(oo_linear.oo_.irfs.y_eps_m/100-oo_.irfs.log_y_eps_m))>1e-10 || ...
+%             max(abs(oo_linear.oo_.irfs.y_eps_z/100-oo_.irfs.log_y_eps_z))>1e-10 || ...
+%             max(abs(oo_linear.oo_.irfs.y_eps_a/100-oo_.irfs.log_y_eps_a))>1e-10 || ...
+%             max(abs(oo_linear.oo_.irfs.p_eps_m/100-oo_.irfs.log_P_eps_m))>1e-10 || ...
+%             max(abs(oo_linear.oo_.irfs.p_eps_z/100-oo_.irfs.log_P_eps_z))>1e-10 || ...
+%             max(abs(oo_linear.oo_.irfs.p_eps_a/100-oo_.irfs.log_P_eps_a))>1e-10
 %         error('IRFs do not match linear model')
 %     end
 % end
