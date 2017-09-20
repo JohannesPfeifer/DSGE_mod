@@ -240,7 +240,7 @@ end;
 %---------------------------------------------------------------
 
 shocks;
-    var eps_a       = 0.01; 
+    var eps_a       = 0.01^2; 
     var eps_z       = 0; 
 end;
 
@@ -269,7 +269,7 @@ labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L');
 headers=strvcat('Technology shocks',case_title);
 values=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);L];
 options_.noprint=0;
-dyntable(options_,table_title,headers,labels,values,size(labels,2)+2,4,3)
+dyntable(options_,table_title,headers,labels,100*values,size(labels,2)+2,4,3)
 
 
 %----------------------------------------------------------------
@@ -277,7 +277,7 @@ dyntable(options_,table_title,headers,labels,values,size(labels,2)+2,4,3)
 %---------------------------------------------------------------
 
 shocks;
-    var eps_z       = 0.01; 
+    var eps_z       = 0.01^2; 
     var eps_a       = 0; 
 end;
 
@@ -301,5 +301,5 @@ labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L');
 headers=strvcat('Demand shocks   ',case_title);
 values=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);L];
 options_.noprint=0;
-dyntable(options_,table_title,headers,labels,values,size(labels,2)+2,4,3)
+dyntable(options_,table_title,headers,labels,100*values,size(labels,2)+2,4,3)
         
