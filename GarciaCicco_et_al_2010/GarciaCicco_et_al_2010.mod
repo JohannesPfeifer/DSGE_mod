@@ -25,6 +25,9 @@
  * - The definition of the trade balance in the replication codes of the original paper is slightly incorrect. The adjustment cost 
  *       term there is "PHI/2 * (kp/k*g -G)^2" but it should be "PHI/2 * (kp/k*g -G)^2*k". This error has been corrected here. As the 
  *       wrong term is 0 up to first order, it does not affect any of the results of the paper.
+ * - The GPU paper states that the interest-elastic debt premium (between equations (3) and (4)) depends on $D_{t+1}$, i.e. the debt
+ *      level decided upon today (as it is predetermined). However, both the replication code and the Appendix to the paper
+ *      use $D_{t}$, i.e. the debt level decided upon yesterday. This replication file follows the Appendix and the replication code.
  *    
  * This implementation was written by Johannes Pfeifer, based on the replication code by Martín Uribe. 
  * Please note that the following copyright notice only applies to this Dynare 
@@ -32,7 +35,7 @@
  */
 
 /*
- * Copyright (C) 2014-15 Johannes Pfeifer
+ * Copyright (C) 2014-17 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,52 +53,52 @@
 
 
 
-@#define RBC =1
+@#define RBC =0
 //set to 1 for RBC model and to 0 for Financial Frictions Model
 
-var c $c$ 
-    k $k$ 
-    a $a$ 
-    h $h$ 
-    d $d$ 
-    y $y$ 
-    invest $i$  
-    tb $tb$ 
-    mu_c ${MU_C}$ 
-    tb_y ${\frac{TB}{Y}}$ 
-    g_y ${\Delta Y}$
-    g_c ${\Delta C}$
+var c       $c$ 
+    k       $k$ 
+    a       $a$ 
+    h       $h$ 
+    d       $d$ 
+    y       $y$ 
+    invest  $i$  
+    tb      $tb$ 
+    mu_c    ${MU_C}$ 
+    tb_y    ${\frac{TB}{Y}}$ 
+    g_y     ${\Delta Y}$
+    g_c     ${\Delta C}$
     g_invest ${\Delta I}$
-    g ${g}$
-    r ${r}$
-    mu ${\mu}$
-    nu ${\nu}$
+    g       ${g}$
+    r       ${r}$
+    mu      ${\mu}$
+    nu      ${\nu}$
     @#if RBC == 0
-    s ${s}$
+    s       ${s}$
     @# endif
 ; 
 
 predetermined_variables k d;
 
 %Define parameters
-parameters beta ${\beta}$ 
-        gamma ${\gamma}$ 
-        delta ${\delta}$
-        alpha ${\alpha}$
-        psi  ${\psi}$
-        omega ${\omega}$
-        theta ${\theta}$
-        phi ${\phi}$
-        dbar ${\bar d}$
-        gbar ${\bar g}$
-        rho_a ${\rho_a}$
-        rho_g ${\rho_g}$
-        rho_nu ${\rho_\nu}$
-        rho_mu ${\rho_\mu}$
-        rho_s ${\rho_s}$
+parameters beta     ${\beta}$ 
+        gamma       ${\gamma}$ 
+        delta       ${\delta}$
+        alpha       ${\alpha}$
+        psi         ${\psi}$
+        omega       ${\omega}$
+        theta       ${\theta}$
+        phi         ${\phi}$
+        dbar        ${\bar d}$
+        gbar        ${\bar g}$
+        rho_a       ${\rho_a}$
+        rho_g       ${\rho_g}$
+        rho_nu      ${\rho_\nu}$
+        rho_mu      ${\rho_\mu}$
+        rho_s       ${\rho_s}$
     @#if RBC == 0
-        s_share ${sshare}$
-        S ${S}$
+        s_share     ${sshare}$
+        S           ${S}$
     @# endif
 ;
 
