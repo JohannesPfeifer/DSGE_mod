@@ -203,6 +203,12 @@ It provides a replication code for the main results of the original paper for th
 
 This mod-file shows how to use the loglinear and logdata options of Dynare.
 
+## Ghironi_Melitz_2005.mod
+
+This file replicates the Baseline model under Financial Autarky of
+Ghironi/Melitz (2005), "International trade and macroeconomic dynamics with 
+heterogeneous firms", Quarterly Journal of Economics, 120(3), 865-915.
+
 ## Hansen_1985.mod
 
 Replicates the model studied in Hansen, Gary D. (1985): "Invisible labor and 
