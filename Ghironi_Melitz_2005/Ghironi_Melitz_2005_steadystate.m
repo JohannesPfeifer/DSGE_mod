@@ -30,7 +30,7 @@ function[ys,check]=Ghironi_Melitz_2005_steadystate(ys,exo)
 
 %% Steady state model
 
-global M_
+global M_ options_
 
 % assign name to parameters
 nparams=M_.param_nbr;   %number of parameters
@@ -61,9 +61,12 @@ check=0;
     solv_options = optimoptions('fsolve','Display','None');  
     initval  = 0.5;
 
-    ztildexss = fsolve(@(ztildex) xi_1*(ztildex^(1-theta))+xi_2*(ztildex^(-k))-xi_3,...
+    if ~user_has_matlab_license('optimization_toolbox')
+        [ztildexss,rc] = csolve(@(ztildex) xi_1*(ztildex^(1-theta))+xi_2*(ztildex^(-k))-xi_3,initval,[],1e-6,1000)
+    else
+        ztildexss = fsolve(@(ztildex) xi_1*(ztildex^(1-theta))+xi_2*(ztildex^(-k))-xi_3,...
               initval,solv_options);
-
+    end
     if xi_1*(ztildexss^(1-theta))+xi_2*(ztildexss^(-k))-xi_3 < 1e-5
         ztildex_ss = ztildexss;
     else fprintf('Error - ztildex_ss not solved for!\n\n');
