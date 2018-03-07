@@ -11,6 +11,8 @@
  *    the fixed costs as a share of flow entry costs
  *  - The interest r_t in the paper is a predetermined variable as it is known at t-1; 
  *    the timing has been adjusted to reflect Dynare's timing convention
+ *  - A detailed derivation of the condition for Average productivities can be found in
+ *    the Derivation_average_productivities.pdf on Github
  *  - The Latex names use a workaround for tildes. See https://tex.stackexchange.com/questions/32739/double-superscript-error-involving-tilde
  *
  * This file was originally written by William Gatt, University of Nottingham & Central Bank of Malta.
@@ -209,12 +211,14 @@ model;
     Z_          =   (1-rhoZ_)*1.0 + rhoZ_*Z_(-1) + eps_Z_;
     
 % Average producivity
-   [name='Average productivity - home economy']
+   [name='Relation average and cutoff productivity - home economy']
     ztilded     = vv*zmin;
-   [name='Average productivity - foreign economy']
+   [name='Relation average and cutoff productivity - foreign economy']
     ztilded_    = vv*zmin_;
     
+   [name='Average productivity - home economy']
     ztildex     = ((w/Z)^(theta)*fx*((theta-1)/(k-(theta-1))+1)*(Q^(-theta))*(tau^(theta-1))*theta*((theta/(theta-1))^(theta-1))*(C_^(-1)))^(1/(theta-1));
+   [name='Average productivity - foreign economy']
     ztildex_    = ((w_/Z_)^(theta)*fx_*((theta-1)/(k-(theta-1))+1)*(Q^(theta))*(tau^(theta-1))*theta*((theta/(theta-1))^(theta-1))*(C^(-1)))^(1/(theta-1));
 
    [name='Export cut-off productivities - home economy']
