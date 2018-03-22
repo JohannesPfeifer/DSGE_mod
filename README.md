@@ -51,6 +51,19 @@ mean in the absence of shocks (EMAS) in the terminology of the paper). For pract
 highly recommended to use the standard Andreasen et al. (2013) pruning scheme available in Dynare's `simult_.m` 
 instead of the FGRU version in `simult_FGRU.m` (see the comments in the mod-file).
 
+## Born_Pfeifer_2018
+
+Replicates Benjamin Born and Johannes Pfeifer (2018): "The New Keynesian Wage Phillips Curve: Calvo vs. Rotemberg".
+
+### Welfare
+`run_welfare_comparison_efficient_steady_state.m` and `run_welfare_comparison_inefficient_steady_state.m` create
+the welfare comparison between the four different labor market setups presented in Tables 4 and 5 of the paper.
+The mod-file `Born_Pfeifer_2018_welfare.mod` shows how to compute conditional and unconditional welfare.
+
+### Monetary_Policy_IRFs
+`run_IRF_comparison.m` creates "Figure 1: Impulse response functions to 1 percentage point 
+(annualized) monetary policy shock under Calvo".
+
 ## Caldara_et_al_2012.mod
 
 Replicates Caldara, Dario and Fernandez-Villaverde, Jesus and Rubio-Ramirez, 

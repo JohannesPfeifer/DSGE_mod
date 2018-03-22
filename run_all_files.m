@@ -7,7 +7,12 @@ cd('../Basu_Bundick_2017')
 dynare Basu_Bundick_2017
 cd('../Born_Pfeifer_2014')
 dynare Born_Pfeifer_RM_Comment.mod
-cd('../Caldara_et_al_2012')
+cd('../Born_Pfeifer_2018/Monetary_Policy_IRFs')
+run_IRF_comparison;
+cd('../Welfare')
+run_welfare_comparison_efficient_steady_state;
+run_welfare_comparison_inefficient_steady_state;
+cd('../../Caldara_et_al_2012')
 dynare Caldara_et_al_2012
 cd('../FV_et_al_2007')
 dynare FV_et_al_2007_ABCD
