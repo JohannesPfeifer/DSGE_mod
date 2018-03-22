@@ -5,6 +5,9 @@
  * 
  * Notes: 
  *  - The file replicates Figure III on page 892 
+ *  - Fabio Ghironi has pointed out three issues with the original paper at http://faculty.washington.edu/ghiro/GhiroMelitzQJE05Bugs.pdf
+ *      Point 1 affects the present file. The formula used to set the parameter k is wrong. Thus, the actual calibration 
+ *      target is not satisfied.
  *  - The loglinear option is used to get percentage deviations from steady state, 
  *    while the model is entered in levels
  *  - The steady_state-file is used to handle parameter dependence, i.e. to set 
@@ -113,7 +116,7 @@ parameters
     gamma   =   2.0 ;
     delta   =   0.025;
     theta   =   3.8 ; 
-    k       =   3.4 ;
+    k       =   3.4 ; %see note above
     tau     =   1.3 ;
     zmin    =   1.0 ;
     zmin_   =   1.0 ;
