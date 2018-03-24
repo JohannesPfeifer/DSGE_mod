@@ -307,7 +307,7 @@ model(linear);
           [name='Law of motion for capital, SW Equation (8) (see header notes)']              
 	      kp =  (1-cikbar)*kp(-1)+cikbar*inve + cikbar*cgamma^2*csadjcost*qs ;
 
-// measurment equations
+// measurement equations
 [name='Observation equation output']              
 dy=y-y(-1)+ctrend;
 [name='Observation equation consumption']              
