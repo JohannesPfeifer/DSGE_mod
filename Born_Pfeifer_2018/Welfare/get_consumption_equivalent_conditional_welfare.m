@@ -30,6 +30,7 @@ set_param_value('lambda_utility',par_value_lambda)  %set consumption equivalent 
 [oo_.dr,info,M_,options_,oo_] = resol(0,M_,options_,oo_); %get decision rules
 if info(1) %filter out error codes
     outvalue=1e5+par_value_lambda^2;
+    return;
 end
 
 %% simulate conditional welfare

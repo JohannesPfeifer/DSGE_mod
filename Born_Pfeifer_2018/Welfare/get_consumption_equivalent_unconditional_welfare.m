@@ -32,6 +32,7 @@ if ~options_.ramsey_policy
     info = stoch_simul(var_list_); %get decision rules and moments
     if info(1) %filter out error code
         outvalue=1e5+par_value_lambda^2;
+        return;
     end
     outvalue=oo_.mean(strmatch('Welfare_gap',var_list_,'exact')); %extract Welfare gap measure
 else
@@ -42,6 +43,7 @@ else
     info = stoch_simul(var_list_);
     if info(1)
         outvalue=1e5+par_value_lambda^2;
+        return;
     end
     betta=M_.params(strmatch('betta',M_.param_names,'exact'));
     outvalue=1/(1-betta)*oo_.mean(strmatch('Utility',var_list_ ,'exact'))-oo_.mean(strmatch('Recursive_natural_welfare_equivalent',var_list_,'exact'));
