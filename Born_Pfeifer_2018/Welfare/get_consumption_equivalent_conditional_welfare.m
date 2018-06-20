@@ -35,7 +35,7 @@ end
 
 %% simulate conditional welfare
 initial_condition_states = repmat(oo_.dr.ys,1,M_.maximum_lag); %get steady state as initial condition
-shock_matrix = zeros(2,M_.exo_nbr); %create shock matrix with number of time periods in columns
+shock_matrix = zeros(1,M_.exo_nbr); %create shock matrix with number of time periods in rows
 y_sim = simult_(initial_condition_states,oo_.dr,shock_matrix,options_.order); %simulate one period to get value
 
 if ~options_.ramsey_policy
