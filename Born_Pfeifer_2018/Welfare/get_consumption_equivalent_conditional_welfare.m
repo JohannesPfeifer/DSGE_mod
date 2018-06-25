@@ -27,6 +27,9 @@ if par_value_lambda>1 %do not allow negative consumption
 end
 
 set_param_value('lambda_utility',par_value_lambda)  %set consumption equivalent lambda
+if isempty(options_.qz_criterium)
+    options_.qz_criterium = 1+1e-6;
+end
 [oo_.dr,info,M_,options_,oo_] = resol(0,M_,options_,oo_); %get decision rules
 if info(1) %filter out error codes
     outvalue=1e5+par_value_lambda^2;
