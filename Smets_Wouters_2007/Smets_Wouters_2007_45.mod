@@ -32,6 +32,11 @@
  *  - Note that at the prior mean, [cmap,crhopinf] and [cmaw,crhow] are pairwise collinear. Thus, running identification at the prior
  *      mean will return a warning. But this is only a local issue. These parameters are only indistinguishable at the prior mean, but not 
  *      at different points.
+ *  - In the prior Table 1A in the paper, the 
+ *          - habit parameter $\lambda$ is erroneously labeled h
+ *          - the fixed cost parameter $\phi_p$ is labeled $\Phi$ 
+ *  - Table 1B claims that $\rho_{ga}$ follows a beta prior with B(0.5,0.2^2), but the code shows that it actually
+ *      follows a normal distribution with N(0.5,0.25^2)
  *
  * This file was originally written by Frank Smets and Rafeal Wouters and has been updated by
  * Johannes Pfeifer. 
@@ -146,7 +151,7 @@ parameters curvw ${\varepsilon_w}$  (long_name='Curvature Kimball aggregator wag
     crhoms      ${\rho_r}$          (long_name='persistence monetary policy shock')  
     crhopinf    ${\rho_p}$          (long_name='persistence price markup shock')  
     crhow       ${\rho_w}$          (long_name='persistence wage markup shock')  
-    ctrend      ${\bar \delta}$     (long_name='net growth rate in percent')  
+    ctrend      ${\bar \gamma}$     (long_name='net growth rate in percent')  
     cg          ${\frac{\bar g}{\bar y}}$     (long_name='steady state exogenous spending share')  
     ;
 
