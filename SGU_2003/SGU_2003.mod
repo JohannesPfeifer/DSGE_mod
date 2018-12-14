@@ -90,34 +90,35 @@ psi_4  = 0; %set in steady state; parameter complete markets case
 var d tb_y, ca_y, r beta_fun, eta;   
 
 model;
-    //1. Eq. (4), Evolution of debt
+    [name='Eq. (4), Evolution of debt']
     d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2;
-    //2. Eq. (5), Production function
+    [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
-    //3. Eq. (6), Law of motion for capital
+    [name='Eq. (6), Law of motion for capital']
     exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
 
-    //4. Eq. (8), Euler equation
+    [name='Eq. (8), Euler equation']
     exp(lambda)= beta_fun*(1+exp(r))*exp(lambda(+1)); 
-    //5. Eq. (9), Definition marginal utility
-    exp(lambda)=(exp(c)-((exp(h)^omega)/omega))^(-gamma)-exp(eta)*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1));  
-    //6. Eq. (10), Law of motion Lagrange mulitplier on discount factor equation
-    exp(eta)=-util(+1)+exp(eta(+1))*beta_fun(+1);
-    //7. Eq. (11), Labor FOC
+    [name='Eq. (9), Definition marginal utility']
+    exp(lambda)=(exp(c)-((exp(h)^omega)/omega))^(-gamma)-eta*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1));  
+    [name='Eq. (10), Law of motion Lagrange mulitplier on discount factor equation']
+    eta=-util(+1)+eta(+1)*beta_fun(+1);
+    [name='Eq. (11), Labor FOC']
     ((exp(c)-(exp(h)^omega)/omega)^(-gamma))*(exp(h)^(omega-1)) + 
-        exp(eta)*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1)*(-exp(h)^(omega-1))) = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
-    //8. Eq. (12), Investment FOC
+        eta*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1)*(-exp(h)^(omega-1))) = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
+    [name='Eq. (12), Investment FOC']
     exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta_fun*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
-    //9. Eq. (14), Law of motion for TFP
+    [name='Eq. (14), Law of motion for TFP']
     a = rho*a(-1)+sigma_tfp*e; 
 
-    //10. Definition endogenous discount factor, p. 168
+    [name='Definition endogenous discount factor, p. 168']
     beta_fun =(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1);
+    [name='Definition felicity function']    
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
-    //9. Eq. (23), country interest rate 
+    [name='9. Eq. (23), country interest rate']
     exp(r) = r_bar;
 
-    //11. p. 169, Definition of trade balance to ouput ratio
+    [name='11. p. 169, Definition of trade balance to ouput ratio']
     tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d);                                   
 end;
@@ -134,8 +135,8 @@ steady_state_model;
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
     psi_1=-log(1/(1+r_bar))/(log((1+exp(c)-omega^(-1)*exp(h)^omega)));
     beta_fun =(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1);
-    eta=log(-util/(1-beta_fun));
-    lambda=log((exp(c)-((exp(h)^omega)/omega))^(-gamma)-exp(eta)*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1)));
+    eta=-util/(1-beta_fun);
+    lambda=log((exp(c)-((exp(h)^omega)/omega))^(-gamma)-eta*(-psi_1*(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1-1)));
     a     = 0;
     ca_y    = 0;
 end;
@@ -146,33 +147,34 @@ end;
 var d tb_y, ca_y, r beta_fun;   
 
 model;
-    //1. Eq. (4), Evolution of debt
+    [name='Eq. (4), Evolution of debt']
     d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2;
-    //2. Eq. (5), Production function
+    [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
-    //3. Eq. (6), Law of motion for capital
+    [name='Eq. (6), Law of motion for capital']
     exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
 
-    //4. Eq. (17), Euler equation
+    [name='Eq. (17), Euler equation']
     exp(lambda)= beta_fun*(1+exp(r))*exp(lambda(+1)); 
-    //5. Eq. (18), Definition marginal utility
+    [name='Eq. (18), Definition marginal utility']
     exp(lambda)=(exp(c)-((exp(h)^omega)/omega))^(-gamma);  
-    //6. Eq. (11), Labor FOC
+    [name='Eq. (11), Labor FOC']
     ((exp(c)-(exp(h)^omega)/omega)^(-gamma))*(exp(h)^(omega-1))= exp(lambda)*(1-alpha)*exp(y)/exp(h); 
-    //7. Eq. (12), Investment FOC
+    [name='Eq. (12), Investment FOC']
     exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta_fun*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
-    //8. Eq. (14), Law of motion for TFP
+    [name='Eq. (14), Law of motion for TFP']
     a = rho*a(-1)+sigma_tfp*e; 
 
-    //9. Definition endogenous discount factor, p. 168
+    [name='Definition endogenous discount factor, p. 168']
     beta_fun =(1+exp(c)-omega^(-1)*exp(h)^omega)^(-psi_1);
+    [name='Definition felicity function']    
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
-    //10. Eq. (23), country interest rate 
+    [name='Eq. (23), country interest rate']
     exp(r) = r_bar;
 
-    //12. p. 169, Definition of trade balance to ouput ratio
+    [name='p. 169, Definition of trade balance to ouput ratio']
     tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
-    //13. Definition of current account to ouput ratio
+    [name='Definition of current account to ouput ratio']
     ca_y = (1/exp(y))*(d(-1)-d);                                   
 end;
 
@@ -200,31 +202,32 @@ var d tb_y, ca_y, r riskpremium;
 parameters beta ${\beta}$;
 
 model;
-    //1. Eq. (4), Evolution of debt
+    [name='Eq. (4), Evolution of debt']
     d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2;
-    //2. Eq. (5), Production function
+    [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
-    //3. Eq. (6), Law of motion for capital
+    [name='Eq. (6), Law of motion for capital']
     exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
 
-    //4. Eq. (24), Euler equation
+    [name='Eq. (24), Euler equation']
     exp(lambda)= beta*(1+exp(r))*exp(lambda(+1)); 
-    //5. Eq. (25), Definition marginal utility
+    [name='Eq. (25), Definition marginal utility']
     (exp(c)-((exp(h)^omega)/omega))^(-gamma)   = exp(lambda);  
-    //6. Eq. (26), Labor FOC
+    [name='Eq. (26), Labor FOC']
     ((exp(c)-((exp(h)^omega)/omega))^(-gamma))*(exp(h)^(omega-1))  = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
-    //7. Eq. (27), Investment FOC
+    [name='Eq. (27), Investment FOC']
     exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
-    //8. Eq. (14), Law of motion for TFP
+    [name='Eq. (14), Law of motion for TFP']
     a = rho*a(-1)+sigma_tfp*e; 
-    //9. Eq. (23), country interest rate 
+    [name='Eq. (23), country interest rate']
     exp(r) = r_bar+riskpremium;
-    //10. p. 171 below Eq. (28), definition risk premia
+    [name='p. 171 below Eq. (28), definition risk premia']
     riskpremium = psi_2*(exp(d-d_bar)-1);
 
-    //11. p. 169, Definition of trade balance to ouput ratio
+    [name='p. 169, Definition of trade balance to ouput ratio']
     tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d);                                   
+    [name='Definition felicity function']    
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
 
@@ -254,29 +257,30 @@ var d tb_y, ca_y, r;
 parameters beta ${\beta}$;
 
 model;
-    //1. Eq. (29), Evolution of debt
+    [name='Eq. (29), Evolution of debt']
     d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2+psi_3*(d-d_bar)^2;
-    //2. Eq. (5), Production function
+    [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
-    //3. Eq. (6), Law of motion for capital
+    [name='Eq. (6), Law of motion for capital']
     exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
 
-    //1. Eq. (30),  Euler equation
+    [name='Eq. (30),  Euler equation']
     exp(lambda)*(1-psi_3*(d-d_bar))= beta*(1+exp(r))*exp(lambda(+1)); 
-    //5. Eq. (25), Definition marginal utility
+    [name='Eq. (25), Definition marginal utility']
     (exp(c)-((exp(h)^omega)/omega))^(-gamma)   = exp(lambda);  
-    //6. Eq. (26), Labor FOC
+    [name='Eq. (26), Labor FOC']
     ((exp(c)-((exp(h)^omega)/omega))^(-gamma))*(exp(h)^(omega-1))  = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
-    //7. Eq. (27), Investment FOC
+    [name='Eq. (27), Investment FOC']
     exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
-    //8. Eq. (14), Law of motion for TFP
+    [name='Eq. (14), Law of motion for TFP']
     a = rho*a(-1)+sigma_tfp*e; 
-    //9. Eq. (13), country interest rate 
+    [name='Eq. (13), country interest rate']
     exp(r) = r_bar;
 
-    //11. p. 169, Definition of trade balance to ouput ratio
+    [name='p. 169, Definition of trade balance to ouput ratio']
     tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
     ca_y = (1/exp(y))*(d(-1)-d); 
+    [name='Definition felicity function']    
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
 
@@ -303,22 +307,23 @@ end;
 parameters beta ${\beta}$;
 
 model;
-    //1. Eq. (5), Production function
+    [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
-    //2. Eq. (6), Law of motion for capital
+    [name='Eq. (6), Law of motion for capital']
     exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
-    //3. Eq. (25), Definition marginal utility
+    [name='Eq. (25), Definition marginal utility']
     (exp(c)-((exp(h)^omega)/omega))^(-gamma)   = exp(lambda);  
-    //4. Eq. (26), Labor FOC
+    [name='Eq. (26), Labor FOC']
     ((exp(c)-((exp(h)^omega)/omega))^(-gamma))*(exp(h)^(omega-1))  = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
-    //5. Eq. (27), Investment FOC
+    [name='Eq. (27), Investment FOC']
     exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
-    //6. Eq. (35),  Euler equation
+    [name='Eq. (35),  Euler equation']
     exp(lambda)= psi_4; 
-    //7. Eq. (14), Law of motion for TFP
+    [name='Eq. (14), Law of motion for TFP']
     a = rho*a(-1)+sigma_tfp*e; 
-    //8. p. 169, Definition of trade balance to ouput ratio
+    [name='p. 169, Definition of trade balance to ouput ratio']
     tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
+    [name='Definition felicity function']
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
 end;
 
