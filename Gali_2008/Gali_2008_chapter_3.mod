@@ -144,13 +144,13 @@ money_growth=m_real-m_real(-1)+pi;
 money_growth=rho_m*(money_growth(-1))+eps_m;
 @#endif
 
-//12. Annualized nominal interest rate
+//13. Annualized nominal interest rate
 i_ann=4*i;
-//13. Annualized real interest rate
+//14. Annualized real interest rate
 r_real_ann=4*r_real;
-//14. Annualized natural interest rate
+//15. Annualized natural interest rate
 r_nat_ann=4*r_nat;
-//15. Annualized inflation
+//16. Annualized inflation
 pi_ann=4*pi;
 end;
 
