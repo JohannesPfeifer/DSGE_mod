@@ -39,7 +39,7 @@
  */
 
 % Endogenous discount factor
-@#define model1 =1
+@#define model1 =0
 % Endogenous discount factor without internalization
 @#define model1a =0
 %debt elastic interest rate premium
@@ -48,6 +48,8 @@
 @#define model3 =0 
 %Complete markets
 @#define model4 =0 
+%nonstationary model
+@#define model5 =1 
 
 var  c h y i k a lambda ${\lambda}$ util;  
 varexo e;                                    
@@ -339,6 +341,55 @@ steady_state_model;
     tb_y    = 1-((exp(c)+exp(i))/exp(y));
     util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
     a     = 0;
+end;
+
+@# endif
+
+@#if model5 == 1
+var d tb_y, ca_y, r;
+parameters beta ${\beta}$;
+
+model;
+    [name='Eq. (4), Evolution of debt']
+    d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2;
+    [name='Eq. (5), Production function']
+    exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
+    [name='Eq. (6), Law of motion for capital']
+    exp(k) = exp(i)+(1-delta)*exp(k(-1)); 
+
+    [name='Eq. (24), Euler equation']
+    exp(lambda)= beta*(1+exp(r))*exp(lambda(+1)); 
+    [name='Eq. (25), Definition marginal utility']
+    (exp(c)-((exp(h)^omega)/omega))^(-gamma)   = exp(lambda);  
+    [name='Eq. (26), Labor FOC']
+    ((exp(c)-((exp(h)^omega)/omega))^(-gamma))*(exp(h)^(omega-1))  = exp(lambda)*(1-alpha)*exp(y)/exp(h); 
+    [name='Eq. (27), Investment FOC']
+    exp(lambda)*(1+phi*(exp(k)-exp(k(-1)))) = beta*exp(lambda(+1))*(alpha*exp(y(+1))/exp(k)+1-delta+phi*(exp(k(+1))-exp(k))); 
+    [name='Eq. (14), Law of motion for TFP']
+    a = rho*a(-1)+sigma_tfp*e; 
+    [name='Eq. (23), country interest rate']
+    exp(r) = r_bar;
+    [name='p. 169, Definition of trade balance to ouput ratio']
+    tb_y = 1-((exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2)/exp(y));
+    ca_y = (1/exp(y))*(d(-1)-d);                                   
+    [name='Definition felicity function']    
+    util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
+end;
+
+steady_state_model;
+    beta  = 1/(1+r_bar);
+    r     = log((1-beta)/beta);
+    d     = d_bar;
+    h     = log(((1-alpha)*(alpha/(r_bar+delta))^(alpha/(1-alpha)))^(1/(omega-1)));
+    k     = log(exp(h)/(((r_bar+delta)/alpha)^(1/(1-alpha))));
+    y     = log((exp(k)^alpha)*(exp(h)^(1-alpha)));
+    i     = log(delta*exp(k));
+    c     = log(exp(y)-exp(i)-r_bar*d);
+    tb_y    = 1-((exp(c)+exp(i))/exp(y));
+    util=(((exp(c)-omega^(-1)*exp(h)^omega)^(1-gamma))-1)/(1-gamma);
+    lambda= log((exp(c)-((exp(h)^omega)/omega))^(-gamma));
+    a     = 0;
+    ca_y    = 0;
 end;
 
 @# endif
