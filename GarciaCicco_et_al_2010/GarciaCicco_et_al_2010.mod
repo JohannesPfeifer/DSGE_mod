@@ -11,12 +11,13 @@
  * Notes:
  * - The estimation results reported in Table 3 of the paper are not easily replicable. The authors are currently working on an Erratum. The standard deviations of
  *      the estimated measurement error reported in Table 3 of the paper are actually variances. This mod-file reflects this difference to the publised version
- *      by taking the square root. Additionally, the Hessian at the mode is not well-behaved, because the mode is at a corner solution. According to communications with 
+ *      by taking the square root. Additionally, the Hessian at the mode is not well-behaved, because the mode is at a corner solution. According to comnications with 
  *      GPU, they used a  positive definite approximation to the non-positive inverse Hessian to make the MCMC run. Dynare will in general run into the same problem, unless
  *      mode_compute=6 is used (which is the default in this mod-file). These problems with the Hessian may result in poor convergence of the MCMC, implying that a long chain 
  *      needs to be used (or alternatively, the use_tarb option). However, the main results of the paper are unaffected by these issues.
  * - These problems only affect the estimation. The simulations are fine. Results of stoch_simul have been checked with the moments reported in the replication
  *      code available at the AER homepage
+ * - In accordance with the official replication file r and RSTAR are gross interest rates and not net interest rates as in the paper.
  * - The data are taken from the AER homepage and transformed into log-differences to conform to the observables.
  * - Estimation with 2 million draws takes 6-8 hours, including mode-finding.
  * - Results for most tables can be found in the oo_ structure as documented in the Dynare manual. For example:
