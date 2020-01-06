@@ -11,7 +11,7 @@
  *      include the instrument i (in contrast to Gali's setup where he uses a inequality constraint obtained 
  *      by substituting out i). I.e. we have
  *      \[
- *          L = \sum\limits_{t = 0}^\infty \beta ^t}\left[ \frac{1}{2}\left(\pi_t^2 + \theta x_t^2 \right) + \xi_{1,t}\left(\pi_t - \kappa x_t - \beta \pi_{t+1} \right) 
+ *          L = \sum\limits_{t = 0}^\infty \beta ^t \left[ \frac{1}{2}\left(\pi_t^2 + \theta x_t^2 \right) + \xi_{1,t}\left(\pi_t - \kappa x_t - \beta \pi_{t+1} \right) 
  *              + \xi_{2,t}\left(x_t - x_{t+1} + \frac{1}{\sigma}\left(i_t - \pi_{t+1} - r_t^n} \right) \right) \right] 
  *      \]
  *      which gives rise to the FOC
