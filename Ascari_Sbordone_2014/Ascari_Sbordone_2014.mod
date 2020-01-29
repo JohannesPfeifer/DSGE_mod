@@ -534,7 +534,7 @@ set_param_value('epsilon',10); %reset to baseline
 @# if determinacy_plot==1
     phi_pi_vec=linspace(0,5,200);
     phi_y_vec=linspace(-1,5,200);
-    [phi_pi_mat,phi_y_mat]=meshgrid(phi_pi_vec,phi_y_vec);
+    [phi_pi_mat,phi_y_mat]=ndgrid(phi_pi_vec,phi_y_vec);
     trend_inflation_vector=[0,2,4,6,8];
     Z_plot_total=zeros(size(phi_pi_mat));
     for trend_inflation_iter=1:length(trend_inflation_vector)
