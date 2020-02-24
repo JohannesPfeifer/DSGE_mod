@@ -61,7 +61,7 @@ Marginal costs are given by:
 \end{gathered} \]
 where
 \[
-M{C_t} = \frac{{{W_t}}}{{\left( {1 - \alpha } \right){A_t}N_t^{ - \alpha }S_t^\alpha }} = \frac{{{W_{t + k}}}}{{\left( {1 - \alpha } \right)\frac{{{Y_t}}}{{{N_t}}}{S_t}}}
+M{C_t} = \frac{{{W_t}}}{{\left( {1 - \alpha } \right){A_t}N_t^{ - \alpha }S_t^\alpha }} = \frac{{{W_{t}}}}{{\left( {1 - \alpha } \right)\frac{{{Y_t}}}{{{N_t}}}{S_t}}}
 \]
 \section{Pricing FOC}
 The pricing FOC is given by
@@ -120,4 +120,37 @@ and
    &= C_t^{ - \sigma }M{C_t}{Y_t} + \beta \theta {E_t}\Pi _{t + 1}^{\frac{\varepsilon }{{1 - \alpha }}}{x_{1,t + 1}}
 \end{align}
 
+\section{Wage Setting}
+
+Defining $\Pi_t^{w*}=W_t^*/W_t$:
+\[\begin{gathered}
+  {W_t} = {\left[ {\left( {1 - {\theta _w}} \right){{\left( {W_t^*} \right)}^{1 - {\varepsilon _w}}} + {\theta _w}W_{t - 1}^{1 - {\varepsilon _w}}} \right]^{\frac{1}{{1 - {\varepsilon _w}}}}} \hfill \\
+  1={\left( {1 - {\theta _w}} \right){{\left( {\Pi_t^{w*}} \right)}^{1 - {\varepsilon _w}}} + {\theta _w}\left(\Pi_{t - 1}^w\right)^{{\varepsilon _w}-1}}
+\end{gathered} \]
+\[\begin{gathered}
+  0 = \sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {{N_{t + k|t}}\frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\left( {\frac{{{\varepsilon _w}}}{{{\varepsilon _w} - 1}}\left( { - \frac{{\left( {1 + \tau _{t + k}^c} \right)}}{{\left( {1 - \tau _{t + k}^n} \right)}}\frac{{ - N_{t + k|t}^\varphi }}{{C_{t + k}^{ - \sigma }}}} \right) - \frac{{W_t^*}}{{{P_{t + k}}}}} \right)} \right] \hfill \\
+  0 = \sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {\left( {\frac{{{\varepsilon _w}}}{{{\varepsilon _w} - 1}}N_{t + k|t}^{1 + \varphi } - \frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\frac{{W_t^*}}{{{P_{t + k}}}}{N_{t + k|t}}} \right)} \right] \hfill \\
+  {N_{t + k|t}} = {\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)^{ - {\varepsilon _w}}}N_{t + k}^d \hfill \\
+  0 = \sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {\left( {\frac{{{\varepsilon _w}}}{{{\varepsilon _w} - 1}}{{\left( {{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right)}^{1 + \varphi }} - \frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\frac{{W_t^*}}{{{P_{t + k}}}}{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right)} \right] \hfill \\
+  \sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {{{\left( {{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right)}^{1 + \varphi }}} \right] = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {\frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\frac{{W_t^*}}{{{P_{t + k}}}}{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right] \hfill \\
+  {f_{2,t}} = \sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {{{\left( {{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right)}^{1 + \varphi }}} \right] \hfill \\
+   = {\left( {{{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}N_t^d} \right)^{1 + \varphi }} + \sum\limits_{k = 1}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {{{\left( {{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right)}^{1 + \varphi }}} \right] \hfill \\
+   = {\left( {{{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}N_t^d} \right)^{1 + \varphi }} + \beta {\theta _w}{E_t}{\left( {\frac{{W_t^*}}{{W_{t + 1}^*}}} \right)^{ - {\varepsilon _w}\left( {1 + \varphi } \right)}}\sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} \left[ {{{\left( {{{\left( {\frac{{W_{t + 1}^*}}{{{W_{t + 1 + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + 1 + k}^d} \right)}^{1 + \varphi }}} \right] \hfill \\
+   = {\left( {{{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}N_t^d} \right)^{1 + \varphi }} + \beta {\theta _w}{E_t}{\left( {\frac{{W_t^*}}{{W_{t + 1}^*}}} \right)^{ - {\varepsilon _w}\left( {1 + \varphi } \right)}}{f_{2,t + 1}} \hfill \\
+   ={\left( {\Pi _t^{w*}} \right)^{ - {\varepsilon _w}\left( {1 + \varphi } \right)}}{\left( {N_t^d} \right)^{1 + \varphi }} + \beta {\theta _w}{E_t}{\left( {\frac{{\Pi _t^{w*}}}{{\Pi _{t + 1}^{w*}}}\Pi _{t + 1}^w} \right)^{ - {\varepsilon _w}\left( {1 + \varphi } \right)}}{f_{2,t + 1}}\hfill\\
+  {f_{1,t}} = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {\frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\frac{{W_t^*}}{{{P_{t + k}}}}{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right] \hfill \\
+   = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\frac{{C_t^{ - \sigma }\left( {1 - \tau _t^n} \right)}}{{\left( {1 + \tau _t^c} \right)}}\frac{{W_t^*}}{{{P_t}}}{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}}N_t^d + \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\sum\limits_{k = 1}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} {E_t}\left[ {\frac{{C_{t + k}^{ - \sigma }\left( {1 - \tau _{t + k}^n} \right)}}{{\left( {1 + \tau _{t + k}^c} \right)}}\frac{{W_t^*}}{{{P_{t + k}}}}{{\left( {\frac{{W_t^*}}{{{W_{t + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + k}^d} \right] \hfill \\
+   = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\frac{{C_t^{ - \sigma }\left( {1 - \tau _t^n} \right)}}{{\left( {1 + \tau _t^c} \right)}}\frac{{W_t^*}}{{{P_t}}}{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}}N_t^d + \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\beta {\theta _w}{E_t}{\left( {\frac{{W_t^*}}{{W_{t + 1}^*}}} \right)^{1 - {\varepsilon _w}}}\sum\limits_{k = 0}^\infty  {{{\left( {\beta {\theta _w}} \right)}^k}} \left[ {\frac{{C_{t + 1 + k}^{ - \sigma }\left( {1 - \tau _{t + 1 + k}^n} \right)}}{{\left( {1 + \tau _{t + 1 + k}^c} \right)}}\frac{{W_{t + 1}^*}}{{{P_{t + 1 + k}}}}{{\left( {\frac{{W_{t + 1}^*}}{{{W_{t + 1 + k}}}}} \right)}^{ - {\varepsilon _w}}}N_{t + 1 + k}^d} \right] \hfill \\
+   = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\frac{{C_t^{ - \sigma }\left( {1 - \tau _t^n} \right)}}{{\left( {1 + \tau _t^c} \right)}}\frac{{W_t^*}}{{{P_t}}}{\left( {\frac{{W_t^*}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}}N_t^d + \beta {\theta _w}{E_t}{\left( {\frac{{W_t^*}}{{W_{t + 1}^*}}} \right)^{1 - {\varepsilon _w}}}{f_{1,t + 1}} \hfill \\
+   = \frac{{{\varepsilon _w} - 1}}{{{\varepsilon _w}}}\frac{{C_t^{ - \sigma }\left( {1 - \tau _t^n} \right)}}{{\left( {1 + \tau _t^c} \right)}}\frac{{W_t^*}}{{{P_t}}}{\left( {\Pi _t^{w*}} \right)^{ - {\varepsilon _w}}}N_t^d + \beta {\theta _w}{E_t}{\left( {\frac{{\Pi _t^{w*}}}{{\Pi _{t + 1}^{w*}}}\Pi _{t + 1}^w} \right)^{1 - {\varepsilon _w}}}{f_{1,t + 1}}\hfill \\
+\end{gathered} \]
+\[\begin{gathered}
+  {N_t} \equiv \int\limits_0^1 {N_t^j} dj = \int\limits_0^1 {{{\left( {\frac{{W_t^j}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}N_t^d} dj = N_t^d\int\limits_0^1 {{{\left( {\frac{{W_t^j}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}} dj \hfill \\
+   \Rightarrow N_t^d = \frac{{{N_t}}}{{S_t^W}} \hfill \\
+\end{gathered} \]
+\[\begin{gathered}
+  S_t^W = \int\limits_0^1 {{{\left( {\frac{{W_t^j}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}}  = \left( {1 - \theta } \right){\left( {\frac{{W_t^*}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}} + \theta \int\limits_0^1 {{{\left( {\frac{{W_{t - 1}^j}}{{{W_t}}}} \right)}^{ - {\varepsilon _w}}}dj}  = \left( {1 - \theta } \right){\left( {\frac{{W_t^*}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}} + \theta {\left( {\frac{{{W_{t - 1}}}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}}\int\limits_0^1 {{{\left( {\frac{{W_{t - 1}^j}}{{{W_{t - 1}}}}} \right)}^{ - {\varepsilon _w}}}dj}  \hfill \\
+   = \left( {1 - \theta } \right){\left( {\Pi _t^{w*}} \right)^{ - {\varepsilon _w}}} + \theta {\left( {\frac{{{W_{t - 1}}}}{{{W_t}}}} \right)^{ - {\varepsilon _w}}}S_{t - 1}^W \hfill \\
+\end{gathered} \]
+\[\Pi _t^w = \frac{{{W_t}}}{{{W_{t - 1}}}} = \frac{{\frac{{{W_t}}}{{{P_t}}}}}{{\frac{{{W_{t - 1}}}}{{{P_{t - 1}}}}}}{\Pi _t}\]
 \end{document} 
