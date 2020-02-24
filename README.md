@@ -11,8 +11,8 @@ in the respective papers.
 
 ## Compatibility
 
-These mod-files have been tested against Dynare 4.5. Compatibility with 
-earlier versions is not guaranteed. 
+These mod-files have been tested against Dynare 4.6. Compatibility with 
+earlier versions is not guaranteed. For Dynare 4.5 version, please use the 4.5 branch of this repository
 
 # Contributing your own mod-files
 
@@ -94,27 +94,27 @@ Includes the ```ABCD_test.m```
 
 ### Gali_2008_chapter_2.mod
 
-Implements the baseline Classical Monetary Economy model of Jordi Galí­ 
+Implements the baseline Classical Monetary Economy model of Jordi GalÃ­Â­ 
 (2008): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 2 
 
 ### Gali_2008_chapter_3.mod 
 
-Implements the baseline New Keynesian model of Jordi Galí (2008): Monetary  
+Implements the baseline New Keynesian model of Jordi GalÃ­ (2008): Monetary  
 Policy, Inflation, and the Business Cycle, Princeton University Press, 
 Chapter 3 
 
 ### Gali_2008_chapter_5_discretion.mod 
 
 Implements the optimal monetary policy under discretion exercise of Jordi 
-Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+GalÃ­ (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 5.1.1. It shows how to use the 
 ```discretionary_policy``` command.
 
 ### Gali_2008_chapter_5_commitment.mod 
 
 Implements the optimal monetary policy under commitment exercise of Jordi 
-Galí (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
+GalÃ­ (2008): Monetary  Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Chapter 5.1.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
@@ -122,13 +122,13 @@ command.
 
 ### Gali_2010.mod 
 This file was written together with Lahcen Bounader. It replicates the results of the baseline sticky wage model 
-of Jordi Galí (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
+of Jordi GalÃ­ (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
 Chapter 10, pp. 487-546.
 Please see the header of the mod-file for additional remarks.
 
 ### Gali_2010_calib_target.mod 
 This file was written together with Lahcen Bounader. It implements the baseline sticky wage model 
-of Jordi Galí (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
+of Jordi GalÃ­ (2010): Monetary Policy and Unemployment, Handbook of Monetary Economics, Volume 3A, 
 Chapter 10, pp. 487-546. When doing so, it corrects issues with the original calibration of Gali (2010).
 It demonstrates how in a linearized model a steady_state-file can be used to set the deep parameters of the
 model to satisfy calibration targets on the non-linear model. The steady_state-file takes the calibration targets 
@@ -177,22 +177,22 @@ approach to deal with the zero lower bound on interest rates.
 
 ### Gali_2015_chapter_6.mod
 Implements the New Keynesian model with price and wage rigidities 
-of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+of Jordi GalÃ­ (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Second Edition, Chapter 6
 
 ### Gali_2015_chapter_6_4.mod
 Implements the New Keynesian model with price and wage rigidities under optimal policy 
-with commitment (Ramsey) of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+with commitment (Ramsey) of Jordi GalÃ­ (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Second Edition, Chapter 6.4
 
 ### Gali_2015_chapter_6_5.mod
 Implements the New Keynesian model with price and wage rigidities under under simple rules
-of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+of Jordi GalÃ­ (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Second Edition, Chapter 6.5
 
 ### Gali_2015_chapter_7.mod
 Implements the New Keynesian model with price and wage rigidities and unemployment 
-of Chapter 7 of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
+of Chapter 7 of Jordi GalÃ­ (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
 University Press, Second Edition.
 
 ### Gali_2015_chapter_8.mod
@@ -201,7 +201,7 @@ Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton
 
 ## Gali_Monacelli_2005.mod 
 
-Replicates Galí, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 
+Replicates GalÃ­, Jordi and Monacelli, Tommaso (2005): "Monetary Policy and 
 Exchange Rate Volatility in a Small Open Economy", Review of Economic Studies 
 72, pp. 707-734. 
 
@@ -209,7 +209,7 @@ This mod-file shows how to use Dynare's LaTeX-capacities
 
 ## GarciaCicco_et_al_2010.mod
 
-Replicates the model studied in García-Cicco, Javier and Pancrazi, Roberto and Uribe, Martín (2010): 
+Replicates the model studied in GarcÃ­a-Cicco, Javier and Pancrazi, Roberto and Uribe, MartÃ­n (2010): 
 "Real Business Cycles in Emerging Countries", American Economic Review, 100(5), pp. 2510-2531.
  
 It provides a replication code for the main results of the original paper for the case of Argentina. 
@@ -297,12 +297,12 @@ Monetary Economics 51, pp. 1183-1216.
 
 ## SGU_2003.mod 
 
-Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
+Replicates Schmitt-GrohÃ©, Stephanie and Uribe, MartÃ­n (2003): "Closing small 
 open economy models", Journal of International Economics, 61, pp. 163-185. 
 
 ## SGU_2004.mod
 
-Replicates the neoclassical growth model for Schmitt-Grohé/Uribe (2004): 
+Replicates the neoclassical growth model for Schmitt-GrohÃ©/Uribe (2004): 
 "Solving dynamic general equilibrium models using a second-order 
 approximation to the policy function", Journal of Economic Dynamics & 
 Control, 28, pp. 755-775 
