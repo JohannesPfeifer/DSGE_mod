@@ -28,8 +28,8 @@ end
 
 set_param_value('lambda_utility',par_value_lambda) %set consumption equivalent lambda
 if ~options_.ramsey_policy
-    var_list_ = char('Welfare_gap');
-    info = stoch_simul(var_list_); %get decision rules and moments
+    var_list_ = {'Welfare_gap'};
+    [info, oo_, options_] = stoch_simul(M_, options_, oo_, var_list_); %get decision rules and moments
     if info(1) %filter out error code
         outvalue=1e5+par_value_lambda^2;
         return;

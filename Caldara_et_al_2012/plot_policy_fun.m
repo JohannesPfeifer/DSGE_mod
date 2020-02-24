@@ -19,7 +19,7 @@ function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0
 % SPECIAL REQUIREMENTS
 %    none
 
-% Copyright (C) 2013-15 Johannes Pfeifer
+% Copyright (C) 2013-20 Johannes Pfeifer
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -81,7 +81,7 @@ for ii=1:n_points
     elseif ismember(state_name,M_.exo_names)
         shock_mat(1,strmatch(state_name,M_.exo_names,'exact'),1)=state_range(1,ii);
     end
-    temp=simult_(y0_temp,oo_.dr,shock_mat,options_.order);
+    temp=simult_(M_,options_,y0_temp,oo_.dr,shock_mat,options_.order);
     policyfun(:,ii)=temp(:,2);
 end
 x=state_range;

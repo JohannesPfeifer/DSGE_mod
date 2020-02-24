@@ -1,18 +1,22 @@
-function [ys,check] = Gali_2010_calib_target_steadystate(ys,exo)
-% function [ys,check] = Gali_2010_calib_target_steadystate(ys,exo)
+function [ys,params,check] = Gali_2010_calib_target_steadystate(ys,exo,M_,options_)
+% function [ys,params,check] = Gali_2010_calib_target_steadystate(ys,exo,M_,options_)
 % uses a numerical solver to get the steady state for the nonlinear version of Gali_2010_calib_target_steadystate.mod 
+% in order to set the required parameters matching the calibration
 % in order to set the required parameters matching the calibration
 % Inputs: 
 %   - ys        [vector] vector of initial values for the steady state of
 %                   the endogenous variables
 %   - exo       [vector] vector of values for the exogenous variables
+%   - M_        [structure] Dynare model structure
+%   - options   [structure] Dynare options structure
 %
 % Output: 
-%   - ys        [vector] vector of steady state values fpr the the endogenous variables
+%   - ys        [vector] vector of steady state values for the the endogenous variables
+%   - params    [vector] vector of parameter values
 %   - check     [scalar] set to 0 if steady state computation worked and to
-%                    1 of not (allows to impos restriction on parameters)
-%
-% Copyright (C) 2016 Johannes Pfeifer
+%                    1 of not (allows to impose restrictions on parameters)
+
+% Copyright (C) 2016-20 Johannes Pfeifer
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -27,11 +31,10 @@ function [ys,check] = Gali_2010_calib_target_steadystate(ys,exo)
 % For a copy of the GNU General Public License,
 % see <http://www.gnu.org/licenses/>.
 
-global M_ 
 % read out parameters to access them with their name
 NumberOfParameters = M_.param_nbr;
 for ii = 1:NumberOfParameters
-  paramname = deblank(M_.param_names(ii,:));
+  paramname = M_.param_names{ii};
   eval([ paramname ' = M_.params(' int2str(ii) ');']);
 end
 % initialize indicator
@@ -99,13 +102,13 @@ end
 
 %% end own model equations
 
+params=NaN(NumberOfParameters,1);
 for iter = 1:length(M_.params) %update parameters set in the file
-  eval([ 'M_.params(' num2str(iter) ') = ' M_.param_names(iter,:) ';' ])
+  eval([ 'params(' num2str(iter) ') = ' M_.param_names{iter} ';' ])
 end
 
 NumberOfEndogenousVariables = M_.orig_endo_nbr; %auxiliary variables are set automatically
 for ii = 1:NumberOfEndogenousVariables
-  varname = deblank(M_.endo_names(ii,:));
-  eval(['ys(' int2str(ii) ') = 0;']);
-end
+  varname = M_.endo_names{ii};
+  eval(['ys(' int2str(ii) ') =  0 ;']);
 end

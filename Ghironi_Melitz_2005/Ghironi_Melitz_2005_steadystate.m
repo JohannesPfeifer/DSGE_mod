@@ -1,19 +1,22 @@
-function[ys,check]=Ghironi_Melitz_2005_steadystate(ys,exo)    
-% function[ys,check]=Ghironi_Melitz_2005_steadystate(ys,exo) 
+function [ys,params,check] = Ghironi_Melitz_2005_steadystate(ys,exo,M_,options_)
+% function [ys,params,check] = Ghironi_Melitz_2005_steadystate(ys,exo,M_,options_)
 % computes the steady state of the model of Ghironi and Melitz (2005)
 % a numerical solver is used in order to compute the steady state
-%% Inputs
-%   - ys:  vector of initial values for the steady state of the endogenous
-%          variables (useful when estimating the model)
-%   - exo: vector of exogenous variables/parameters
+% Inputs: 
+%   - ys        [vector] vector of initial values for the steady state of
+%                   the endogenous variables
+%   - exo       [vector] vector of values for the exogenous variables
+%   - M_        [structure] Dynare model structure
+%   - options   [structure] Dynare options structure
 %
-%% Output:
-%   - ys:    vector of steady state values of the endogenous variables
-%   - check: scalar;  0 if steady state computation worked 
-%                     1 if not
+% Output: 
+%   - ys        [vector] vector of steady state values for the the endogenous variables
+%   - params    [vector] vector of parameter values
+%   - check     [scalar] set to 0 if steady state computation worked and to
+%                    1 of not (allows to impose restrictions on parameters)
 
 % Copyright (C) 2017 William Gatt
-%               2018 Johannes Pfeifer and Lucas Radke
+%               2018-20 Johannes Pfeifer and Lucas Radke
 % 
 %  This is free software: you can redistribute it and/or modify
 %  it under the terms of the GNU General Public License as published by
@@ -30,17 +33,14 @@ function[ys,check]=Ghironi_Melitz_2005_steadystate(ys,exo)
 
 %% Steady state model
 
-global M_ options_
-
-% assign name to parameters
-nparams=M_.param_nbr;   %number of parameters
-for i=1:nparams
-    paramname=deblank(M_.param_names(i,:));
-    eval([ paramname ' = M_.params(' int2str(i) ');']);
+% read out parameters to access them with their name
+NumberOfParameters = M_.param_nbr;
+for ii = 1:NumberOfParameters
+  paramname = M_.param_names{ii};
+  eval([ paramname ' = M_.params(' int2str(ii) ');']);
 end
-
-% initialise output for 'check'
-check=0;
+% initialize indicator
+check = 0;
 
 %%% STEADY STATE EQUATIONS 
     fx      =   fx_share*(1-betaa*(1-delta))/(betaa*(1-delta))*fe;
@@ -111,17 +111,16 @@ check=0;
     dtilde      = dtilded + (Nx/Nd)*dtildex;
     dtilde_     = dtilded_ + (Nx_/Nd_)*dtildex_;
     
-%%% end of steady state model equations
 
+%% end own model equations
+
+params=NaN(NumberOfParameters,1);
 for iter = 1:length(M_.params) %update parameters set in the file
-  eval([ 'M_.params(' num2str(iter) ') = ' M_.param_names(iter,:) ';' ])
+  eval([ 'params(' num2str(iter) ') = ' M_.param_names{iter} ';' ])
 end
 
 NumberOfEndogenousVariables = M_.orig_endo_nbr; %auxiliary variables are set automatically
 for ii = 1:NumberOfEndogenousVariables
-  varname = deblank(M_.endo_names(ii,:));
+  varname = M_.endo_names{ii};
   eval(['ys(' int2str(ii) ') = ' varname ';']);
-end
-
-    
 end

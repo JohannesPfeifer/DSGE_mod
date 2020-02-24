@@ -55,9 +55,9 @@ results_EHL_Calvo_mat(:,7)=100*[values_technology; values_demand];
 results_EHL_Calvo_mat_display=results_EHL_Calvo_mat;
 
 options_.noprint=0;
-headers_string=strvcat(' ','Ramsey','Price','Wage','Composite','Price','Wage','Composite');
-labels_string=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','W unc.','W cond.','sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','W unc.','W cond.');
-labels_string_tex=strvcat('\sigma(\pi_p)','\sigma(\pi_w)','\sigma(\tilde y)','\lambda_{unc}','\lambda_{cond}','\sigma(\pi_p)','\sigma(\pi_w)','\sigma(\tilde y)','\lambda_{unc}','\lambda_{cond}');
+headers_string={' ';'Ramsey';'Price';'Wage';'Composite';'Price';'Wage';'Composite'};
+labels_string={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'W unc.';'W cond.';'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'W unc.';'W cond.'};
+labels_string_tex={'\sigma(\pi_p)';'\sigma(\pi_w)';'\sigma(\tilde y)';'\lambda_{unc}';'\lambda_{cond}';'\sigma(\pi_p)';'\sigma(\pi_w)';'\sigma(\tilde y)';'\lambda_{unc}';'\lambda_{cond}'};
 dyntable(options_,'EHLCalvo',headers_string,labels_string,results_EHL_Calvo_mat_display,size(labels_string,2)+2,5,4)      
 dyn_latex_table_modified(options_,'EHLCalvo','Latex/Inefficient/EHL_Calvo_welfare',headers_string,labels_string_tex,results_EHL_Calvo_mat_display,size(labels_string,2)+2,8,6);
 
@@ -202,7 +202,7 @@ if Ramsey==0
     label_format_leftbound  = sprintf('$%%-%ds$',size(labels_string_tex,2)+1);
     value_format='%8.6f';
     for ii=4:size(results_EHL_Calvo_mat_display,1)/2
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_EHL_Calvo_mat_display(ii,2:end) results_EHL_Rotemberg_mat_display(ii,2:end)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -213,7 +213,7 @@ if Ramsey==0
     
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+4:size(results_EHL_Calvo_mat_display,1)
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_EHL_Calvo_mat_display(ii,2:end) results_EHL_Rotemberg_mat_display(ii,2:end)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -233,7 +233,7 @@ if Ramsey==0
     label_format_leftbound  = sprintf('$%%-%ds$',size(labels_string_tex,2)+1);
     value_format='%8.6f';
     for ii=4:size(results_EHL_Calvo_mat_display,1)/2
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_SGU_Calvo_mat_display(ii,2:end) results_SGU_Rotemberg_mat_display(ii,2:end)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -244,7 +244,7 @@ if Ramsey==0
     
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+4:size(results_EHL_Calvo_mat_display,1)
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_SGU_Calvo_mat_display(ii,2:end) results_SGU_Rotemberg_mat_display(ii,2:end)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -275,7 +275,7 @@ else
     label_format_leftbound  = sprintf('$%%-%ds$',size(labels_string_tex,2)+1);
     value_format='%8.6f';
     for ii=1:size(results_EHL_Calvo_mat_display,1)/2
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_EHL_Calvo_mat_display(ii,:) results_EHL_Rotemberg_mat_display(ii,:)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -285,7 +285,7 @@ else
     fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+1:size(results_EHL_Calvo_mat_display,1)
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_EHL_Calvo_mat_display(ii,:) results_EHL_Rotemberg_mat_display(ii,:)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -309,7 +309,7 @@ else
     label_format_leftbound  = sprintf('$%%-%ds$',size(labels_string_tex,2)+1);
     value_format='%8.6f';
     for ii=1:size(results_EHL_Calvo_mat_display,1)/2
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_SGU_Calvo_mat_display(ii,:) results_SGU_Rotemberg_mat_display(ii,:)]);
         fprintf(fidTeX,' \\\\ \n');
     end
@@ -319,7 +319,7 @@ else
     fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+1:size(results_EHL_Calvo_mat_display,1)
-        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex(ii,:)));
+        fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
         fprintf(fidTeX,['\t & \t' value_format],[results_SGU_Calvo_mat_display(ii,:) results_SGU_Rotemberg_mat_display(ii,:)]);
         fprintf(fidTeX,' \\\\ \n');
     end

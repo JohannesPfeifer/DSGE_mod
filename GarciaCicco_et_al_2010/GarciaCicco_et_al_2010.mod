@@ -299,28 +299,28 @@ fprintf('%30s \t %5.4f \t %5.4f \t %5.4f \t %5.4f \n','Ex. Spending:',[oo_.varia
 varobs g_y g_c g_invest tb_y;
         
 estimated_params;
-    gbar, , , ,uniform_pdf,(1+1.03)/2,sqrt(12)^(-1)*(1.03-1),1,1.03;
-    stderr eps_g, , , ,uniform_pdf,(0+0.2)/2,sqrt(12)^(-1)*(0.2-0),0,0.2;
-    rho_g, , , ,uniform_pdf,(-0.99+0.99)/2,sqrt(12)^(-1)*(-0.99-0.99),-0.99,0.99;
-    stderr eps_a, , , ,uniform_pdf,(0+0.2)/2,sqrt(12)^(-1)*(0.2-0),0,0.2;
-    rho_a, , , ,uniform_pdf,(-0.99+0.99)/2,sqrt(12)^(-1)*(-0.99-0.99),-0.99,0.99;
-    phi, , , ,uniform_pdf, (0+8)/2, sqrt(12)^(-1)*(0-8), 0, 8;
+    gbar, , , ,uniform_pdf, , , 1,1.03;
+    stderr eps_g, , , ,uniform_pdf, , ,0,0.2;
+    rho_g, , , ,uniform_pdf, , ,-0.99,0.99;
+    stderr eps_a, , , ,uniform_pdf, , ,0,0.2;
+    rho_a, , , ,uniform_pdf, , ,-0.99,0.99;
+    phi, , , ,uniform_pdf, , , 0, 8;
 
     @#if RBC == 0
-        stderr eps_nu, , , ,uniform_pdf,(0+1)/2,sqrt(12)^(-1)*(1-0),0,1; //higher upper bound than the others
-        rho_nu, , , ,uniform_pdf,(-0.99+0.99)/2,sqrt(12)^(-1)*(-0.99-0.99),-0.99,0.99;
-        stderr eps_s, , , ,uniform_pdf,(0+0.2)/2,sqrt(12)^(-1)*(0.2-0),0,0.2;
-        rho_s, , , ,uniform_pdf,(-0.99+0.99)/2,sqrt(12)^(-1)*(-0.99-0.99),-0.99,0.99;
-        stderr eps_mu, , , ,uniform_pdf,(0+0.2)/2,sqrt(12)^(-1)*(0.2-0),0,0.2;
-        rho_mu, , , ,uniform_pdf,(-0.99+0.99)/2,sqrt(12)^(-1)*(-0.99-0.99),-0.99,0.99;
+        stderr eps_nu, , , ,uniform_pdf, , ,0,1; //higher upper bound than the others
+        rho_nu, , , ,uniform_pdf, , ,-0.99,0.99;
+        stderr eps_s, , , ,uniform_pdf, , ,0,0.2;
+        rho_s, , , ,uniform_pdf, , ,-0.99,0.99;
+        stderr eps_mu, , , ,uniform_pdf, , ,0,0.2;
+        rho_mu, , , ,uniform_pdf, , ,-0.99,0.99;
 
-        psi, , , ,uniform_pdf, (0+5)/2, sqrt(12)^(-1)*(0-5), 0, 5;
+        psi, , , ,uniform_pdf,  , , 0, 5;
     @# endif
 
-    stderr g_y, , , ,uniform_pdf, (sqrt(0.0001)+sqrt(0.13))/2,sqrt(12)^(-1)*(sqrt(0.13)-sqrt(0.0001)), sqrt(0.0001), sqrt(0.13);
-    stderr g_c, , , ,uniform_pdf, (sqrt(0.0001)+sqrt(0.19))/2,sqrt(12)^(-1)*(sqrt(0.19)-sqrt(0.0001)), sqrt(0.0001), sqrt(0.19);
-    stderr g_invest, , , ,uniform_pdf, (sqrt(0.0001)+sqrt(0.51))/2,sqrt(12)^(-1)*(sqrt(0.51)-sqrt(0.0001)), sqrt(0.0001), sqrt(0.51);
-    stderr tb_y, , , ,uniform_pdf, (sqrt(0.0001)+sqrt(0.13))/2,sqrt(12)^(-1)*(sqrt(0.13)-sqrt(0.0001)), sqrt(0.0001), sqrt(0.13);
+    stderr g_y, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.13);
+    stderr g_c, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.19);
+    stderr g_invest, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.51);
+    stderr tb_y, , , ,uniform_pdf, ,  , sqrt(0.0001), sqrt(0.13);
 end;
     
 estimated_params_init(use_calibration); //Use their posterior as starting values for estimation; for measurement error, only the 

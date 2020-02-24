@@ -265,8 +265,8 @@ variance.pi_p=oo_.var(pi_p_pos,pi_p_pos);
 variance.pi_w=oo_.var(pi_w_pos,pi_w_pos);
 L=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap+ par.epsilon_p/par.lambda_p*variance.pi_p+par.epsilon_w*(1-par.alppha)/par.lambda_w*variance.pi_w);
 
-labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L');
-headers=strvcat('Technology shocks',case_title);
+labels={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'L'};
+headers={'Technology shocks',case_title};
 values=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);L];
 options_.noprint=0;
 dyntable(options_,table_title,headers,labels,100*values,size(labels,2)+2,4,3)
@@ -297,8 +297,8 @@ variance.pi_p=oo_.var(pi_p_pos,pi_p_pos);
 variance.pi_w=oo_.var(pi_w_pos,pi_w_pos);
 L=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap+ par.epsilon_p/par.lambda_p*variance.pi_p+par.epsilon_w*(1-par.alppha)/par.lambda_w*variance.pi_w);
 
-labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L');
-headers=strvcat('Demand shocks   ',case_title);
+labels={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'L'};
+headers={'Demand shocks   ',case_title};
 values=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);L];
 options_.noprint=0;
 dyntable(options_,table_title,headers,labels,100*values,size(labels,2)+2,4,3)

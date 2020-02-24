@@ -313,12 +313,12 @@ IRF_periods=20;
 @#endif
 
 shock_mat_with_zeros=zeros(burnin+IRF_periods,M_.exo_nbr); %shocks set to 0 to simulate without uncertainty
-IRF_no_shock_mat = simult_(oo_.dr.ys,oo_.dr,shock_mat_with_zeros,options_.order)'; %simulate series
+IRF_no_shock_mat = simult_(M_,options_,oo_.dr.ys,oo_.dr,shock_mat_with_zeros,options_.order)'; %simulate series
 stochastic_steady_state=IRF_no_shock_mat(1+burnin,:); % stochastic_steady_state/EMAS is any of the final points after burnin
 
 shock_mat = zeros(burnin+IRF_periods,M_.exo_nbr);
 shock_mat(1+burnin,strmatch('eps_sigma_a',M_.exo_names,'exact'))= 1;
-IRF_mat = simult_(oo_.dr.ys,oo_.dr,shock_mat,options_.order)';
+IRF_mat = simult_(M_,options_,oo_.dr.ys,oo_.dr,shock_mat,options_.order)';
 
 IRF_mat_percent_from_SSS = (IRF_mat(1+burnin+1:1+burnin+IRF_periods,:)-IRF_no_shock_mat(1+burnin+1:1+burnin+IRF_periods,:))./repmat(stochastic_steady_state,IRF_periods,1); %only valid for variables not yet logged
 

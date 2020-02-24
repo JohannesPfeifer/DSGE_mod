@@ -22,7 +22,7 @@ global oo_ M_ options_ % get Dynare structures; used to pass them on to resol.m
 %% set parameter for use in Dynare
 set_param_value('tau_n',xopt(1));
 
-info=stoch_simul('W'); %run computation of mean welfare
+[info, oo_, options_] = stoch_simul(M_, options_, oo_, {'W'});
 
 if info(1) %solution was not successful
     W=10e6+sum([xopt(1)].^2); %return with penalty 

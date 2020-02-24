@@ -213,31 +213,36 @@ pi_pos=strmatch('pi',var_list_ ,'exact');
 
     phi_pi_vec=[1.5 1.5 5 1.5];
     phi_y_vec=[0.125 0 0 1];
-        
+
+    variance.y_gap=NaN(1,length(phi_pi_vec));
+    variance.y=NaN(1,length(phi_pi_vec));
+    variance.pi=NaN(1,length(phi_pi_vec));
+    L=NaN(1,length(phi_pi_vec));
     for ii=1:length(phi_pi_vec)
         set_param_value('phi_pi',phi_pi_vec(ii));
         set_param_value('phi_y',phi_y_vec(ii));
-        info=stoch_simul(var_list_); %loop over stoch_simul
-        
-        %read out current parameter values        
-        par.theta=M_.params(strmatch('theta',M_.param_names,'exact'));
-        par.alppha=M_.params(strmatch('alppha',M_.param_names,'exact'));
-        par.betta=M_.params(strmatch('betta',M_.param_names,'exact'));
-        par.epsilon=M_.params(strmatch('epsilon',M_.param_names,'exact'));
-        par.siggma=M_.params(strmatch('siggma',M_.param_names,'exact'));
-        par.varphi=M_.params(strmatch('varphi',M_.param_names,'exact'));
-        
-        par.lambda=(1-par.theta)*(1-par.betta*par.theta)/par.theta*(1-par.alppha)/(1-par.alppha+par.alppha*par.epsilon);
-        
-        variance.y_gap(ii)=oo_.var(y_gap_pos,y_gap_pos);
-        variance.y(ii)=oo_.var(y_pos,y_pos);
-        variance.pi(ii)=oo_.var(pi_pos,pi_pos);
-        L(ii)=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap(ii)+par.epsilon/par.lambda*variance.pi(ii))/100;
+        [info, oo_, options_] = stoch_simul(M_, options_, oo_, var_list_); %loop over stoch_simul
+        if ~info(1)
+            %read out current parameter values
+            par.theta=M_.params(strmatch('theta',M_.param_names,'exact'));
+            par.alppha=M_.params(strmatch('alppha',M_.param_names,'exact'));
+            par.betta=M_.params(strmatch('betta',M_.param_names,'exact'));
+            par.epsilon=M_.params(strmatch('epsilon',M_.param_names,'exact'));
+            par.siggma=M_.params(strmatch('siggma',M_.param_names,'exact'));
+            par.varphi=M_.params(strmatch('varphi',M_.param_names,'exact'));
+            
+            par.lambda=(1-par.theta)*(1-par.betta*par.theta)/par.theta*(1-par.alppha)/(1-par.alppha+par.alppha*par.epsilon);
+            
+            variance.y_gap(ii)=oo_.var(y_gap_pos,y_gap_pos);
+            variance.y(ii)=oo_.var(y_pos,y_pos);
+            variance.pi(ii)=oo_.var(pi_pos,pi_pos);
+            L(ii)=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap(ii)+par.epsilon/par.lambda*variance.pi(ii))/100;
+        end
     end
     //Print result
 
-    labels=strvcat('phi_pi','phi_y','sigma(y)','sigma(tilde y)','sigma(pi)','L');
-    headers=strvcat(' ',' ',' ',' ');
+    labels={'phi_pi';'phi_y';'sigma(y)';'sigma(tilde y)';'sigma(pi)';'L'};
+    headers={' ';' ';' ';' '};
     values=[phi_pi_vec;phi_y_vec;sqrt(variance.y);sqrt(variance.y_gap);sqrt(variance.pi);L];
     options_.noprint=0;
     dyntable(options_,'Technology',headers,labels,values,size(labels,2)+2,4,3)
@@ -251,25 +256,30 @@ pi_pos=strmatch('pi',var_list_ ,'exact');
         var eps_z = 1^2; %see description p. 113
     end;   
 
+    variance.y_gap=NaN(1,length(phi_pi_vec));
+    variance.y=NaN(1,length(phi_pi_vec));
+    variance.pi=NaN(1,length(phi_pi_vec));
+    L=NaN(1,length(phi_pi_vec));
     for ii=1:length(phi_pi_vec)
         set_param_value('phi_pi',phi_pi_vec(ii));
         set_param_value('phi_y',phi_y_vec(ii));
-        info=stoch_simul(var_list_); %loop over stoch_simul
-
-        %read out current parameter values
-        par.theta=M_.params(strmatch('theta',M_.param_names,'exact'));
-        par.alppha=M_.params(strmatch('alppha',M_.param_names,'exact'));
-        par.betta=M_.params(strmatch('betta',M_.param_names,'exact'));
-        par.epsilon=M_.params(strmatch('epsilon',M_.param_names,'exact'));
-        par.siggma=M_.params(strmatch('siggma',M_.param_names,'exact'));
-        par.varphi=M_.params(strmatch('varphi',M_.param_names,'exact'));
-
-        par.lambda=(1-par.theta)*(1-par.betta*par.theta)/par.theta*(1-par.alppha)/(1-par.alppha+par.alppha*par.epsilon);
-
-        variance.y_gap(ii)=oo_.var(y_gap_pos,y_gap_pos);
-        variance.y(ii)=oo_.var(y_pos,y_pos);
-        variance.pi(ii)=oo_.var(pi_pos,pi_pos);
-        L(ii)=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap(ii)+par.epsilon/par.lambda*variance.pi(ii))/100;
+        [info, oo_, options_] = stoch_simul(M_, options_, oo_, var_list_); %loop over stoch_simul
+        if ~info(1)
+            %read out current parameter values
+            par.theta=M_.params(strmatch('theta',M_.param_names,'exact'));
+            par.alppha=M_.params(strmatch('alppha',M_.param_names,'exact'));
+            par.betta=M_.params(strmatch('betta',M_.param_names,'exact'));
+            par.epsilon=M_.params(strmatch('epsilon',M_.param_names,'exact'));
+            par.siggma=M_.params(strmatch('siggma',M_.param_names,'exact'));
+            par.varphi=M_.params(strmatch('varphi',M_.param_names,'exact'));
+            
+            par.lambda=(1-par.theta)*(1-par.betta*par.theta)/par.theta*(1-par.alppha)/(1-par.alppha+par.alppha*par.epsilon);
+            
+            variance.y_gap(ii)=oo_.var(y_gap_pos,y_gap_pos);
+            variance.y(ii)=oo_.var(y_pos,y_pos);
+            variance.pi(ii)=oo_.var(pi_pos,pi_pos);
+            L(ii)=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap(ii)+par.epsilon/par.lambda*variance.pi(ii))/100;
+        end
     end
     //Print result
     values=[phi_pi_vec;phi_y_vec;sqrt(variance.y);sqrt(variance.y_gap);sqrt(variance.pi);L];
@@ -283,6 +293,7 @@ pi_pos=strmatch('pi',var_list_ ,'exact');
     @#define shock_endings = [ "a", "z", "zeta" ]
     
     ii=0; %initialize counter
+
     @#for shock_ending in shock_endings 
         // reset shocks to 0
         shocks;
@@ -298,7 +309,7 @@ pi_pos=strmatch('pi',var_list_ ,'exact');
 
         ii=ii+1;%increase counter
         
-        info=stoch_simul(var_list_); %loop over stoch_simul
+        [info, oo_, options_] = stoch_simul(M_, options_, oo_, var_list_); %loop over stoch_simul
         
         %read out current parameter values
         par.theta=M_.params(strmatch('theta',M_.param_names,'exact'));
@@ -316,8 +327,8 @@ pi_pos=strmatch('pi',var_list_ ,'exact');
         L(ii)=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap(ii)+par.epsilon/par.lambda*variance.pi(ii))/100;
     @#endfor
     //Print result
-    labels=strvcat('sigma(y)','sigma(tilde y)','sigma(pi)','L');
-    headers=strvcat(' ','Technology','Demand','Money Demand');
+    labels={'sigma(y)';'sigma(tilde y)';'sigma(pi)';'L'};
+    headers={' ';'Technology';'Demand';'Money Demand'};
     values=[sqrt(variance.y);sqrt(variance.y_gap);sqrt(variance.pi);L];
     options_.noprint=0;
     dyntable(options_,'Constant money growth',headers,labels,values,size(labels,2)+2,4,3)

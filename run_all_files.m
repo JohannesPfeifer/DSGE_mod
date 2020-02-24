@@ -37,8 +37,6 @@ dynare Gali_2015_chapter_7
 dynare Gali_2015_chapter_8
 cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
-cd('../Gali_Monacelli_2005')
-dynare Gali_Monacelli_2005
 cd('../Ghironi_Melitz_2005')
 dynare Ghironi_Melitz_2005.mod
 cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')

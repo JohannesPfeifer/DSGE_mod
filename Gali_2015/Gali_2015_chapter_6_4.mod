@@ -197,19 +197,24 @@ end;
 //planner objective, uses lambda_w and lambda_p updated in steady_state_model-block
 planner_objective 0.5*((siggma+(varphi+alppha)/(1-alppha))*y_gap^2+ epsilon_p/lambda_p*pi_p^2+epsilon_w*(1-alppha)/lambda_w*pi_w^2);
 
-ramsey_policy(instruments=(i),irf=16,planner_discount=betta,noprint) y_gap pi_p_ann pi_w_ann w_real;
+ramsey_model(instruments=(i),planner_discount=betta, planner_discount_latex_name = $\delta$);
+stoch_simul(order=1,irf=16,noprint) y_gap pi_p_ann pi_w_ann w_real;
+evaluate_planner_objective;
+
 oo_baseline=oo_;
 
 %flexible wage case
 set_param_value('theta_w',0.0000000001);
 set_param_value('theta_p',3/4);
-ramsey_policy(instruments=(i),irf=16,planner_discount=betta,noprint) y_gap pi_p_ann pi_w_ann w_real;
+stoch_simul(order=1,irf=16,noprint) y_gap pi_p_ann pi_w_ann w_real;
+evaluate_planner_objective;
 oo_flexible_wages=oo_;
 
 %flexible price case
 set_param_value('theta_w',3/4)
 set_param_value('theta_p',0.000000001)
-ramsey_policy(instruments=(i),irf=16,planner_discount=betta,noprint) y_gap pi_p_ann pi_w_ann w_real;
+stoch_simul(order=1,irf=16,noprint) y_gap pi_p_ann pi_w_ann w_real;
+evaluate_planner_objective;
 oo_flexible_prices=oo_;
 
 
@@ -240,7 +245,7 @@ end;
 set_param_value('theta_w',3/4);
 set_param_value('theta_p',3/4);
 
-ramsey_policy(instruments=(i),irf=16,planner_discount=betta) y_gap pi_p pi_w;
+stoch_simul(order=1,irf=16,noprint) y_gap y_gap pi_p pi_w;
 oo_baseline=oo_;
 
 y_gap_pos=strmatch('y_gap',var_list_ ,'exact');
@@ -261,8 +266,8 @@ variance.pi_p=oo_.var(pi_p_pos,pi_p_pos);
 variance.pi_w=oo_.var(pi_w_pos,pi_w_pos);
 L=0.5*((par.siggma+(par.varphi+par.alppha)/(1-par.alppha))*variance.y_gap+ par.epsilon_p/par.lambda_p*variance.pi_p+par.epsilon_w*(1-par.alppha)/par.lambda_w*variance.pi_w)
 
-labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L');
-headers=strvcat(' ','Optimal');
+labels={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'L'};
+headers={' ';'Optimal'};
 values=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);L];
 options_.noprint=0;
 dyntable(options_,'Evaluation of Simple Rules',headers,labels,values,size(labels,2)+2,4,3)

@@ -117,7 +117,6 @@ else
         ghuuu = dr.ghuuu;
         ghxss = dr.ghxss;
         ghuss = dr.ghuss;
-        threads = options_.threads.kronecker.A_times_B_kronecker_C;
         nspred = M_.nspred;
         ipred = M_.nstatic+(1:nspred);
         if nargin<5
@@ -145,42 +144,42 @@ else
                 u_1=u;
             end
             %% construct terms of order 2 from second order part, based on linear component yhat1
-            [gyy, err] = A_times_B_kronecker_C(ghxx,yhat1,threads);
+            [gyy, err] = A_times_B_kronecker_C(ghxx,yhat1);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [guu, err] = A_times_B_kronecker_C(ghuu,u_1,threads);
+            [guu, err] = A_times_B_kronecker_C(ghuu,u_1);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [gyu, err] = A_times_B_kronecker_C(ghxu,yhat1,u_1,threads);
+            [gyu, err] = A_times_B_kronecker_C(ghxu,yhat1,u_1);
             mexErrCheck('A_times_B_kronecker_C', err);
             %% construct terms of order 3, all based on first order component yhat1              
             y2a = kron(yhat1,yhat1);
-            [gyyy, err] = A_times_B_kronecker_C(ghxxx,y2a,yhat1,threads);
+            [gyyy, err] = A_times_B_kronecker_C(ghxxx,y2a,yhat1);
             mexErrCheck('A_times_B_kronecker_C', err);
             u2a = kron(u_1,u_1);
-            [guuu, err] = A_times_B_kronecker_C(ghuuu,u2a,u_1,threads);
+            [guuu, err] = A_times_B_kronecker_C(ghuuu,u2a,u_1);
             mexErrCheck('A_times_B_kronecker_C', err);
             yu = kron(yhat1,u_1);
-            [gyyu, err] = A_times_B_kronecker_C(ghxxu,yhat1,yu,threads);
+            [gyyu, err] = A_times_B_kronecker_C(ghxxu,yhat1,yu);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [gyuu, err] = A_times_B_kronecker_C(ghxuu,yu,u_1,threads);
+            [gyuu, err] = A_times_B_kronecker_C(ghxuu,yu,u_1);
             mexErrCheck('A_times_B_kronecker_C', err);
             
             %% get unpruned solution for exogenous states 
-            [gyy_unpruned, err] = A_times_B_kronecker_C(ghxx,yhat3,threads);
+            [gyy_unpruned, err] = A_times_B_kronecker_C(ghxx,yhat3);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [guu_unpruned, err] = A_times_B_kronecker_C(ghuu,u,threads);
+            [guu_unpruned, err] = A_times_B_kronecker_C(ghuu,u);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [gyu_unpruned, err] = A_times_B_kronecker_C(ghxu,yhat3,u,threads);
+            [gyu_unpruned, err] = A_times_B_kronecker_C(ghxu,yhat3,u);
             mexErrCheck('A_times_B_kronecker_C', err);
             %% construct terms of order 3
             y2a_unpruned = kron(yhat3,yhat3);
-            [gyyy_unpruned, err] = A_times_B_kronecker_C(ghxxx,y2a_unpruned,yhat3,threads);
+            [gyyy_unpruned, err] = A_times_B_kronecker_C(ghxxx,y2a_unpruned,yhat3);
             mexErrCheck('A_times_B_kronecker_C', err);
             u2a_unpruned = kron(u,u);
-            [guuu_unpruned, err] = A_times_B_kronecker_C(ghuuu,u2a_unpruned,u,threads);
+            [guuu_unpruned, err] = A_times_B_kronecker_C(ghuuu,u2a_unpruned,u);
             yu_unpruned = kron(yhat3,u);
-            [gyyu_unpruned, err] = A_times_B_kronecker_C(ghxxu,yhat3,yu_unpruned,threads);
+            [gyyu_unpruned, err] = A_times_B_kronecker_C(ghxxu,yhat3,yu_unpruned);
             mexErrCheck('A_times_B_kronecker_C', err);
-            [gyuu_unpruned, err] = A_times_B_kronecker_C(ghxuu,yu_unpruned,u,threads);
+            [gyuu_unpruned, err] = A_times_B_kronecker_C(ghxuu,yu_unpruned,u);
             mexErrCheck('A_times_B_kronecker_C', err);
 
             y_exo = ghx*yhat3 +ghu*u ...

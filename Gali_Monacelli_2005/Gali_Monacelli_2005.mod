@@ -229,7 +229,7 @@ fprintf('Case: %s\n', case_title)
 for var_iter=1:length(var_string)
     var_pos=strmatch(var_string{var_iter},M_.endo_names,'exact');
     cyc_moments(var_iter,1)=sqrt(oo_.var(var_pos,var_pos))*100;
-    fprintf('%20s \t %3.2f \n',M_.endo_names_long(strmatch(var_string{var_iter},M_.endo_names,'exact'),:),cyc_moments(var_iter,1))
+    fprintf('%20s \t %3.2f \n',M_.endo_names_long{strmatch(var_string{var_iter},M_.endo_names,'exact'),:},cyc_moments(var_iter,1))
 end
 
 

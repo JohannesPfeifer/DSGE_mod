@@ -138,7 +138,7 @@ shock_matrix = zeros(options_.irf,M_.exo_nbr); %create shock matrix with number 
 shock_matrix(1,strmatch('eps_z_news',M_.exo_names,'exact')) = 1; %set news shock to 1 (use any shock size you want)
 shock_matrix(1+8,strmatch('eps_z_surprise',M_.exo_names,'exact')) = -1; %8 periods later use counteracting shock of -1
 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,options_.irf); %deviation from steady state
 
 

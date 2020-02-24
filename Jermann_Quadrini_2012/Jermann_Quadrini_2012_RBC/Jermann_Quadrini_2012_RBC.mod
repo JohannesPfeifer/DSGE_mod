@@ -293,19 +293,19 @@ shock_matrix = zeros(n_points,M_.exo_nbr);      %create shock matrix with number
         
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = innovations.resid(:,1)';
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = zeros(1,n_points); 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_prod_nofric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);     % deviation from steady state  
         
 %% set shocks for 'financial shocks only' 
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = zeros(1,n_points);
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = innovations.resid(:,2)'; 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_fin_nofric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);         
         
 %% set shocks for 'both shocks' 
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = innovations.resid(:,1)';
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = innovations.resid(:,2)'; 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_both_nofric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);
 
 
@@ -329,19 +329,19 @@ shock_matrix = zeros(n_points,M_.exo_nbr);
 
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = innovations.resid(:,1)';
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = zeros(1,n_points); 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_prod_fric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);               
         
 %% set shocks for 'technology shocks only' 
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = zeros(1,n_points);
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = innovations.resid(:,2)'; 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_fin_fric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);                    
         
 %% set shocks for 'both shocks' 
 shock_matrix(:,strmatch('eps_z',M_.exo_names,'exact')) = innovations.resid(:,1)';
 shock_matrix(:,strmatch('eps_xi',M_.exo_names,'exact')) = innovations.resid(:,2)'; 
-y2 = simult_(initial_condition_states,oo_.dr,shock_matrix,1);
+y2 = simult_(M_,options_,initial_condition_states,oo_.dr,shock_matrix,1);
 y_IRF_both_fric = y2(:,M_.maximum_lag+1:end)-repmat(oo_.dr.ys,1,n_points);     
         
         

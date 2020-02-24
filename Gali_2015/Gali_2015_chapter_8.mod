@@ -310,8 +310,8 @@ variance.d_er=oo_.var(d_er_pos,d_er_pos);
 L=(1-par.upsilon)*0.5*(((1+par.varphi)/(1-par.alppha))*variance.y_gap+par.epsilon/par.lambda*variance.pi_h)/100;
 
 //Print result
-labels=strvcat('sigma(y)','sigma(tilde y)','sigma(pi_h)','sigma(pi)','sigma(s)','sigma(Delta e)','L');
-headers=strvcat(' ',short_title);
+labels={'sigma(y)';'sigma(tilde y)';'sigma(pi_h)';'sigma(pi)';'sigma(s)';'sigma(Delta e)';'L'};
+headers={' ',short_title};
 values=[sqrt([variance.y;variance.y_gap;variance.pi_h;variance.pi;variance.s;variance.d_er]);L];
 options_.noprint=0;
 dyntable(options_,'Table 8.1: Properties of simple policy rules',headers,labels,values,size(labels,2)+2,4,3)

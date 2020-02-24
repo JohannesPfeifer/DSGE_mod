@@ -604,8 +604,8 @@ lambda_conditional_technology=csolve('get_consumption_equivalent_conditional_wel
 options_=options_old;
  
 %display results
-labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L unc','L cond');
-headers=strvcat('Technology shocks',case_title);
+labels={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'L unc';'L cond'};
+headers={'Technology shocks';case_title};
 values_technology=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);lambda_unconditional_technology;lambda_conditional_technology];
 options_.noprint=0;
 dyntable(options_,table_title,headers,labels,100*values_technology,size(labels,2)+2,4,3)
@@ -639,8 +639,8 @@ lambda_conditional_demand=csolve('get_consumption_equivalent_conditional_welfare
 options_=options_old;
 
 %display results
-labels=strvcat('sigma(pi_p)','sigma(pi_w)','sigma(tilde y)','L unc','L cond');
-headers=strvcat('Demand shocks   ',case_title);
+labels={'sigma(pi_p)';'sigma(pi_w)';'sigma(tilde y)';'L unc';'L cond'};
+headers={'Demand shocks   ';case_title};
 values_demand=[sqrt([variance.pi_p;variance.pi_w;variance.y_gap]);lambda_unconditional_demand;lambda_conditional_demand];
 options_.noprint=0;
 dyntable(options_,table_title,headers,labels,100*values_demand,size(labels,2)+2,5,4)      
