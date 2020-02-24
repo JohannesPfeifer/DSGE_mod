@@ -7,7 +7,7 @@
  * in order to conduct Ramsey policy from a timeless perspective (set Ramsey_policy_timeless=1). If Ramsey_policy_t0_optimal
  * it uses the t_0 optimal Ramsey policy where the initial multiplier is set to 0.
  * 
- * THIS MOD-FILE REQUIRES DYNARE 4.5 (I.E. THE CURRENT UNSTABLE VERSION)
+ * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
  *
  * Notes:
  *  - In contrast to what is stated in the article, the parameterization used for Figure 2 is not the one given in Woodford (2003).
@@ -45,8 +45,8 @@ var x       ${x}$ (long_name='output gap')
     pi_annual ${\pi^{ann}}$ (long_name='annualized inflation in percent')
             ;
 
-@#define Ramsey_policy_timeless=1
-@#define Ramsey_policy_t0_optimal=0
+@#define Ramsey_policy_timeless=0
+@#define Ramsey_policy_t0_optimal=1
 @#define discretionary_policy=0
 
 parameters lambda   ${\lambda}$ (long_name='output gap')
@@ -76,34 +76,28 @@ theta=7.88;     %taken from Woodford (1999)
     planner_objective(0.5*(pi^2+lambda*(x-x_star)^2));
     ramsey_model(planner_discount=0.99);
     steady;
-    simul(periods=50);
+    perfect_foresight_setup(periods=50);
+    oo_.endo_simul(:,1)=0;
+    perfect_foresight_solver;
+    
 @#else
     @#if  Ramsey_policy_t0_optimal
-        var varphi;
         model(linear);
-            [name='New Keynesian Phillips Curve, Eq. 7.1.1']
+            [name='New Keynesian Phillips Curve, Eq. 8.1.1']
             pi-kappa*x-betta*pi(+1)=0;
-            [name='FOC 1, Eq. 7.1.7']
-            pi+varphi-varphi(-1)=0;
-            [name='FOC 2, Eq. 7.1.8']
-            lambda*(x-x_star)-kappa*varphi=0;
             [name='Definition anualized inflation']
             pi_annual=400*pi;
         end;
-
         steady_state_model;
             lambda=kappa/theta; %taken from Woodford (1999) instead of lambda_x from Table 6.1, p. 431 of Woodford (2003)
-            x=0;
-            pi=0;
-            varphi=-lambda*x_star/kappa;
         end;
 
-        histval;
-            varphi(0)=0;
-        end;
-
+        planner_objective(0.5*(pi^2+lambda*(x-x_star)^2));
+        ramsey_model(planner_discount=0.99);
         steady;
-        simul(periods=50);        
+        perfect_foresight_setup(periods=50);
+        oo_.endo_simul(:,1)=0; % set initial multiplier to 0
+        perfect_foresight_solver;
     @#else    
         model(linear);
             [name='FOC, equation 7.1.4']
