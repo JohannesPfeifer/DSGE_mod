@@ -2,23 +2,23 @@ function [ys,check] =BB2016_steadystate(ys,exe)
 % function [ys,check] = NK_baseline_steadystate(ys,exo)
 % computes the steady state for the NK_baseline.mod and uses a numerical
 % solver to do so
-% Inputs: 
+% Inputs:
 %   - ys        [vector] vector of initial values for the steady state of
 %                   the endogenous variables
 %   - exo       [vector] vector of values for the exogenous variables
 %
-% Output: 
+% Output:
 %   - ys        [vector] vector of steady state values fpr the the endogenous variables
 %   - check     [scalar] set to 0 if steady state computation worked and to
 %                    1 of not (allows to impos restriction on parameters)
 
-global M_ 
+global M_
 
 % read out parameters to access them with their name
 NumberOfParameters = M_.param_nbr;
 for ii = 1:NumberOfParameters
-  paramname = deblank(M_.param_names(ii,:));
-  eval([ paramname ' = M_.params(' int2str(ii) ');']);
+    paramname = deblank(M_.param_names(ii,:));
+    eval([ paramname ' = M_.params(' int2str(ii) ');']);
 end
 % initialize indicator
 check = 0;
@@ -46,9 +46,18 @@ delta_1 = 1/betta-1+delta_0;
 u = 1;
 
 K=alppha/R_K;
-options=optimset('TolFun',10e-12,'TolX',10e-12);
-%N=fsolve(@(N) (1-alppha)*(1-N-siggma*N)/(siggma*((2*N-1)/(1-N))*N)+delta*K-1,0.4)
-N=fsolve(@(N) (1-alppha)/N*(1-N)*(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N)))/(1-(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N))))+delta_0*K-1,0.02,options)
+if ~user_has_matlab_license('optimization_toolbox')
+    [N,exitflag]=csolve(@(N)(1-alppha)/N*(1-N)*(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N)))/(1-(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N))))+delta_0*K-1,0.02,[],1e-6,1000);
+    if exitflag==0
+        exitflag=1;
+    else
+        exitflag=-1;
+    end
+else
+    options=optimoptions('fsolve','TolFun',10e-12,'TolX',10e-12,'MaxFunctionEvaluations',1000,'display','off');
+    %N=fsolve(@(N) (1-alppha)*(1-N-siggma*N)/(siggma*((2*N-1)/(1-N))*N)+delta*K-1,0.4)
+    [N,fval,exitflag]=fsolve(@(N) (1-alppha)/N*(1-N)*(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N)))/(1-(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N))))+delta_0*K-1,0.02,options)
+end
 eta=(theta_v/(1-siggma)*(1-Frisch_target*(1-(1-siggma)/theta_v)*N/(1-N)));
 Frisch=(1-eta*(1-siggma)/theta_v)/(1-(1-siggma)/theta_v)*(1-N)/N
 
@@ -57,7 +66,7 @@ Frisch=(1-eta*(1-siggma)/theta_v)/(1-(1-siggma)/theta_v)*(1-N)/N
 % eta=1/(1-siggma)-siggma/(1-siggma)*N/(1-N);
 % Frisch=(1-eta*(1-siggma))/siggma*(1-N)/N;
 if abs(Frisch-Frisch_target)>10e-5
-   error('Wrong calibration. Frisch elasticity is not at target') 
+    error('Wrong calibration. Frisch elasticity is not at target')
 end
 
 
@@ -106,11 +115,11 @@ log_R_R_annualized=log(R_R_annualized);
 %% end own model equations
 
 for iter = 1:length(M_.params) %update parameters set in the file
-  eval([ 'M_.params(' num2str(iter) ') = ' M_.param_names(iter,:) ';' ])
+    eval([ 'M_.params(' num2str(iter) ') = ' M_.param_names(iter,:) ';' ])
 end
 
 NumberOfEndogenousVariables = M_.orig_endo_nbr; %auxiliary variables are set automatically
 for ii = 1:NumberOfEndogenousVariables
-  varname = deblank(M_.endo_names(ii,:));
-  eval(['ys(' int2str(ii) ') = ' varname ';']);
+    varname = deblank(M_.endo_names(ii,:));
+    eval(['ys(' int2str(ii) ') = ' varname ';']);
 end

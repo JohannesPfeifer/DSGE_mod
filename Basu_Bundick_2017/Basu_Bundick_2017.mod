@@ -289,7 +289,7 @@ write_latex_dynamic_model;
 write_latex_parameter_table;
 
 stoch_simul(order=3,pruning,k_order_solver,noprint,irf=0
-            ) Y log_Y log_C log_I log_mu log_N log_sigma_a log_pi_annualized log_R_annualized log_R_R_annualized log_W log_R_K_annualized cond_var_R_E Z a sigma_a;
+            ) Y log_Y log_C log_I log_mu log_N log_sigma_a log_pi_annualized log_R_annualized log_R_R_annualized log_W log_R_K_annualized cond_var_R_E Z a sigma_a R_R_annualized;
 
 y_pos 	= strmatch('Y',M_.endo_names,'exact');
 c_pos 	= strmatch('C',M_.endo_names,'exact');
