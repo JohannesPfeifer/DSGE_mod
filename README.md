@@ -353,6 +353,11 @@ function to its balanced growth path (BGP). The Solow model is solved here in ag
 i.e. non-detrended form along its balanced growth path. For that purpose, trending labor-augmenting
 technology and population processes are defined.
 
+## Stock_SIR_2020.mod
+
+This file implements a simple Susceptible-Infected-Recovered (SIR) model as in 
+James H. Stock (2020): "Data Gaps and the Policy Response to the Novel Coronavirus". 
+
 ## Woodford_2007_Chapter_7.mod
 
 Implements the deterministic optimal policy exercise in Figure 7.1 of Michael Woodford (2003): 

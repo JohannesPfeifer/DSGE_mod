@@ -68,5 +68,7 @@ cd('../Solow_model')
 dynare Solow_SS_transition
 dynare Solow_growth_rate_changes
 dynare Solow_nonstationary
+cd('../Stock_SIR_2020')
+dynare Stock_SIR_2020
 cd('../Woodford_2003')
 dynare Woodford_2003_Chapter_7
