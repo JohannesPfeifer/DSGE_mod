@@ -106,7 +106,7 @@ var labobs      ${lHOURS}$      (long_name='log hours worked')
     ;    
  
 varexo ea       ${\eta^a}$      (long_name='productivity shock')
-    eb          ${\eta^b}$      (long_name='Investment-specific technology shock')
+    eb          ${\eta^b}$      (long_name='risk premium shock')
     eg          ${\eta^g}$      (long_name='Spending shock')
     eqs         ${\eta^i}$      (long_name='Investment-specific technology shock')
     em          ${\eta^m}$      (long_name='Monetary policy shock')
@@ -217,7 +217,7 @@ model(linear);
 #cik=(1-(1-ctou)/cgamma)*cgamma;    %i_k: investment-capital ratio
 #clk=((1-calfa)/calfa)*(crk/cw);    %labor to capital ratio
 #cky=cfc*(clk)^(calfa-1);           %k_y: steady state output ratio
-#ciy=cik*cky;                       %consumption-investment ratio
+#ciy=cik*cky;                       %investment-output ratio
 #ccy=1-cg-cik*cky;                  %consumption-output ratio
 #crkky=crk*cky;                     %z_y=R_{*}^k*k_y
 #cwhlc=(1/clandaw)*(1-calfa)/calfa*crk*cky/ccy; %W^{h}_{*}*L_{*}/C_{*} used in c_2 in equation (2)
