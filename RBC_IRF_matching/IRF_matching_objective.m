@@ -47,7 +47,8 @@ if any(xopt<=-1) || any(xopt(1)>=1) %make sure roots are between 0 and 1
     return
 end
 
-info=stoch_simul([]); %run stoch_simul to generate IRFs with the options specified in the mod-file
+var_list={'ghat','log_y'};
+[info, oo_, options_, M_] = stoch_simul(M_, options_, oo_, var_list); %run stoch_simul to generate IRFs with the options specified in the mod-file
 
 if info %solution was not successful
     fval=10e6+sum([xopt].^2); %return with penalty 
