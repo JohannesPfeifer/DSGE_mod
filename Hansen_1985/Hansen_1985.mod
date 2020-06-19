@@ -173,5 +173,5 @@ end
 fprintf('\n%-40s \n',title_string)
 fprintf('%-20s \t %11s \t %11s \n','','std(x)','corr(y,x)')
 for ii=1:size(corr_mat,1)
-    fprintf('%-20s \t %3.2f (%3.2f) \t %3.2f (%3.2f) \n',var_names(ii,:),mean(std_mat(ii,:,:),3),std(std_mat(ii,:,:),0,3),mean(corr_mat(ii,:),2),std(corr_mat(ii,:),0,2))
+    fprintf('%-20s \t %3.2f (%3.2f) \t %3.2f (%3.2f) \n',var_names{ii,:},mean(std_mat(ii,:,:),3),std(std_mat(ii,:,:),0,3),mean(corr_mat(ii,:),2),std(corr_mat(ii,:),0,2))
 end
