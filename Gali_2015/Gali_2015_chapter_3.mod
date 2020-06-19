@@ -190,7 +190,7 @@ w_real=w-p;
 m_nominal=m_real+p;
 [name='average price markup, eq. (18)']
 mu=-(siggma+(varphi+alppha)/(1-alppha))*y+(1+varphi)/(1-alppha)*a;
-[name='average price markuo, eq. (20)']
+[name='average price markup, eq. (20)']
 mu_hat=-(siggma+(varphi+alppha)/(1-alppha))*y_gap;
 end;
 
@@ -236,7 +236,7 @@ shocks;
     @#else   
         var eps_m = 0;   //shut off monetary policy shock
     @#endif
-var eps_z  = 0.5^2; //unit shock to technology
+var eps_z  = 0.5^2; //unit shock to preferences 
 end;
 
 stoch_simul(order = 1,irf=15,irf_plot_threshold=0) y_gap pi_ann y n w_real p i_ann r_real_ann m_nominal z;
@@ -248,9 +248,9 @@ stoch_simul(order = 1,irf=15,irf_plot_threshold=0) y_gap pi_ann y n w_real p i_a
 %----------------------------------------------------------------
 shocks;
     @#if money_growth_rule==0
-        var eps_z = 0;   //shut off monetary policy shock
+        var eps_z = 0;   //shut off preference shock
     @#else   
-        var eps_z = 0;   //shut off monetary policy shock
+        var eps_z = 0;   //shut off preference shock
     @#endif
 var eps_a  = 1^2; //unit shock to technology
 end;
