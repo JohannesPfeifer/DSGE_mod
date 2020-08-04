@@ -17,7 +17,7 @@
  *      reported in the paper cannot be directly translated to the present mod-file due to parameter correlation in the posterior.  
  *  - As pointed out in Del Negro/Schorfheide (2012): "Notes on New-Keynesian Models"
  *      in the code implementation of equation (8) for both the flex price and the sticky price/wage economy, 
- *      there is a (1/(1+cbetabar*cgamma)) missing in the i_2 in front of q_t (denoted qs in the code). 
+ *      there is a (1+cbetabar*cgamma) missing in the i_2 in front of q_t (denoted qs in the code). 
  *      Equation (8) in the paper reads:  
  *          (1-(1-delta)/gamma)*(1+beta*gamma^(1-sigma))*gamma^2*varphi
  *      which translates to the code snippet:
@@ -209,11 +209,11 @@ model(linear);
 
 #clandap=cfc;                   %fixed cost share/gross price markup
 #cbetabar=cbeta*cgamma^(-csigma);   %growth-adjusted discount factor in Euler equation
-#cr=cpie/(cbeta*cgamma^(-csigma));  %steady state net real interest rate
+#cr=cpie/(cbeta*cgamma^(-csigma));  %steady state gross real interest rate
 #crk=(cbeta^(-1))*(cgamma^csigma) - (1-ctou); %R^k_{*}: steady state rental rate
 #cw = (calfa^calfa*(1-calfa)^(1-calfa)/(clandap*crk^calfa))^(1/(1-calfa));      %steady state real wage
 //cw = (calfa^calfa*(1-calfa)^(1-calfa)/(clandap*((cbeta^(-1))*(cgamma^csigma) - (1-ctou))^calfa))^(1/(1-calfa));
-#cikbar=(1-(1-ctou)/cgamma);        %k_1 in equation LOM capital, equation (8)
+#cikbar=(1-(1-ctou)/cgamma);        %(1-k_1) in equation LOM capital, equation (8)
 #cik=(1-(1-ctou)/cgamma)*cgamma;    %i_k: investment-capital ratio
 #clk=((1-calfa)/calfa)*(crk/cw);    %labor to capital ratio
 #cky=cfc*(clk)^(calfa-1);           %k_y: steady state output ratio
