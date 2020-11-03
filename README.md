@@ -97,7 +97,11 @@ provided in Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007),
 "ABCs (and Ds) of Understanding VARs", American Economic Review, 97(3), pp. 
 1021-1026 
 
-Includes the ```ABCD_test.m```
+Includes the ```ABCD_test.m```. Note that it tests only a sufficient condition, not
+a necessary one. It would only be a necessary condition if it were conducted on a 
+minimal state space. However, Dynare generally does not rely on a minimal state space,
+but may augment it for computational purposes. For details, see e.g. Komunjer/Ng (2011):
+"Dynamic Identification of Dynamic Stochastic General Equilibrium Models", Econometrica, 79(6), 1995–2032.
 
 ## Gali_2008
 

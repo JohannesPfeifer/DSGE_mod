@@ -8,6 +8,12 @@
  *
  * This file was written by Johannes Pfeifer.In case you spot mistakes, email me at jpfeifer@gmx.de
  *
+ * Note that it tests only a sufficient condition, not
+ * a necessary one. It would only be a necessary condition if it were conducted on a 
+ * minimal state space. However, Dynare generally does not rely on a minimal state space,
+ * but may augment it for computational purposes. For details, see e.g. Komunjer/Ng (2011):
+ * "Dynamic Identification of Dynamic Stochastic General Equilibrium Models", Econometrica, 79(6), 1995–2032.
+ *
  * Please note that the following copyright notice only applies to this Dynare 
  * implementation of the model
  */

@@ -26,7 +26,12 @@ function [result,eigenvalue_modulo,A,B,C,D]=ABCD_test(M_,options_,oo_)
 %   If all eigenvalues are smaller than 1, the poor man's invertibility
 %   condition is satisfied and the structural shocks can be recovered from
 %   the observables
-% 
+%  
+%   Note that it tests only a sufficient condition, not
+%   a necessary one. It would only be a necessary condition if it were conducted on a 
+%   minimal state space. However, Dynare generally does not rely on a minimal state space,
+%   but may augment it for computational purposes. For details, see e.g. Komunjer/Ng (2011):
+%   "Dynamic Identification of Dynamic Stochastic General Equilibrium Models", Econometrica, 79(6), 1995–2032.
 %       
 % SPECIAL REQUIREMENTS
 %   none.
