@@ -12,7 +12,9 @@ run_IRF_comparison;
 cd('../Welfare')
 run_welfare_comparison_efficient_steady_state;
 run_welfare_comparison_inefficient_steady_state;
-cd('../../Caldara_et_al_2012')
+cd('../../Born_Pfeifer_2020')
+run_model_IRF_generation;
+cd('../Caldara_et_al_2012')
 dynare Caldara_et_al_2012
 cd('../FV_et_al_2007')
 dynare FV_et_al_2007_ABCD

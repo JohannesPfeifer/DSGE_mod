@@ -53,7 +53,8 @@ instead of the FGRU version in `simult_FGRU.m` (see the comments in the mod-file
 
 ## Born_Pfeifer_2018
 
-Replicates Benjamin Born and Johannes Pfeifer (2018): "The New Keynesian Wage Phillips Curve: Calvo vs. Rotemberg".
+Replicates Benjamin Born and Johannes Pfeifer (2018): "The New Keynesian Wage Phillips Curve: Calvo vs. Rotemberg",
+Macroeconomic Dynamics, 24, 2020, 1017–1041.
 
 ### Welfare
 `run_welfare_comparison_efficient_steady_state.m` and `run_welfare_comparison_inefficient_steady_state.m` create
@@ -63,6 +64,14 @@ The mod-file `Born_Pfeifer_2018_welfare.mod` shows how to compute conditional an
 ### Monetary_Policy_IRFs
 `run_IRF_comparison.m` creates "Figure 1: Impulse response functions to 1 percentage point 
 (annualized) monetary policy shock under Calvo".
+
+## Born_Pfeifer_2020
+
+Replicates the DSGE model results of Benjamin Born and Johannes Pfeifer (2020): "Uncertainty-driven business cycles:
+assessing the markup channel", forthcoming at Quantitative Economics. The main file is run_model_IRF_generation.m
+
+Note that sequential calling of Dynare can cause problems on Windows if the created files are temporarily locked by other 
+processes like e.g. cloud drive apps. We recommend not running the codes in folders synchronized by cloud drives.
 
 ## Caldara_et_al_2012.mod
 
