@@ -183,7 +183,7 @@ if iter==1000
 end
 
 %get pointwise variance of IRFs across draws and compute weighting matrix
-IRF_variances=var(IRFs([1,3],:,:),0,3)';
+IRF_variances=var(IRFs([G_pos,Y_pos],:,:),0,3)';
 IRF_weighting=inv(diag(IRF_variances(2:end)));
 
 % compute confidence bands for plots
