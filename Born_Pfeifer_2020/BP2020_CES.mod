@@ -1,7 +1,10 @@
 /* 
  * Born/Pfeifer (2020) model with sticky wages and wages as well as overhead labor and CES production function
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.6.2 OR HIGHER
+ * THIS MOD-FILE REQUIRES DYNARE 4.6.2 OR HIGHER; 
+ *
+ * Running the mod-file stand-alone without run_model_IRF_generation.m requires a path to Auxiliary_Files be set,
+ * e.g. via addpath('Auxiliary_Files/')
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
