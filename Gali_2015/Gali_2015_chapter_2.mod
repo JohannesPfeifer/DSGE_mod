@@ -86,7 +86,7 @@ model;
 [name='FOC Wages, eq. (7)']
 W_real=C^siggma*N^varphi;
 [name='Euler equation eq. (8)']
-Q=betta*(C(+1)/C)^(-siggma)*(Z(+1)/Z);
+Q=betta*(C(+1)/C)^(-siggma)*(Z(+1)/Z)*1/Pi(+1);
 [name='Definition nominal interest rate), p. 22 top']
 R=1/Q;
 [name='Production function eq. (12)']
