@@ -39,8 +39,8 @@ else
     %workaround for Ramsey where recursive welfare cannot be defined in the
     %model; uses the fact that E(W)=E(U)+betta*E(W) defines the fixed point
     %for welfare
-    var_list_ = char('Utility','Recursive_natural_welfare_equivalent');
-    info = stoch_simul(var_list_);
+    var_list_ = {'Utility','Recursive_natural_welfare_equivalent'};
+    [info, oo_, options_] = stoch_simul(M_, options_, oo_, var_list_); %get decision rules and moments
     if info(1)
         outvalue=1e5+par_value_lambda^2;
         return;
