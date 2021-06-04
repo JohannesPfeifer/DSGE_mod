@@ -46,6 +46,8 @@ dynare Hansen_1985.mod
 cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')
 construct_data
 dynare Jermann_Quadrini_2012_RBC.mod
+cd('../NK_linear_forward_guidance')
+dynare NK_linear_forward_guidance
 cd('../RBC_capitalstock_shock')
 dynare RBC_capitalstock_shock.mod
 cd('../RBC_news_shock_model')

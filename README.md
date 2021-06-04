@@ -269,6 +269,10 @@ that requires recalibrating the model.
 This file replicates the estimation of the New Keynesian model of Jermann/Quadrini (2012) conducted and 
 described in Pfeifer (2016).
 
+## NK_linear_forward_guidance
+
+Shows how to implement forward guidance in a baseline New Keynesian model using a sequence of monetary policy shocks.
+
 ## RBC_baseline
 
 ### RBC_baseline.mod
