@@ -144,7 +144,7 @@ for boot_iter=1:nbootstraps
         for jj=number_of_lags+1:T+number_of_lags %recursively generate new time series
             ylagvectemp=generatedseries(jj-number_of_lags:jj-1,:); %stack endogenous variables in format compatible with matrix multiplication
             ylagvectemp=ylagvectemp(number_of_lags:-1:1,:); %reverse order for vectorization
-            ylagvector=vec(ylagvectemp');     
+            ylagvector=ylagvectemp(:);     
             generatedseries(jj,:) = determmatrix(:,jj-number_of_lags)'*betta_OLS(:,1:constant_dummy+trend_dummy)' + (betta_OLS(:,1+constant_dummy+trend_dummy:end)*ylagvector)'+ bootresids(jj-number_of_lags,:);
         end
         % construct lagged regressor matrix
