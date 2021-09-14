@@ -13,7 +13,7 @@
  * - In Table 8.1 there seem to be small differences due to rounding
  *
  * This implementation is based on the code by Dmitry Matveev and Johannes Pfeifer. In case you spot mistakes,
- * email us at matveev@uni-mannheim.de of jpfeifer@gmx.de.
+ * email us at matveev@uni-mannheim.de or jpfeifer@gmx.de.
  *
  * Please note that the following copyright notice only applies to this Dynare 
  * implementation of the model.

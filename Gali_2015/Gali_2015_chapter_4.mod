@@ -12,7 +12,7 @@
  * - For the constant money growth rate rule (Table 4.2), there are small numerical differences.
  *
  * This implementation is based on the code by Dmitry Matveev and Johannes Pfeifer. In case you spot mistakes,
- * email us at matveev@uni-mannheim.de of jpfeifer@gmx.de.
+ * email us at matveev@uni-mannheim.de or jpfeifer@gmx.de.
  *
  * Please note that the following copyright notice only applies to this Dynare 
  * implementation of the model.
