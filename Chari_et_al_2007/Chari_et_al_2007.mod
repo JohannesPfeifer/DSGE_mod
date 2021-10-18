@@ -21,8 +21,6 @@
  *      entry of the covariance matrix to the value encountered at this stage, i.e. the initial
  *      calibration. Thus, subsequent changes to parameters are not automatically taken into account,
  *      which is the reason a steady state-file is used.
- * - All data are in logs and linearly detrended, while their counterparts in the model are in levels.
- *      The only exception is government spending, which enters in logs in the model.
  * - In the original paper, the treatment of durables services and durables consumption/depreciation in the quarterly 
  *      model is wrong. They enter with a weight of 1% instead of 100% due to omission of the fact 
  *      that the deflator has a base level of 100 (lines 39 and 40 of their mleqtrly/usdata.m). As the durables stock is relatively
