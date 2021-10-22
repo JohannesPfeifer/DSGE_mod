@@ -1,3 +1,4 @@
+clear all
 addpath([pwd filesep 'FV_et_al_2007']); %add ABCD_test.mod
 cd('Ascari_Sbordone_2014')
 dynare Ascari_Sbordone_2014
@@ -46,7 +47,7 @@ dynare Hansen_1985.mod
 cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')
 construct_data
 dynare Jermann_Quadrini_2012_RBC.mod
-cd('../NK_linear_forward_guidance')
+cd('../../NK_linear_forward_guidance')
 dynare NK_linear_forward_guidance
 cd('../RBC_capitalstock_shock')
 dynare RBC_capitalstock_shock.mod
