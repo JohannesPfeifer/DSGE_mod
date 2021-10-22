@@ -5,7 +5,7 @@ function outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambd
 % natural/flex-price allocation; it uses Dynare's simult_-function to compute the lifetime utility 
 % defined in the model for a given state vector (here the steady state)
 
-% Copyright (C) 2018 Johannes Pfeifer and Benjamin Born
+% Copyright (C) 2018-21 Johannes Pfeifer and Benjamin Born
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ set_param_value('lambda_utility',par_value_lambda)  %set consumption equivalent 
 if isempty(options_.qz_criterium)
     options_.qz_criterium = 1+1e-6;
 end
-[oo_.dr,info,M_,options_,oo_] = resol(0,M_,options_,oo_); %get decision rules
+[oo_.dr,info,M_,oo_] = resol(0,M_,options_,oo_); %get decision rules
 if info(1) %filter out error codes
     outvalue=1e5+par_value_lambda^2;
     return;

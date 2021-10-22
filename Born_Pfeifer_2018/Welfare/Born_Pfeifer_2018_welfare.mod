@@ -9,7 +9,7 @@
  * in the paper. For doing so, it uses a solver to find the correct consumption equivalent lambda
  * based on the recursive lifetime welfare measures defined within the model block.
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
+ * THIS MOD-FILE REQUIRES DYNARE 4.7 OR HIGHER
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de

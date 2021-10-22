@@ -25,9 +25,9 @@ function [y_, y1st, y2nd, y3rd]=simult_FGRU(y0,dr,ex_,iorder,y1st_start,u_1_star
 %    y3rd       [double]   n*(T+1) time series for the cubic term of the
 %                          pruned state space
 % SPECIAL REQUIREMENTS
-%    none
+%    requires Dynare 4.7
 
-% Copyright (C) 2001-2014 Dynare Team and Johannes Pfeifer
+% Copyright (C) 2001-2021 Dynare Team and Johannes Pfeifer
 %
 % Dynare is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -144,43 +144,30 @@ else
                 u_1=u;
             end
             %% construct terms of order 2 from second order part, based on linear component yhat1
-            [gyy, err] = A_times_B_kronecker_C(ghxx,yhat1);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [guu, err] = A_times_B_kronecker_C(ghuu,u_1);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [gyu, err] = A_times_B_kronecker_C(ghxu,yhat1,u_1);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyy] = A_times_B_kronecker_C(ghxx,yhat1);
+            [guu] = A_times_B_kronecker_C(ghuu,u_1);
+            [gyu] = A_times_B_kronecker_C(ghxu,yhat1,u_1);
             %% construct terms of order 3, all based on first order component yhat1              
             y2a = kron(yhat1,yhat1);
-            [gyyy, err] = A_times_B_kronecker_C(ghxxx,y2a,yhat1);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyyy] = A_times_B_kronecker_C(ghxxx,y2a,yhat1);
             u2a = kron(u_1,u_1);
-            [guuu, err] = A_times_B_kronecker_C(ghuuu,u2a,u_1);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [guuu] = A_times_B_kronecker_C(ghuuu,u2a,u_1);
             yu = kron(yhat1,u_1);
-            [gyyu, err] = A_times_B_kronecker_C(ghxxu,yhat1,yu);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [gyuu, err] = A_times_B_kronecker_C(ghxuu,yu,u_1);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyyu] = A_times_B_kronecker_C(ghxxu,yhat1,yu);
+            [gyuu] = A_times_B_kronecker_C(ghxuu,yu,u_1);
             
             %% get unpruned solution for exogenous states 
-            [gyy_unpruned, err] = A_times_B_kronecker_C(ghxx,yhat3);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [guu_unpruned, err] = A_times_B_kronecker_C(ghuu,u);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [gyu_unpruned, err] = A_times_B_kronecker_C(ghxu,yhat3,u);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyy_unpruned] = A_times_B_kronecker_C(ghxx,yhat3);
+            [guu_unpruned] = A_times_B_kronecker_C(ghuu,u);
+            [gyu_unpruned] = A_times_B_kronecker_C(ghxu,yhat3,u);
             %% construct terms of order 3
             y2a_unpruned = kron(yhat3,yhat3);
-            [gyyy_unpruned, err] = A_times_B_kronecker_C(ghxxx,y2a_unpruned,yhat3);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyyy_unpruned] = A_times_B_kronecker_C(ghxxx,y2a_unpruned,yhat3);
             u2a_unpruned = kron(u,u);
-            [guuu_unpruned, err] = A_times_B_kronecker_C(ghuuu,u2a_unpruned,u);
+            [guuu_unpruned] = A_times_B_kronecker_C(ghuuu,u2a_unpruned,u);
             yu_unpruned = kron(yhat3,u);
-            [gyyu_unpruned, err] = A_times_B_kronecker_C(ghxxu,yhat3,yu_unpruned);
-            mexErrCheck('A_times_B_kronecker_C', err);
-            [gyuu_unpruned, err] = A_times_B_kronecker_C(ghxuu,yu_unpruned,u);
-            mexErrCheck('A_times_B_kronecker_C', err);
+            [gyyu_unpruned] = A_times_B_kronecker_C(ghxxu,yhat3,yu_unpruned);
+            [gyuu_unpruned] = A_times_B_kronecker_C(ghxuu,yu_unpruned,u);
 
             y_exo = ghx*yhat3 +ghu*u ...
                         + 1/2*(gyy_unpruned + guu_unpruned + 2*gyu_unpruned + ghs2) ...
