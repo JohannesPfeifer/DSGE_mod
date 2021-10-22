@@ -1,12 +1,13 @@
-function [result,eigenvalue_modulo,A,B,C,D]=ABCD_test(M_,options_,oo_)
+function [result,eigenvalue_modulo,A,B,C,D]=ABCD_test(M_,options_,oo_, minimal_indicator)
 % function ABCD_test(M_,options_,oo_)
 %   computes ABCD Test statistics of Fernandez-Villaverde, Rubio-Ramirez,Sargent, 
 %   and Watson (2007), "ABCs (and Ds) of Understanding VARs", American
 %   Economic Review, 97(3), 1021-1026
 % INPUTS
-%   M_         [matlab structure] Definition of the model.           
-%   options_   [matlab structure] Global options.
-%   oo_        [matlab structure] Results 
+%   M_                      [matlab structure]  Definition of the model.           
+%   options_                [matlab structure]  Global options.
+%   oo_                     [matlab structure]  Results 
+%   minimal_indicator       [Boolean]           compute minimal system (requires control toolbox)
 %    
 % OUTPUTS
 %   result:             [scalar] dummy indicating whether Conditions 1 (Poor Man's
@@ -28,16 +29,14 @@ function [result,eigenvalue_modulo,A,B,C,D]=ABCD_test(M_,options_,oo_)
 %   the observables
 %  
 %   Note that it tests only a sufficient condition, not
-%   a necessary one. It would only be a necessary condition if it were conducted on a 
-%   minimal state space. However, Dynare generally does not rely on a minimal state space,
-%   but may augment it for computational purposes. For details, see e.g. Komunjer/Ng (2011):
+%   a necessary one without computing the minimal state space. For details, see e.g. Komunjer/Ng (2011):
 %   "Dynamic Identification of Dynamic Stochastic General Equilibrium Models", Econometrica, 79(6), 1995–2032.
 %       
 % SPECIAL REQUIREMENTS
 %   none.
 %  
 
-% Copyright (C) 2013-5 Johannes Pfeifer
+% Copyright (C) 2013-21 Johannes Pfeifer
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -52,6 +51,9 @@ function [result,eigenvalue_modulo,A,B,C,D]=ABCD_test(M_,options_,oo_)
 % You can receive a copy of the GNU General Public License
 % at <http://www.gnu.org/licenses/>.
 
+if nargin<4
+    minimal_indicator = 0;
+end
 result=NaN;
 eigenvalue_modulo=NaN;
 A=[];
@@ -74,7 +76,24 @@ obs_var=oo_.dr.inv_order_var(options_.varobs_id);
 [C,D] = kalman_transition_matrix(oo_.dr,obs_var,1:M_.nspred,M_.exo_nbr);
 %compute condition
 
-
+if minimal_indicator 
+    % try to get minimal state space
+    % sys.A=A;
+    % sys.B=B;
+    % sys.C=C;
+    % sys.D=D;
+    % out=dynare_minreal(sys);
+    % A=out.A;
+    % B=out.B;
+    % C=out.C;
+    % D=out.D;
+    % % sysr = minreal(sys) 
+    if user_has_matlab_license('control_toolbox')
+        [A,B,C,D]=minreal(A,B,C,D); %Matlab control toolbox
+    else
+        error('Control Toolbox is missing')
+    end
+end
 if M_.exo_nbr~=size(options_.varobs_id)
     warning('ABCD_test: ABCD test only works for square case with as many observables as structural shocks.')
     return;

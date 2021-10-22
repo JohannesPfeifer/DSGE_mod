@@ -19,6 +19,7 @@ cd('../Caldara_et_al_2012')
 dynare Caldara_et_al_2012
 cd('../FV_et_al_2007')
 dynare FV_et_al_2007_ABCD
+dynare FV_et_al_2007_ABCD_minreal
 cd('../Gali_2008')
 dynare Gali_2008_Chapter_2
 dynare Gali_2008_Chapter_3

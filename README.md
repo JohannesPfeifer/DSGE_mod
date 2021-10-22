@@ -92,16 +92,25 @@ Business Cycle Accounting  as is done in the paper for the 1982 recession.
 
 ## FV_et_al_2007 
 
-Replicates the ABCD-test for the example of the permanent income model 
-provided in Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007), 
+Provides codes for the ABCD-test of Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007), 
 "ABCs (and Ds) of Understanding VARs", American Economic Review, 97(3), pp. 
 1021-1026 
 
 Includes the ```ABCD_test.m```. Note that it tests only a sufficient condition, not
-a necessary one. It would only be a necessary condition if it were conducted on a 
-minimal state space. However, Dynare generally does not rely on a minimal state space,
-but may augment it for computational purposes. For details, see e.g. Komunjer/Ng (2011):
+a necessary one, if the minimal state space is not computed. For details, see e.g. Komunjer/Ng (2011):
 "Dynamic Identification of Dynamic Stochastic General Equilibrium Models", Econometrica, 79(6), 1995–2032.
+
+### FV_et_al_2007.mod
+
+Replicates the ABCD-test for the example of the permanent income model 
+provided in Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007), 
+"ABCs (and Ds) of Understanding VARs", American Economic Review, 97(3), pp. 
+1021-1026
+
+### FV_et_al_2007_ABCD_minreal.mod
+
+Shows how to compute the minimal state space using Matlab's Control toolbox for the example of 
+Saccal, Alessandro (2020): "A note on minimality in Dynare", available at https://mpra.ub.uni-muenchen.de/103656/1/MPRA_paper_103656.pdf.
 
 ## Gali_2008
 
