@@ -18,7 +18,7 @@
  *      process instead of the coefficients. This allows for easily restricting the process to the stability region and 
  *      would allow specifying e.g. a beta prior for both roots as was done in Born/Peter/Pfeifer (2013), Fiscal news 
  *      and macroeconomic volatility, https://doi.org/10.1016/j.jedc.2013.06.011
- *  - The dataset was donwloaded using the FRED plugin and can be easily updated with it.    
+ *  - The dataset was downloaded using the FRED plugin and can be easily updated with it.    
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
  * email me at jpfeifer@gmx.de
