@@ -1,4 +1,4 @@
-function output_cell =posterior_function_demo(xparam1,M_,options_,oo_,estim_params_,bayestopt_,dataset_,dataset_info)
+function output_cell =PC_slope(xparam1,M_,options_,oo_,estim_params_,bayestopt_,dataset_,dataset_info)
 % output_cell =posterior_function_demo(xparam1,M_,options_,oo_,estim_params_,bayestopt_,dataset_,dataset_info);
 % This is an example file computing statistics on the prior/posterior draws. The
 % function allows read-only access to all Dynare structures. However, those
