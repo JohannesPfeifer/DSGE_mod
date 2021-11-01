@@ -3,7 +3,7 @@
  * of Jordi Galí (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton 
  * University Press, Second Edition, Chapter 7
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
+ * THIS MOD-FILE REQUIRES DYNARE 4.6 OR HIGHER
  *
  * Notes:
  *  - all model variables are expressed in deviations from steady state, i.e. in contrast to
@@ -311,20 +311,20 @@ if exist('IRFs_taylor_rule.mat','file') && exist('IRFs_simple_rule_unemployment.
     figure('Name','Optimal policy vs simple rule: technology shock')
     iter=1;
     shock_name='a';
-    IRF_length=length(IRFs_taylor_rule.oo_.irfs.([deblank(var_list_(1,:)),'_eps_',shock_name]));
+    IRF_length=length(IRFs_taylor_rule.oo_.irfs.([var_list_{1,:},'_eps_',shock_name]));
     for var_name_iter=1:size(var_list_,1)
         subplot(3,2,iter)
-        plot(1:IRF_length,IRFs_taylor_rule.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-s',1:IRF_length,IRFs_simple_rule_unemployment.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-o',1:IRF_length,IRFs_optimal_policy.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-d')
+        plot(1:IRF_length,IRFs_taylor_rule.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-s',1:IRF_length,IRFs_simple_rule_unemployment.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-o',1:IRF_length,IRFs_optimal_policy.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-d')
         axis tight
         iter=iter+1;
     end
     figure('Name','Optimal policy vs simple rule: demand shock')
     iter=1;
     shock_name='z';
-    IRF_length=length(IRFs_taylor_rule.oo_.irfs.([deblank(var_list_(1,:)),'_eps_',shock_name]));
+    IRF_length=length(IRFs_taylor_rule.oo_.irfs.([var_list_{1,:},'_eps_',shock_name]));
     for var_name_iter=1:size(var_list_,1)
         subplot(3,2,iter)
-        plot(1:IRF_length,IRFs_taylor_rule.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-s',1:IRF_length,IRFs_simple_rule_unemployment.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-o',1:IRF_length,IRFs_optimal_policy.oo_.irfs.([deblank(var_list_(var_name_iter,:)),'_eps_',shock_name]),'-d')
+        plot(1:IRF_length,IRFs_taylor_rule.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-s',1:IRF_length,IRFs_simple_rule_unemployment.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-o',1:IRF_length,IRFs_optimal_policy.oo_.irfs.([var_list_{var_name_iter,:},'_eps_',shock_name]),'-d')
         axis tight
         iter=iter+1;
     end
