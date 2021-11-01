@@ -24,7 +24,7 @@
  */
 
 /*
- * Copyright (C) 2016 Johannes Pfeifer
+ * Copyright (C) 2016-21 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,8 +41,8 @@
  */
 
 %define whether to use interest rate or money growth rate rule 
-@#define taylor_rule=0
-@#define optimal_policy=1
+@#define taylor_rule=1
+@#define optimal_policy=0
 @#define simple_rule_unemployment=0
         
 @#if taylor_rule
@@ -259,16 +259,16 @@ for theta_w_iter=1:length(theta_w_vec)
     for rho_nu_iter=1:length(rho_nu_vec)
         set_param_value('theta_w',theta_w_vec(theta_w_iter));
         set_param_value('rho_nu',rho_nu_vec(rho_nu_iter));
-        info=stoch_simul(var_list_);
+        info=stoch_simul(M_, options_, oo_, var_list_);
         volatility_mat(rho_nu_iter,theta_w_iter)=sqrt(oo_.var(u_pos,u_pos));
         correlation_mat(rho_nu_iter,theta_w_iter)=oo_.autocorr{1,1}(u_pos,u_pos);
         cyclicality_mat(rho_nu_iter,theta_w_iter)=oo_.contemporaneous_correlation(u_pos,y_pos);
     end
 end
 options_.noprint=0;
-labels=strvcat('sigma(y)','sigma(tilde y)','sigma(pi)','L');
-headers=strvcat('theta_v:', num2str(theta_w_vec'));
-labels=[repmat('rho_nu=',length(rho_nu_vec),1),num2str(rho_nu_vec')];
+% labels=strvcat('sigma(y)','sigma(tilde y)','sigma(pi)','L');
+headers=cellstr(strvcat('theta_v:', num2str(theta_w_vec')));
+labels=cellstr([repmat('rho_nu=',length(rho_nu_vec),1),num2str(rho_nu_vec')]);
 dyntable(options_,'Volatility',headers,labels,volatility_mat,size(labels,2)+2,4,3)
     
 dyntable(options_,'Persistence',headers,labels,correlation_mat,size(labels,2)+2,4,3)
