@@ -215,7 +215,7 @@ model;
     
     (1+gamma_z)*(1+gamma_n)*exp(k(+1))=(1-delta)*exp(k)+exp(x);
     exp(y)=exp(k)^theta*(exp(z)*exp(l))^(1-theta);
-    psii*exp(c)^siggma/(1-exp(l))=(1-tau_l)*exp(w);
+    psii*exp(c)/(1-exp(l))=(1-tau_l)*exp(w);
     exp(w)=(1-theta)*exp(k)^theta*exp(l)^(-theta)*exp(z)^(1-theta);
     %Euler equation (A.2.3)
     (1+tau_x)*exp(c)^(-siggma)*(1-exp(l))^(psii*(1-siggma))=beta_hat*exp(c(+1))^(-siggma)*(1-exp(l(+1)))^(psii*(1-siggma))*
