@@ -135,49 +135,54 @@ model(linear);
 #Gamma = (1+phi)/(sigma_a+phi);
 #Psi = -Theta*sigma_a/(sigma_a+phi);
 
-//1. Equation (37), IS Curve
+[name='Equation (37), IS Curve']
 x    = x(+1) - sigma_a^(-1)*(r - pih(+1) - rnat) ;                              
-//2. Equation (36), Philips Curve
+[name='Equation (36), Philips Curve']
 pih  = beta * pih(+1)+ kappa_a*x;                                                
-//3. Equation below (37)
+[name='Equation below (37)']
 rnat = -sigma_a*Gamma*(1-rhoa)*a + alpha*sigma_a*(Theta+Psi)*(ystar(+1)-ystar);
-//4. Equation (35), definition natural level of output
+[name='Equation (35), definition natural level of output']
 ynat = Gamma*a + alpha*Psi*ystar;                                                 
-//5. Equation above (35), definition output gap
+[name='Equation above (35), definition output gap']
 x    = y - ynat;                                                               
-//6. Equation (29)
+[name='Equation (29)']
 y = ystar + sigma_a^(-1)*s;
-//7. Equation (14)
+[name='Equation (14)']
 pi   = pih + alpha*(s-s(-1));
-//8. Equation 15 (first difference)
+[name='Equation 15 (first difference)']
 s    = s(-1) + e - e(-1) + pistar - pih;
-//9. Constant world inflation, see p.724 (Given constant world prices) 
+[name='Constant world inflation, see p.724 (Given constant world prices)']
 pistar = 0;
-//10. Equation (22), employment
+[name='Equation (22), employment']
 y = a + n;
-//11. Equation (31), net exports
+[name='Equation (31), net exports']
 nx = alpha*(omega/sigma-1)*s;
-//12. Equation (27), defines consumption
+[name='Equation (27), defines consumption']
 y = c+alpha*omega/sigma*s;
-//13. Above equation (11), defines real wage
+[name='Above equation (11), defines real wage']
 real_wage = sigma*c+phi*n;
 
-//10-12. Equations on p. 723, stochastic processes
+[name='stochastic process for technology p. 723']
 a    = rhoa*a(-1) + eps_a;
+[name='stochastic process for foreign output p. 723']
 ystar= rhoy*ystar(-1) + eps_star;
 
 // Equations on page 
 @#if DITR == 1
-r = phi_pi*pih; // domestic inflation-based Taylor rule (DITR)
+[name='domestic inflation-based Taylor rule (DITR)']
+r = phi_pi*pih;
 @#else
     @#if CITR ==1
-    r = phi_pi*pi; // CPI inflation-based Taylor rule (CITR)
+    [name='CPI inflation-based Taylor rule (CITR)']
+        r = phi_pi*pi;
     @#else
         @#if PEG ==1
-            e=0; //exchange rate peg (PEG)
+            [name='exchange rate peg (PEG)']
+                e=0;
         @#else
             @#if OPTIMAL ==1
-            pih=0;
+                [name='optimal policy']
+                pih=0;
             @#else
             
             @#endif
@@ -185,11 +190,11 @@ r = phi_pi*pih; // domestic inflation-based Taylor rule (DITR)
     @#endif
 @#endif
   
-//definition consumer price level
+[name='definition consumer price level']
 pi   = p - p(-1);
-//definition domestic price level
+[name='definition domestic price level']
 pih  = ph - ph(-1);
-//definition nominal depreciation rate of exchange rate
+[name='definition nominal depreciation rate of exchange rate']
 deprec_rate=e-e(-1);
 end;
 
