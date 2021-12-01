@@ -77,30 +77,35 @@ delta_y=exp(g_a)^(1/(1-alpha));
 delta_I=delta_y;
 
 model;
-//1. Resource Constraint
+[name='Resource Constraint']
 c+invest=exp(y);
-//2. LOM capital
+[name='LOM capital']
 exp(k(+1))=invest+(1-delta)*exp(k)/mu_y;
-//3. Lagrange multiplier
+[name='Lagrange multiplier']
 lambda=1/c;
-//4. FOC labor
+[name='FOC labor']
 theta*n^xi=lambda*w;
 //5. Euler equation Bonds
 //lambda=beta/mu_y(+1)*lambda(+1)*(1+interest)/(1+pi(+1));
-//6. Euler equation capital
+[name='Euler equation capital']
 lambda=beta/mu_y(+1)*lambda(+1)*(R(+1)+(1-delta));
-//7. Output
+[name='Output']
 exp(y)=(exp(k)/mu_y)^alpha*n^(1-alpha);
-//8. FOC labor
+[name='FOC labor']
 w=(1-alpha)*exp(y)/n;
-//9. FOC Interest
+[name='FOC Interest']
 R=alpha*exp(y)/(exp(k)/mu_y);
-//10. Taylor Rule
+//[name='Taylor Rule']
 //interest=rho*interest(-1)+(1-rho)*steady_state(interest)+phi_pi*(pi-pi_star)+(1-rho)*phi_y*(y/y(-1)-1);
+[name='Technology growth']
 mu_a=g_a+epsilon+z1(-1); //mu_a=ln a_t - ln a_{t-1}
+[name='Output growth factor']
 mu_y=exp(mu_a)^(1/(1-alpha));
+[name='Auxiliary variable 1']
 z1=z2(-1);
+[name='Auxiliary variable 2']
 z2=z3(-1);
+[name='Auxiliary variable 3']
 z3=u;
 end;
 
