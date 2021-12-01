@@ -167,9 +167,9 @@ end;
 steady_state_model;
   a= 1/xi;//1/xi;  //used in functional form
   //beta=betastar*gamma^(1-tau);
-  i_k=1-1/gamma*(1-delta);
+  i_k=delta+gamma-1;
   b=i_k^a;
-  const=gamma*i_k-b/(1-a)*i_k^(1-a);
+  const=i_k-b/(1-a)*i_k^(1-a);
   k=((gamma/betastar-(1-delta+const + b*a/(1-a)*i_k^(1-a)))/alpha)^(1/(alpha-1));
   q=1;
   z = 0;
