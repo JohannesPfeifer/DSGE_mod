@@ -172,7 +172,7 @@ shock_name='eps_nu';
 target_value=[0,0,0,-1];
 target_name='i_ann';
 
-% %available in Dynare 4.7
+% %available in Dynare 5.0
 % options_.jacobian_flag=0;
 % [x, errorflag, fvec, fjac] = dynare_solve('distance',start_value, options_, shock_name,target_value,target_name,M_,options_,oo_);
 [x, errorflag] = csolve('distance',start_value,[],1e-6,500,shock_name,target_value,target_name,M_,options_,oo_);

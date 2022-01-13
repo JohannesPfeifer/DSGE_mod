@@ -5,7 +5,7 @@
  * It provides a full replication of the results of the paper.
  * 
  * Notes:
- * - This mod-file requires at least Dynare 4.7. The original version has been tested with Dynare 4.4.3 using Matlab 2013a and 2014b
+ * - This mod-file requires at least Dynare 5. The original version has been tested with Dynare 4.4.3 using Matlab 2013a and 2014b
  * - It uses the Matlab Econometrics Toolbox for HP-filtering
  * - For comparability, we follow Jesús Fernández-Villaverde, Pablo Guerrón-Quintana, Juan F. Rubio-Ramírez, 
  *      and Martin Uribe (2011): "Risk Matters" in their simulation approach, American Economic Review 101 

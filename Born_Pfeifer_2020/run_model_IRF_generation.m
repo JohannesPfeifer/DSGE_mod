@@ -37,7 +37,7 @@
 % Figure A.7
 %   BP2020_order_4/Figures/BP2020_tfp_vola_effect_size_order_4_comp.eps
 
-addpath('C:\dynare\4.6.2\matlab')
+% addpath('C:\dynare\4.6.2\matlab')
 addpath('Auxiliary_Files/')
 cd('BP2020_order_4')
 run_model_IRF_generation_order_4;
