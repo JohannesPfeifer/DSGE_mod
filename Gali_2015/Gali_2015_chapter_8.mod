@@ -20,7 +20,7 @@
  */
 
 /*
- * Copyright (C) 2016 Dmitry Matveev and Johannes Pfeifer
+ * Copyright (C) 2016-2022 Dmitry Matveev and Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

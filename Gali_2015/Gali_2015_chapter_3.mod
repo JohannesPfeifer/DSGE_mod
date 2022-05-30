@@ -88,7 +88,7 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
     @#else   
         rho_m        ${\rho_{\zeta}}$ (long_name='autocorrelation monetary demand shock')
     @#endif
-    rho_z               ${\rho_{z}}$    (long_name='autocorrelation monetary demand shock')
+    rho_z               ${\rho_{z}}$    (long_name='autocorrelation preference shock')
     siggma              ${\sigma}$      (long_name='inverse EIS')
     varphi              ${\varphi}$     (long_name='inverse Frisch elasticity')
     phi_pi              ${\phi_{\pi}}$  (long_name='inflation feedback Taylor Rule')
@@ -98,24 +98,24 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
     theta               ${\theta}$      (long_name='Calvo parameter')
     ;
 %----------------------------------------------------------------
-% Parametrization, p. 67  and p. 113-115
+% Parametrization, p. 67-75
 %----------------------------------------------------------------
-siggma = 1;
-varphi=5;
-phi_pi = 1.5;
-phi_y  = 0.125;
-theta=3/4;
+siggma = 1;         %p. 67
+varphi=5;           %p. 67, Frisch elasticity of 0.2
+phi_pi = 1.5;       %p. 68 
+phi_y  = 0.125;     %p. 68 (5/4)
+theta=3/4;          %p. 67
 @#if money_growth_rule==0
-    rho_nu =0.5;
+    rho_nu =0.5;    %p. 68
 @#else   
-    rho_m=0.5; %footnote 11, p. 115
+    rho_m=0.5;      %p. 75
 @#endif
-rho_z  = 0.5;
-rho_a  = 0.9;
-betta  = 0.99;
+rho_z  = 0.5;       %p. 70
+rho_a  = 0.9;       %p. 72
+betta  = 0.99;      %p. 67
 eta  =3.77; %footnote 11, p. 115
-alppha=1/4;
-epsilon=9;
+alppha=1/4;     	%p. 67
+epsilon=9;          %p. 67
 
 %----------------------------------------------------------------
 % First Order Conditions

@@ -5,7 +5,7 @@
  *
  * It demonstrates how to use the ramsey_policy command of Dynare.
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
+ * THIS MOD-FILE REQUIRES DYNARE 4.6 OR HIGHER
  *
  * Notes:
  *      - all model variables are expressed in deviations from steady state, i.e. 
@@ -23,7 +23,7 @@
  */
 
 /*
- * Copyright (C) 2016 Johannes Pfeifer
+ * Copyright (C) 2016-2022 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ parameters alppha   ${\alppha}$         (long_name='capital share')
         betta       ${\beta}$           (long_name='discount factor')
         rho_a       ${\rho_a}$          (long_name='autocorrelation technology shock')
         rho_u       ${\rho_{u}}$        (long_name='autocorrelation cost push shock')
-        rho_z       ${\rho_{z}}$        (long_name='autocorrelation monetary demand shock')
+        rho_z       ${\rho_{z}}$        (long_name='autocorrelation preference shock')
         siggma      ${\sigma}$          (long_name='log utility')
         varphi      ${\varphi}$         (long_name='unitary Frisch elasticity')
         eta         ${\eta}$            (long_name='semi-elasticity of money demand')
@@ -81,7 +81,7 @@ parameters alppha   ${\alppha}$         (long_name='capital share')
         vartheta    ${\vartheta}$       (long_name='weight of x in utility function')
     ;
 %----------------------------------------------------------------
-% Parametrization, p. 52
+% Parametrization: see notes for Gali_2015_chapter_3
 %----------------------------------------------------------------
 rho_u=0;
 siggma = 1;
@@ -162,12 +162,12 @@ end;
 %---------------------------------------------------------------
 
 planner_objective pi^2 +vartheta*x^2;
-ramsey_policy(instruments=(i),irf=13,planner_discount=betta) x pi p u;
-
+ramsey_model(instruments=(i),planner_discount=betta);
+stoch_simul(order=1,irf=13) x pi p u;
 %----------------------------------------------------------------
 %  Replicate Figure 5.2 under commitment: response to 
 %  persistent cost-push shock
 %---------------------------------------------------------------
 
 set_param_value('rho_u',0.8);
-ramsey_policy(instruments=(i),irf=13) x pi p u;
+stoch_simul(order=1,irf=13) x pi p u;

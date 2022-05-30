@@ -70,7 +70,7 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
     betta               ${\beta}$       (long_name='discount factor')
     rho_a               ${\rho_a}$      (long_name='autocorrelation technology shock')
     rho_nu              ${\rho_{\nu}}$  (long_name='autocorrelation monetary policy shock')   
-    rho_z               ${\rho_{z}}$    (long_name='autocorrelation monetary demand shock')
+    rho_z               ${\rho_{z}}$    (long_name='autocorrelation preference shock')
     siggma              ${\sigma}$      (long_name='inverse EIS')
     varphi              ${\varphi}$     (long_name='inverse Frisch elasticity')
     phi_pi              ${\phi_{\pi}}$  (long_name='inflation feedback Taylor Rule')
@@ -82,18 +82,20 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
 %----------------------------------------------------------------
 % Parametrization, p. 67  and p. 113-115
 %----------------------------------------------------------------
-siggma = 1;
-varphi=5;
-phi_pi = 1.5;
-phi_y  = 0.125;
-theta=3/4;
-rho_nu =0.5;
-rho_z  = 0.5;
-rho_a  = 0.9;
-betta  = 0.99;
+% Parametrization, p. 67-75
+%----------------------------------------------------------------
+siggma = 1;         %p. 67
+varphi=5;           %p. 67, Frisch elasticity of 0.2
+phi_pi = 1.5;       %p. 68 
+phi_y  = 0.125;     %p. 68 (5/4)
+theta=3/4;          %p. 67
+rho_nu =0.5;    %p. 68
+rho_z  = 0.5;       %p. 70
+rho_a  = 0.9;       %p. 72
+betta  = 0.99;      %p. 67
 eta  =3.77; %footnote 11, p. 115
-alppha=1/4;
-epsilon=9;
+alppha=1/4;     	%p. 67
+epsilon=9;          %p. 67
 
 %----------------------------------------------------------------
 % First Order Conditions

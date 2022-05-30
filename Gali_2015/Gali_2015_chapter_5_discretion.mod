@@ -31,7 +31,7 @@
  */
 
 /*
- * Copyright (C) 2016 Johannes Pfeifer
+ * Copyright (C) 2016-2022 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ parameters alppha   ${\alppha}$         (long_name='capital share')
         betta       ${\beta}$           (long_name='discount factor')
         rho_a       ${\rho_a}$          (long_name='autocorrelation technology shock')
         rho_u       ${\rho_{u}}$        (long_name='autocorrelation cost push shock')
-        rho_z       ${\rho_{z}}$        (long_name='autocorrelation monetary demand shock')
+        rho_z       ${\rho_{z}}$        (long_name='autocorrelation preference shock')
         siggma      ${\sigma}$          (long_name='log utility')
         varphi      ${\varphi}$         (long_name='unitary Frisch elasticity')
         eta         ${\eta}$            (long_name='semi-elasticity of money demand')
@@ -91,7 +91,7 @@ parameters alppha   ${\alppha}$         (long_name='capital share')
         Theta_i     ${\Theta_i}$        (long_name='weight of u in optimal monetary policy rule')
     ;
 %----------------------------------------------------------------
-% Parametrization, p. 52
+% Parametrization: see notes for Gali_2015_chapter_3
 %----------------------------------------------------------------
 rho_u=0;
 siggma = 1;

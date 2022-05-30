@@ -33,7 +33,7 @@
  */
 
 /*
- * Copyright (C) 2016 Johannes Pfeifer
+ * Copyright (C) 2016-2022 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ parameters alppha   ${\alppha}$         (long_name='capital share')
         theta       ${\theta}$          (long_name='Calvo parameter')
     ;
 %----------------------------------------------------------------
-% Parametrization, p. 52
+% Parametrization: see notes for Gali_2015_chapter_3
 %----------------------------------------------------------------
 siggma = 1;
 varphi=5;

@@ -25,7 +25,7 @@
  */
 
 /*
- * Copyright (C) 2016 Johannes Pfeifer
+ * Copyright (C) 2016-2022 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
     betta               ${\beta}$       (long_name='discount factor')
     rho_a               ${\rho_a}$      (long_name='autocorrelation technology shock')
     rho_nu              ${\rho_{\nu}}$  (long_name='autocorrelation monetary policy shock')
-    rho_z               ${\rho_{z}}$    (long_name='autocorrelation monetary demand shock')
+    rho_z               ${\rho_{z}}$    (long_name='autocorrelation preferece shock')
     siggma              ${\sigma}$      (long_name='inverse EIS')
     varphi              ${\varphi}$     (long_name='inverse Frisch elasticity')
     phi_pi              ${\phi_{\pi}}$  (long_name='inflation feedback Taylor Rule')
@@ -92,7 +92,7 @@ parameters alppha       ${\alpha}$     (long_name='capital share')
     theta_w             ${\theta_w}$    (long_name='Calvo parameter wages')
     ;
 %----------------------------------------------------------------
-% Parametrization, p. 67  and p. 113-115
+% Parametrization: see notes for Gali_2015_chapter_3
 %----------------------------------------------------------------
 siggma = 1;
 varphi=5;
