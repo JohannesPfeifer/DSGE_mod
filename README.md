@@ -278,6 +278,15 @@ that requires recalibrating the model.
 This file replicates the estimation of the New Keynesian model of Jermann/Quadrini (2012) conducted and 
 described in Pfeifer (2016).
 
+## McCandless_2008
+
+This folder contains replication files for George McCandless (2008): The ABCs of RBCs - An Introduction to Dynamic 
+Macroeconomic Models, Harvard University Press
+
+### McCandless_2008_Chapter_9
+
+This file replicates the Money in the Utility Function model studied in Chapter 9
+
 ## NK_linear_forward_guidance
 
 Shows how to implement forward guidance in a baseline New Keynesian model using a sequence of monetary policy shocks.
