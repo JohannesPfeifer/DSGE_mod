@@ -43,6 +43,9 @@ cd('../Gali_Monacelli_2005')
 dynare Gali_Monacelli_2005
 cd('../Ghironi_Melitz_2005')
 dynare Ghironi_Melitz_2005.mod
+cd('../Guerrieri_Iacoviello_2015')
+dynare Guerrieri_Iacoviello_2015_rbc
+dynare Guerrieri_Iacoviello_2015_nk
 cd('../Hansen_1985')
 dynare Hansen_1985.mod
 cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')

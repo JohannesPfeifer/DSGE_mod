@@ -238,6 +238,18 @@ It provides a replication code for the main results of the original paper for th
 
 This mod-file shows how to use the loglinear and logdata options of Dynare.
 
+## Guerrieri_Iacoviello_2015
+Replicates the RBC model with a constraint on investment (irreversible investment)
+and the New Keynesian model with a constraint on the nominal interest rate (zero-lower-bound)
+studied in Guerrieri, Luca and Iacoviello, Matteo (2015): 
+"OccBin: A toolkit for solving dynamic models with occastionally binding
+constraints easily", Journal of Monetary Economics 70, pp.22-38.
+
+It provides replication codes for the IRFs in figures 3 and 5.
+
+The mod files show how to use Dynare's occbin toolbox for stochastic 
+simulations with occasionally binding constraints.
+
 ## Ghironi_Melitz_2005.mod
 
 This file replicates the Baseline model under Financial Autarky of
