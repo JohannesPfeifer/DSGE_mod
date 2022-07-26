@@ -67,7 +67,7 @@ var pi ${\pi}$ (long_name='inflation')
     ;     
 
 varexo eps_a ${\varepsilon_a}$   (long_name='technology shock')
-       eps_u ${\varepsilon_u}$   (long_name='monetary policy shock');
+       eps_u ${\varepsilon_u}$   (long_name='cost push shock');
 
 parameters alppha ${\alppha}$ (long_name='capital share')
     betta ${\beta}$ (long_name='discount factor')

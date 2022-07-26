@@ -25,7 +25,7 @@
  */
 
 /*
- * Copyright (C) 2015 Johannes Pfeifer
+ * Copyright (C) 2015-2022 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,9 +64,9 @@ var pi ${\pi}$ (long_name='inflation')
     ;     
 
 varexo eps_a ${\varepsilon_a}$   (long_name='technology shock')
-       eps_u ${\varepsilon_u}$   (long_name='monetary policy shock');
+       eps_u ${\varepsilon_u}$   (long_name='cost push shock');
 
-parameters alppha ${\alppha}$ (long_name='capital share')
+parameters alppha ${\alpha}$ (long_name='capital share')
     betta ${\beta}$ (long_name='discount factor')
     rho_a ${\rho_a}$ (long_name='autocorrelation technology shock')
     rho_u ${\rho_{u}}$ (long_name='autocorrelation cost push shock')
@@ -97,7 +97,7 @@ epsilon=6;
 % First Order Conditions
 %----------------------------------------------------------------
 
-model(linear); 
+model; 
 //Composite parameters
 #Omega=(1-alppha)/(1-alppha+alppha*epsilon);  //defined on page 47
 #psi_n_ya=(1+phi)/(siggma*(1-alppha)+phi+alppha); //defined on page 48
@@ -175,8 +175,12 @@ end;
 //planner objective using alpha_x expressed as function of deep parameters
 planner_objective pi^2 +(((1-theta)*(1-betta*theta)/theta*((1-alppha)/(1-alppha+alppha*epsilon)))*(siggma+(phi+alppha)/(1-alppha)))/epsilon*y_gap^2;
 
-ramsey_policy(instruments=(i),irf=13,planner_discount=betta) x pi p u;
+ramsey_model(instruments=(i),planner_discount=betta);
+stoch_simul(order=1,irf=13) x pi p u;
 
 set_param_value('rho_u',0.8);
 
-ramsey_policy(instruments=(i),irf=13) x pi p u;
+stoch_simul(order=1,irf=13) x pi p u;
+
+stoch_simul(order=2,irf=0) x pi p u y_gap; %second order for welfare function evaluation
+evaluate_planner_objective;
