@@ -50,6 +50,7 @@ construct_data
 dynare Jermann_Quadrini_2012_RBC.mod
 cd('../McCandless_2008')
 dynare McCandless_2008_Chapter_9
+dynare McCandless_2008_Chapter_13
 cd('../../NK_linear_forward_guidance')
 dynare NK_linear_forward_guidance
 cd('../RBC_capitalstock_shock')

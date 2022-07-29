@@ -287,6 +287,10 @@ Macroeconomic Models, Harvard University Press
 
 This file replicates the Money in the Utility Function model studied in Chapter 9
 
+### McCandless_2008_Chapter_9
+
+This file replicates the open economy model studied in Chapter 13
+
 ## NK_linear_forward_guidance
 
 Shows how to implement forward guidance in a baseline New Keynesian model using a sequence of monetary policy shocks.
