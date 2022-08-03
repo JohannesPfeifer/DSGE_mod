@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/34334463.svg)](https://zenodo.org/badge/latestdoi/34334463)
+
 # DSGE_mod 
 
 A collection of Dynare models. It aims at demonstrating Dynare best practices 
