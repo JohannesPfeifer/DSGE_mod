@@ -25,6 +25,12 @@ verified.
 
 # Contained Mod-files
 
+## Andreasen_2012
+Replicates Table 2 in Andreasen (2012): "On the effects of rare disasters and uncertainty shocks for risk premia in non-linear DSGE models", Review of Economic Dynamics, 15, pp. 295-316.
+
+This mod file shows how to simulate DSGE models solved with third-order perturbation and non-symmetric innovations.
+The underlying model is a New-Keynesian model with Epstein-Zin preferences.
+
 ## Ascari_Sbordone_2014.mod
 Replicates Ascari, Guido and Sbordone, Argia M. (2014): "The Macroeconomics of Trend Inflation", Journal of Economic Literature, 52(3), pp. 679-739.
 
