@@ -88,3 +88,5 @@ cd('../Stock_SIR_2020')
 dynare Stock_SIR_2020
 cd('../Woodford_2003')
 dynare Woodford_2003_Chapter_7
+cd('Andreasen_2012')
+dynare Andreasen_2012_rare_disasters
