@@ -370,7 +370,11 @@ randn('seed',1) % this is the seed used in Run_Rotemberg_Model_growth.m
 exo = transpose(chol(SIGMA2)*randn(M_.exo_nbr,options_.periods)); % draw from standard normal and multiply with standard deviations
 
 % Benchmark: all shocks are Gaussian
-oo_.dr.ghs3 = zeros(M_.endo_nbr,1);
+if isequal(SIGMA2,M_.Sigma_e)
+    oo_.dr.ghs3 = zeros(M_.endo_nbr,1);
+else
+    oo_ = perturbation_solver_nonsymmetric_order3(M_,oo_,SIGMA2(:),SIGMA3(:));
+end
 RESULTS.BENCHMARK.exo = exo;
 fprintf('Simulating Benchmark model\n')
 RESULTS.BENCHMARK.y = simult_nonsymmetric_order3(M_,oo_,options_,exo); % simulate data for BENCHMARK model
