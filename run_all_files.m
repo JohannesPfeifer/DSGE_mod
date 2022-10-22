@@ -67,6 +67,8 @@ cd('../RBC_baseline_welfare')
 dynare RBC_baseline_welfare
 cd('../RBC_IRF_matching')
 dynare RBC_IRF_matching
+cd('../RBC_state_dependent_GIRF')
+dynare RBC_state_dependent_GIRF
 cd('../SGU_2003')
 dynare SGU_2003.mod
 cd('../SGU_2004')

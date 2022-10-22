@@ -354,6 +354,12 @@ is the type of policy experiment that is for example performed in Beaudry
 Portier (2004): An exploration into Pigou's theory of cycles, Journal of 
 Monetary Economics 51, pp. 1183-1216. 
 
+## RBC_state_dependent_GIRF.mod
+
+This file takes the baseline RBC model and demonstrates how to compute Generalized 
+Impulse Response Functions using Dynare's simult_-function. The model is solved up 
+to second order to allow for non-linearities.
+
 ## SGU_2003.mod 
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
