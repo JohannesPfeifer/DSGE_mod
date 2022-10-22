@@ -246,7 +246,7 @@ a=rho_a*a(-1)+eps_a;
 
 end;
 
-resid(1);
+resid;
 check;
 
 shocks;

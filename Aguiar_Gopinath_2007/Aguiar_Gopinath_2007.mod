@@ -148,7 +148,7 @@ shocks;
 var eps_g; stderr 1; 
 var eps_z; stderr 1;
 end;
-resid(1);
+resid;
 steady;
 
 check;

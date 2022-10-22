@@ -562,7 +562,7 @@ write_latex_static_model;
 //write_latex_steady_state_model;
 // write_latex_parameter_table;
 
-% resid(1);
+% resid;
 % steady;
 % check;
 

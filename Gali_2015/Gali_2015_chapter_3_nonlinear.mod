@@ -240,7 +240,7 @@ end;
 
 write_latex_dynamic_model;
 
-resid(1);
+resid;
 steady;
 check;
 
@@ -255,13 +255,6 @@ shocks;
         var eps_m = 0.0025^2; //1 standard deviation shock of 25 basis points, i.e. 1 percentage point annualized
     @#endif
 end;
-
-%----------------------------------------------------------------
-%  steady states
-%---------------------------------------------------------------
-resid(1);
-steady;
-check;
 
 %----------------------------------------------------------------
 % generate IRFs for monetary policy shock, replicates Figures 3.1, p. 69 (interest rate rule)

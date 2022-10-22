@@ -186,7 +186,7 @@ shocks;
 var eps_g = 1; 
 end;
 
-resid(1);
+resid;
 
 steady;
 

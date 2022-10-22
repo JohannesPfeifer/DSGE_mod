@@ -395,7 +395,7 @@ end;
 @# endif
 
 
-resid(1);
+resid;
 
 check;
 steady; 

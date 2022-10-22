@@ -111,7 +111,7 @@ var eps_z = 1;
 var eps_cap = 1; 
 end;
 
-resid(1);
+resid;
 
 steady;
 

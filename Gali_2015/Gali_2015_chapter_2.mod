@@ -138,7 +138,7 @@ m_growth_ann=0;
 end;
 
 
-resid(1);
+resid;
 steady;
 check;
 
