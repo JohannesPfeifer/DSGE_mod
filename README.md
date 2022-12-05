@@ -315,6 +315,12 @@ This file replicates the open economy model studied in Chapter 13
 
 Shows how to implement forward guidance in a baseline New Keynesian model using a sequence of monetary policy shocks.
 
+# Ramsey_Cass_Koopmans.mod 
+Studies the transition behavior of a simple Ramsey/Cass/Koopmans economy with Cobb-Douglas production 
+function to its balanced growth path (BGP). The RCK model is solved here in aggregate, 
+i.e. non-detrended form along its balanced growth path. For that purpose, trending labor-augmenting
+technology and population processes are defined.
+
 ## RBC_baseline
 
 ### RBC_baseline.mod
