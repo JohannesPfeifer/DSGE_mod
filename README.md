@@ -98,6 +98,11 @@ Replicates Chari, V.V/Kehoe, Patrick J./McGrattan, Ellen (2007), "Business Cycle
 It demonstrates how to use the linearized benchmark model estimated using Maximum Likelihood to conduct the 
 Business Cycle Accounting  as is done in the paper for the 1982 recession.
 
+## example1_shock_calibration 
+
+The file `get_shock_standard_deviation` shows how to find the shock size that induces a given response 
+of an endogenous variable in a specified period.
+
 ## FV_et_al_2007 
 
 Provides codes for the ABCD-test of Fernandez-Villaverde, Rubio-Ramirez, Sargent, and Watson (2007), 
