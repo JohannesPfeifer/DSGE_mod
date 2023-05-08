@@ -248,6 +248,6 @@ end;
 
 varobs dy dc dinve labobs pinfobs dw robs;
 
-estimation(optim=('MaxIter',200),datafile=usmodel_data,mode_file=usmodel_shock_decomp_mode,mode_compute=0,first_obs=1, presample=4,lik_init=2,prefilter=0,mh_replic=0,mh_nblocks=2,mh_jscale=0.20,mh_drop=0.2, nograph, nodiagnostic, tex);
+estimation(optim=('MaxIter',200),datafile=usmodel_data,mode_file=usmodel_mode,mode_compute=0,first_obs=1, presample=4,lik_init=2,prefilter=0,mh_replic=0,mh_nblocks=2,mh_jscale=0.20,mh_drop=0.2, nograph, nodiagnostic, tex);
 
 shock_decomposition y;
