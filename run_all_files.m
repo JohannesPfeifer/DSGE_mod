@@ -48,6 +48,8 @@ dynare Guerrieri_Iacoviello_2015_rbc
 dynare Guerrieri_Iacoviello_2015_nk
 cd('../Hansen_1985')
 dynare Hansen_1985.mod
+cd('../HP_filter_missing_data')
+dynare HP_filter_missing_data.mod
 cd('../Jermann_Quadrini_2012/Jermann_Quadrini_2012_RBC')
 construct_data
 dynare Jermann_Quadrini_2012_RBC.mod
