@@ -644,7 +644,7 @@ for shock_iter=1:size(shocks,1);
     @#else
         ex_(burnin+1,strmatch(shocks{shock_iter},M_.exo_names,'exact'))=shock_size(shock_iter,shock_iter);
     @#endif
-    IRF_mat=simult_(M_,options_,oo_.dr.ys,oo_.dr,ex_,4)';
+    IRF_mat=simult_(M_,options_,oo_.dr.ys,oo_.dr,ex_,options_.order)';
 
     stochastic_steady_state=IRF_mat(burnin,:); % stochastic_steady_state/EMAS is any of the final points after burnin
 
@@ -666,8 +666,10 @@ for shock_iter=1:size(shocks,1);
         oo_.irfs.([var_names{var_iter},'_',shocks{shock_iter}])=IRF_mat_percent_from_SSS_logged(:,var_pos);
     end
 end
-                
+
+oldfolder = cd('BP2020_order_4');
 Create_1_by_4_vola_figures
+cd(oldfolder);
 
 var_names={'sigma_G','log_Y','log_C','log_I','log_N','log_W','log_K',...'firm_wedge','household_wedge',...
     'log_pi_annualized','log_R_annualized'};
