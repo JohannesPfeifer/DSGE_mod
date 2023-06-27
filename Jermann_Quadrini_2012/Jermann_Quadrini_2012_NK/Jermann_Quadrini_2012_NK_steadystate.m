@@ -1,5 +1,5 @@
-function [ys,check] = Jermann_Quadrini_2012_NK_steadystate(ys,exo)
-% function [ys,check] = Jermann_Quadrini_2012_NK_steadystate(ys,exo)
+function [ys,params,check] = Jermann_Quadrini_2012_NK_steadystate(ys,exo,M_,options_)
+% function [ys,params,check] = Jermann_Quadrini_2012_NK_steadystate(ys,exo,M_,options_)
 % computes the steady state for the Jermann_Quadrini_2012_NK.mod and uses a numerical
 % solver to do so
 % Inputs: 
@@ -27,13 +27,11 @@ function [ys,check] = Jermann_Quadrini_2012_NK_steadystate(ys,exo)
 %  For a copy of the GNU General Public License,
 %  see <http://www.gnu.org/licenses/>.
 
-global M_ 
-
 % read out parameters to access them with their name
 NumberOfParameters = M_.param_nbr;
 for ii = 1:NumberOfParameters
-  paramname = deblank(M_.param_names(ii,:));
-  eval([ paramname ' = M_.params(' int2str(ii) ');']);
+    paramname = M_.param_names{ii};
+    eval([ paramname ' = M_.params(' int2str(ii) ');']);
 end
 % initialize indicator
 check = 0;
@@ -106,15 +104,17 @@ debt_repurchase_obs =0;
 
 %% end own model equations
 
+params=NaN(NumberOfParameters,1);
 for iter = 1:length(M_.params) %update parameters set in the file
-  eval([ 'M_.params(' num2str(iter) ') = ' M_.param_names(iter,:) ';' ])
+    eval([ 'params(' num2str(iter) ') = ' M_.param_names{iter} ';' ])
 end
 
 NumberOfEndogenousVariables = M_.orig_endo_nbr; %auxiliary variables are set automatically
 for ii = 1:NumberOfEndogenousVariables
-  varname = deblank(M_.endo_names(ii,:));
-  eval(['ys(' int2str(ii) ') = ' varname ';']);
+    varname = M_.endo_names{ii};
+    eval(['ys(' int2str(ii) ') = ' varname ';']);
 end
+
 
 end
 
