@@ -18,7 +18,7 @@
 % You should have received a copy of the GNU General Public License
 % along with Dynare.  If not, see <http://www.gnu.org/licenses/>.
 
-dynare example1; %run Dynare once on the model to set up relevant options.
+dynare Collard_2001_example1; %run Dynare once on the model to set up relevant options.
  
 %% Options to be set by user
 target_variable='y';  
@@ -36,7 +36,7 @@ estim_params_.nvn=0;
 estim_params_.ncn=0;
 estim_params_.np=0;
 estim_params_.var_exo=NaN(1,9);
-estim_params_.var_exo(1,1)=strmatch(exo_name,M_.exo_names,'exact');
+estim_params_.var_exo(1,1)=strmatch(shock_name,M_.exo_names,'exact');
 bounds.lb=0;
 bounds.ub=Inf;
 estim_params=check_for_calibrated_covariances(starting_value,estim_params_,M_);
@@ -45,7 +45,7 @@ estim_params=check_for_calibrated_covariances(starting_value,estim_params_,M_);
 options_.noprint=1;
 options_.nomoments=1;
 
-[x,exitflag] = csolve('minimize_distance',starting_value,[],1e-6,100,M_,options_,oo_,estim_params_,bounds,target,target_period,target_variable,shock_name);
+[x,exitflag] = csolve('minimize_distance',starting_value,[],1e-6,100,M_,options_,oo_,estim_params_,bounds,target_value,target_period,target_variable,shock_name);
 
 %display info
 if exitflag==0
