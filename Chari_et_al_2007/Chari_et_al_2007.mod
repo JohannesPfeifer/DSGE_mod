@@ -173,7 +173,10 @@ P=[rho_zz rho_zl rho_zx rho_zg
     rho_gz rho_gl rho_gx rho_gg];
 
 P0=(eye(4,4)-P)*s_bar;
-
+P0_z_bar0     = P0(1);
+P0_tau_l_bar0 = P0(2);
+P0_tau_x_bar0 = P0(3);
+P0_g_bar0     = P0(4);
 %construct correlation matrix from provided Cholesky decomposition of 
 Q=[0.011619704018080                   0                   0                   0
    0.001411648230250   0.006440042459250                   0                   0
@@ -200,10 +203,10 @@ corr_tau_l_g=Correlation_matrix(2,4);
 
 corr_tau_x_g=Correlation_matrix(3,4);
 
-P0_z_bar=P0(1);
-P0_tau_l_bar=P0(2);
-P0_tau_x_bar=P0(3);
-P0_g_bar=P0(4);
+P0_z_bar=P0_z_bar0;
+P0_tau_l_bar=P0_tau_l_bar0;
+P0_tau_x_bar=P0_tau_x_bar0;
+P0_g_bar=P0_g_bar0;
 
 %----------------------------------------------------------------
 % enter model equations
@@ -478,10 +481,10 @@ legend('Efficiency Wedge','Labor Wege','Investment Wedge','Output')
 axis tight
 
 estimated_params;
-P0_z_bar,  P0_z_bar;
-P0_tau_l_bar,  P0_tau_l_bar;
-P0_tau_x_bar,  P0_tau_x_bar;
-P0_g_bar,  P0_g_bar;
+P0_z_bar,  P0_z_bar0;
+P0_tau_l_bar,  P0_tau_l_bar0;
+P0_tau_x_bar,  P0_tau_x_bar0;
+P0_g_bar,  P0_g_bar0;
 rho_zz, 0.980; 
 rho_zl, -0.0138;
 rho_zx,  -0.0117;
