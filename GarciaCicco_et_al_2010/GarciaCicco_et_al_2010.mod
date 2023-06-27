@@ -275,11 +275,11 @@ fprintf('%30s \t %5.4f \t %5.4f \t %5.4f \t %5.4f \n','Correlation with TB/Y:',o
 
 // Generate part of Figure 4 
 verbatim;
-    [data_mat,data_header]=xlsread('data_argentina.xls',1,'G2:J107');
+    dataargentina = importdata("data_argentina.xls")
+    tb_y = dataargentina.data.Sheet1(2:end,find(strcmp(dataargentina.colheaders.Sheet1,'tb_y')))
     %sqrt(0.06*var(data_mat)); prior bounds
     figure('Name','Figure 4: Autocorrelation Function')
-    tby_data=data_mat(:,strcmp('tb_y',data_header));
-    plot((1:4),[corr(tby_data(2:end-3),tby_data(1:end-4)),corr(tby_data(3:end-2),tby_data(1:end-4)),corr(tby_data(4:end-1),tby_data(1:end-4)),corr(tby_data(5:end),tby_data(1:end-4))],'b-')
+    plot((1:4),[corr(tb_y(2:end-3),tb_y(1:end-4)),corr(tb_y(3:end-2),tb_y(1:end-4)),corr(tb_y(4:end-1),tb_y(1:end-4)),corr(tb_y(5:end),tb_y(1:end-4))],'b-')
     hold on
     tb_pos=strmatch('tb_y',var_list_,'exact');
     plot((1:4),[oo_.autocorr{1,1}(tb_pos,tb_pos) oo_.autocorr{1,2}(tb_pos,tb_pos) oo_.autocorr{1,3}(tb_pos,tb_pos) oo_.autocorr{1,4}(tb_pos,tb_pos)],'r-.')
@@ -338,7 +338,7 @@ estimated_params_init(use_calibration); //Use their posterior as starting values
 end;
 
 estimation(datafile=data_argentina,
-        xls_range=G2:J107, 
+        xls_range=G1:J107, 
         loglinear,
         logdata, //data is already logged, loglinear option would otherwise log the data
         mode_check,
