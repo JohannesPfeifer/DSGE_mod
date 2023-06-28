@@ -25,9 +25,17 @@ verified.
 
 # Contained Mod-files
 
+## Aguiar_Gopinath_2007.mod
+
+Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cycles: The Cycle is the Trend", Journal of Political Economy, 115(1), pp. 69-102.
+
+This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
+
 ## Andreasen_2012
+
 Replicates Table 2 in Andreasen (2012): "On the effects of rare disasters and uncertainty shocks for risk premia in non-linear DSGE models", Review of Economic Dynamics, 15, pp. 295-316.
 
+### Andreasen_2012_rare_disasters.mod
 This mod file shows how to simulate DSGE models solved with third-order perturbation and non-symmetric innovations.
 The underlying model is a New-Keynesian model with Epstein-Zin preferences.
 
@@ -37,21 +45,17 @@ Replicates Ascari, Guido and Sbordone, Argia M. (2014): "The Macroeconomics of T
 This mod-file shows how to access steady state variables in order to plot steady state dependencies on parameters. 
 It also shows how to manually do a stability mapping be iterating over a grid on the parameter space.
  
-## Aguiar_Gopinath_2007.mod
-
-Replicates Aguiar, Mark and Gopinath, Gita (2007): "Emerging Market Business Cycles: The Cycle is the Trend", Journal of Political Economy, 115(1), pp. 69-102.
-
-This mod-file shows how to deal with trend growth and how to recover the non-stationary variables from the detrended model variables.
-
 ## Basu_Bundick_2017.mod
 
 Replicates the Generalized Impulse Response Functions (GIRFs) at the stochastic steady/ergodic mean in the absence of shocks by Basu/Bundick (2017): 
 "Uncertainty shocks in a model of effective demand", Econometrica, 85(3), pp. 937-958
 
-## Born_Pfeifer_2014.mod
+## Born_Pfeifer_2014
 
 Replicates Benjamin Born and Johannes Pfeifer (2014): "Risk Matters: A comment", 
 American Economic Review, 104(12), pp. 4231-4239.
+
+### Born_Pfeifer_RM_Comment.mod
 
 This mod-file shows how to estimate a model solved with third order perturbation using the
 Simulated Method of Moments. It also shows how to generate IRFs at the stochastic steady state (ergodic
@@ -64,14 +68,14 @@ instead of the FGRU version in `simult_FGRU.m` (see the comments in the mod-file
 Replicates Benjamin Born and Johannes Pfeifer (2018): "The New Keynesian Wage Phillips Curve: Calvo vs. Rotemberg",
 Macroeconomic Dynamics, 24, 2020, 1017–1041.
 
-### Welfare
-`run_welfare_comparison_efficient_steady_state.m` and `run_welfare_comparison_inefficient_steady_state.m` create
-the welfare comparison between the four different labor market setups presented in Tables 4 and 5 of the paper.
-The mod-file `Born_Pfeifer_2018_welfare.mod` shows how to compute conditional and unconditional welfare.
-
-### Monetary_Policy_IRFs
+### Monetary_Policy_IRFs/Born_Pfeifer_2018_MP
 `run_IRF_comparison.m` creates "Figure 1: Impulse response functions to 1 percentage point 
 (annualized) monetary policy shock under Calvo".
+
+### Welfare/Born_Pfeifer_2018_welfare.mod
+The mod-file `Born_Pfeifer_2018_welfare.mod` shows how to compute conditional and unconditional welfare.
+`run_welfare_comparison_efficient_steady_state.m` and `run_welfare_comparison_inefficient_steady_state.m` create
+the welfare comparison between the four different labor market setups presented in Tables 4 and 5 of the paper.
 
 ## Born_Pfeifer_2020
 
@@ -178,7 +182,7 @@ that make the steady state satisfy the targets.
 Implements the baseline Classical Monetary Economy of Jordi Gali (2015): Monetary Policy, 
 Inflation, and the Business Cycle, Princeton University Press, Second Edition, Chapter 2
 
-### Gali_2015_chapter_3.mod 
+### Gali_2015_chapter_3.mod and Gali_2015_chapter_3_nonlinear.mod 
 Implements the baseline New Keynesian model of Jordi Gali (2015): Monetary Policy, 
 Inflation, and the Business Cycle, Princeton University Press, Second Edition, Chapter 3 
 
@@ -186,30 +190,30 @@ Inflation, and the Business Cycle, Princeton University Press, Second Edition, C
 Implements the welfare analysis of Chapter 4.4 on simple rules in the baseline New Keynesian model
 of Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition.
 
-### Gali_2015_chapter_5_discretion.mod 
-
-Implements the optimal monetary policy under discretion exercise of Jordi Gali (2015): Monetary Policy, Inflation, 
-and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.1. It shows how to use the 
-```discretionary_policy``` command.
-
 ### Gali_2015_chapter_5_commitment.mod 
 
 Implements the optimal monetary policy under commitment exercise of Jordi Gali (2015): Monetary Policy, Inflation, 
 and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.2. It shows how to use the ```ramsey_policy``` 
 command. 
 
-### Gali_2015_chapter_5_discretion_ZLB.mod 
-
-Implements the optimal monetary policy at the ZLB under discretion exercise 
-Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
-Chapter 5.4.1. It shows how to solve a perfect foresight model with a Levenberg-Marquardt mixed complementarity problem (lmmcp)
-approach to deal with the zero lower bound on interest rates.
-
 ### Gali_2015_chapter_5_commitment_ZLB.mod 
 
 Implements the optimal monetary policy at the ZLB under commitment exercise 
 Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
 Chapter 5.4.2. It shows how to solve a perfect foresight model with a Levenberg-Marquardt mixed complementarity problem (lmmcp)
+approach to deal with the zero lower bound on interest rates.
+
+### Gali_2015_chapter_5_discretion.mod 
+
+Implements the optimal monetary policy under discretion exercise of Jordi Gali (2015): Monetary Policy, Inflation, 
+and the Business Cycle, Princeton University Press, Second Edition, Chapter 5.2.1. It shows how to use the 
+```discretionary_policy``` command.
+
+### Gali_2015_chapter_5_discretion_ZLB.mod 
+
+Implements the optimal monetary policy at the ZLB under discretion exercise 
+Jordi Gali (2015): Monetary Policy, Inflation, and the Business Cycle, Princeton University Press, Second Edition,  
+Chapter 5.4.1. It shows how to solve a perfect foresight model with a Levenberg-Marquardt mixed complementarity problem (lmmcp)
 approach to deal with the zero lower bound on interest rates.
 
 ### Gali_2015_chapter_6.mod
@@ -253,23 +257,31 @@ It provides a replication code for the main results of the original paper for th
 
 This mod-file shows how to use the loglinear and logdata options of Dynare.
 
-## Guerrieri_Iacoviello_2015
-Replicates the RBC model with a constraint on investment (irreversible investment)
-and the New Keynesian model with a constraint on the nominal interest rate (zero-lower-bound)
-studied in Guerrieri, Luca and Iacoviello, Matteo (2015): 
-"OccBin: A toolkit for solving dynamic models with occastionally binding
-constraints easily", Journal of Monetary Economics 70, pp.22-38.
-
-It provides replication codes for the IRFs in figures 3 and 5.
-
-The mod files show how to use Dynare's occbin toolbox for stochastic 
-simulations with occasionally binding constraints.
-
 ## Ghironi_Melitz_2005.mod
 
 This file replicates the Baseline model under Financial Autarky of
 Ghironi/Melitz (2005), "International trade and macroeconomic dynamics with 
 heterogeneous firms", Quarterly Journal of Economics, 120(3), 865-915.
+
+## Guerrieri_Iacoviello_2015
+Replicates the example results of Guerrieri, Luca and Iacoviello, Matteo (2015): 
+"OccBin: A toolkit for solving dynamic models with occastionally binding
+constraints easily", Journal of Monetary Economics 70, pp.22-38.
+It provides replication codes for the IRFs in figures 3 and 5.
+The mod files show how to use Dynare's occbin toolbox for stochastic 
+simulations with occasionally binding constraints.
+
+### Guerrieri_Iacoviello_2015_rbc.mod
+Replicates the RBC model with a constraint on investment (irreversible investment).
+
+### Guerrieri_Iacoviello_2015_nk.mod
+Replicates the New Keynesian model with a constraint on the nominal interest rate (zero-lower-bound).
+
+## HP_filter_missing_data.mod
+
+This file implements a Hodrick/Prescott HP-filter employing a diffuse Kalman smoother. Due 
+to using the Kalman smoother instead of the typical matrix formula, the HP-filter 
+naturally handles missing observations/NaN.
 
 ## Hansen_1985.mod
 
@@ -281,12 +293,6 @@ percentage deviations without loglinearizing the model and how to use the ```
 get_simul_replications.m``` file to read out simulations generated by the 
 ```simul_replic``` option 
 
-## HP_filter_missing_data.mod
-
-This file implements a Hodrick/Prescott HP-filter employing a diffuse Kalman smoother. Due 
-to using the Kalman smoother instead of the typical matrix formula, the HP-filter 
-naturally handles missing observations/NaN.
-
 ## Ireland_2004.mod
 
 Estimates the New Keynesian model of Ireland, Peter (2004): "Technology shocks in the New Keynesian Model",
@@ -294,6 +300,10 @@ Review of Economics and Statistics, 86(4), pp. 923-936
 
 This mod-file shows how to estimate DSGE models using maximum likelihood in Dynare.
 
+## Jermann_1998.mod
+
+This file replicates some of the results in Jermann (1998): Asset pricing in production economies,
+Journal of Monetary Economics, 41, pp. 257-275, using a second-order perturbation approximation.
 
 ## Jermann_Quadrini_2012
 
@@ -316,23 +326,22 @@ described in Pfeifer (2016).
 This folder contains replication files for George McCandless (2008): The ABCs of RBCs - An Introduction to Dynamic 
 Macroeconomic Models, Harvard University Press
 
-### McCandless_2008_Chapter_9
+### McCandless_2008_Chapter_9.mod
 
 This file replicates the Money in the Utility Function model studied in Chapter 9
 
-### McCandless_2008_Chapter_9
+### McCandless_2008_Chapter_9.mod
 
 This file replicates the open economy model studied in Chapter 13
 
-## NK_linear_forward_guidance
+## NK_linear_forward_guidance.mod
 
 Shows how to implement forward guidance in a baseline New Keynesian model using a sequence of monetary policy shocks.
 
-# Ramsey_Cass_Koopmans.mod 
-Studies the transition behavior of a simple Ramsey/Cass/Koopmans economy with Cobb-Douglas production 
-function to its balanced growth path (BGP). The RCK model is solved here in aggregate, 
-i.e. non-detrended form along its balanced growth path. For that purpose, trending labor-augmenting
-technology and population processes are defined.
+## RBC_IRF_matching.mod
+
+This file takes the baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1 and
+estimates the persistence of the AR(2) government spending shock via impulse response function (IRF) matching. 
 
 ## RBC_baseline
 
@@ -352,17 +361,11 @@ Computes the welfare-maximizing optimal labor tax rate in a baseline RBC model w
 so by defining welfare recursively in the model block and calling an optimizer to find the parameter for the 
 steady state tax rate that maximizes welfare.
 
-
 Estimates the baseline RBC model on simulated data.
 
 ## RBC_capitalstock_shock.mod
 
 Implements a simple RBC model with a time t shock to the capital stock. 
-
-## RBC_IRF_matching.mod
-
-This file takes the baseline RBC model with TFP and government spending shocks, calibrated to US data from 1947Q4:2016Q1 and
-estimates the persistence of the AR(2) government spending shock via impulse response function (IRF) matching. 
 
 ## RBC_news_shock_model.mod
 
@@ -379,6 +382,12 @@ This file takes the baseline RBC model and demonstrates how to compute Generaliz
 Impulse Response Functions using Dynare's simult_-function. The model is solved up 
 to second order to allow for non-linearities.
 
+## Ramsey_Cass_Koopmans.mod 
+Studies the transition behavior of a simple Ramsey/Cass/Koopmans economy with Cobb-Douglas production 
+function to its balanced growth path (BGP). The RCK model is solved here in aggregate, 
+i.e. non-detrended form along its balanced growth path. For that purpose, trending labor-augmenting
+technology and population processes are defined.
+
 ## SGU_2003.mod 
 
 Replicates Schmitt-Grohé, Stephanie and Uribe, Martín (2003): "Closing small 
@@ -391,7 +400,9 @@ Replicates the neoclassical growth model for Schmitt-Grohé/Uribe (2004):
 approximation to the policy function", Journal of Economic Dynamics & 
 Control, 28, pp. 755-775 
 
-## Sims_2012 
+## Sims_2012
+
+### Sims_2012_RBC.mod
 
 Replicates the results for the basic RBC model presented in Eric R. Sims 
 (2012): "New, Non-Invertibility, and Structural VARs", Advances in 
@@ -411,7 +422,7 @@ American Economic Review, 97(3), pp. 586-606.
 Rudimentary code that is compatible with Dynare 4.2.5 onwards. See also the
 header to Smets_Wouters_2007_45.mod for additional remarks.
 
-## Smets_Wouters_2007_45.mod 
+### Smets_Wouters_2007_45.mod 
 
 Provides replication files that are compatible with Dynare 
 4.5 onwards and make full use of Dynare's LaTeX-capabilities to better 
@@ -442,7 +453,9 @@ technology and population processes are defined.
 This file implements a simple Susceptible-Infected-Recovered (SIR) model as in 
 James H. Stock (2020): "Data Gaps and the Policy Response to the Novel Coronavirus". 
 
-## Woodford_2007_Chapter_7.mod
+## Woodford_2003
+
+### Woodford_2003_Chapter_7.mod
 
 Implements the deterministic optimal policy exercise in Figure 7.1 of Michael Woodford (2003): 
 "Interest and prices", Princeton University Press, page 476. The same figure is reproduced as 

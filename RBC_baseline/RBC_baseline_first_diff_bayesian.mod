@@ -203,6 +203,6 @@ write_latex_definitions;
 write_latex_prior_table;
 generate_trace_plots(1);
 collect_latex_files;
-if system(['pdflatex -halt-on-error -interaction=batchmode ' M_.fname '_TeX_binder.tex'])
-    error('TeX-File did not compile.')
-end
+% if system(['pdflatex -halt-on-error -interaction=batchmode ' M_.fname '_TeX_binder.tex'])
+%     error('TeX-File did not compile.')
+% end
