@@ -1,4 +1,6 @@
 [![DOI](https://zenodo.org/badge/34334463.svg)](https://zenodo.org/badge/latestdoi/34334463)
+[![Dynare 4.6.4](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-4.6.4-matlab.yml/badge.svg)](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-4.6.4-matlab.yml)
+[![Dynare 5.4](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-5.4-matlab.yml/badge.svg)](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-5.4-matlab.yml)
 
 # DSGE_mod 
 
@@ -13,7 +15,7 @@ in the respective papers.
 
 ## Compatibility
 
-These mod-files have been tested against Dynare 4.6. Compatibility with 
+These mod-files have been tested against Dynare 4.6.4 and 5.4. Compatibility with 
 earlier versions is not guaranteed. For Dynare 4.5 version, please use the 4.5 branch of this repository
 
 # Contributing your own mod-files
