@@ -30,7 +30,12 @@ set_param_value('lambda_utility',par_value_lambda)  %set consumption equivalent 
 if isempty(options_.qz_criterium)
     options_.qz_criterium = 1+1e-6;
 end
-[oo_.dr,info,M_,oo_] = resol(0,M_,options_,oo_); %get decision rules
+dyn_ver = dynare_version;
+if str2double(dyn_ver(1))< 5
+    [oo_.dr, info, M_, options_, oo_] = resol(0, M_, options_, oo_); %get decision rules
+    else
+    [oo_.dr,info,M_,oo_] = resol(0,M_,options_,oo_); %get decision rules
+end
 if info(1) %filter out error codes
     outvalue=1e5+par_value_lambda^2;
     return;
