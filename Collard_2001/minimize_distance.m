@@ -38,7 +38,23 @@ function distance=minimize_distance(sigma,M_,options_,oo_,estim_params_,bounds,.
 M_ = set_all_parameters(sigma,estim_params_,M_); %set parameter vector
 
 %check parameter bounds and definiteness
-[fval,info]=check_bounds_and_definiteness_estimation(sigma, M_, estim_params_, bounds);
+try
+    [fval,info]=check_bounds_and_definiteness_estimation(sigma, M_, estim_params_, bounds);
+catch % Dynare versions < 5.0
+    fval        = [];
+    exit_flag   = 1;
+    info        = zeros(4,1);
+    % Return, with endogenous penalty, if some parameters are smaller than the lower bound of the prior domain.
+    if sigma<bounds.lb
+        info(1) = 41;
+        info(4) = sum((bounds.lb-sigma).^2);
+    end
+    % Return, with endogenous penalty, if some parameters are greater than the upper bound of the prior domain.
+    if sigma>bounds.ub        
+        info(1) = 42;
+        info(4) = sum((sigma-bounds.ub).^2);
+    end
+end
 if info(1)
     distance=options_.huge_number;    
     return
