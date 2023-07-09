@@ -1,20 +1,4 @@
 name: Dynare 5.4 with MATLAB R2023a
-# This uses a modified official MATLAB docker container (https://de.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html) with the following pre-installed toolboxes:
-# Distrib_Computing_Toolbox, GADS_Toolbox, Optimization_Toolbox, Statistics_Toolbox, Symbolic_Toolbox, Control_Toolbox, Econometrics_Toolbox,
-# using the matlab-support package to rename GCC librariers AND with a pre-compiled version of Dynare which is in the PATH of MATLAB.
-# The modified container is stored in a (private) Docker registry hosted at docker.mutschler.eu, see the docker compose file here: https://github.com/wmutschl/scripts
-# You will need authentification for the registry, the user name is stored in a secret called DOCKER_REGISTRY_USER and the password in a secret called DOCKER_REGISTRY_PASSWORD.
-# Please ask @wmutschl or write an email to willi@mutschler.eu if you want access to the registry.
-# Note that the container has a size of roughly 10GB (the GitHub runner usually takes about 20 minutes to download and verify).
-# More importantly, you need to provide a valid license to the container (the different options are described here: https://de.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html).
-# This is a recommended way:
-# 0) Check whether your license allows for cloud and container usage: https://mathworks.com/help/install/license/licensing-for-mathworks-products-running-on-the-cloud.html
-# 1) Generate a license file using MATHWORKS License Center, see Option 2 https://de.mathworks.com/matlabcentral/answers/235126-how-do-i-generate-a-matlab-license-file#answer_190013
-#    The host id is the MAC address used below in the env block, make sure that you pass the same MAC address to the docker run command.
-#    The user is called matlab.
-# 2) Edit the license.lic file with a text editor and remove all the blocks except for MATLAB, Distrib_Computing_Toolbox, GADS_Toolbox, Optimization_Toolbox, Statistics_Toolbox, Symbolic_Toolbox, Control_Toolbox, Econometrics_Toolbox.
-# 3) Use base64 to encode the stripped down file into a Base64 string: base64 -i license.lic -o license.lic.base64 as described here https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-base64-binary-blobs-as-secrets
-# 4) Copy the content of license.lic.base64 and paste it as a Github secret named MATLAB_LICENSEFILE_BASE64.
 
 on:
   push:
@@ -27,42 +11,10 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  CONTAINER_NAME: "dynare-matlab-with-toolboxes"
-  DYNARE_MATLAB_VERSION: "5.4-r2023a"
-  MATLAB_LICENSEFILE_BASE64: ${{ secrets.MATLAB_LICENSEFILE_BASE64 }}
-  DOCKER_REGISTRY_URL: "docker.mutschler.eu"
-  MAC_ADDRESS_FOR_LICENSE: "A6-7E-1A-F4-9A-92"
-
 jobs:
-  Run_all_files:
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - name: login to registry
-        uses: docker/login-action@v2
-        with:
-          registry: ${{ env.DOCKER_REGISTRY_URL }}
-          username: ${{ secrets.DOCKER_REGISTRY_USER }}
-          password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-
-      - name: pull docker container with pre-compiled Dynare and pre-configured MATLAB
-        run: docker pull ${{ env.DOCKER_REGISTRY_URL }}/${{ env.CONTAINER_NAME }}:${{ env.DYNARE_MATLAB_VERSION }}
-      
-      - name: Retrieve the secret and decode the base64 encoded license file
-        run: |
-          echo $MATLAB_LICENSEFILE_BASE64 | base64 --decode > ${{ github.workspace }}/license.lic
-
-      - name: run_all_files.m in Docker container
-        run: |
-          docker run --rm --shm-size=512M --mac-address ${{ env.MAC_ADDRESS_FOR_LICENSE }} \
-            -v ${{ github.workspace }}/license.lic:/licenses/license.lic:ro \
-            -e MLM_LICENSE_FILE=/licenses/license.lic \
-            ${{ env.DOCKER_REGISTRY_URL }}/${{ env.CONTAINER_NAME }}:${{ env.DYNARE_MATLAB_VERSION }} /bin/bash -c "\
-            cd /home/matlab && \
-            git clone https://github.com/JohannesPfeifer/DSGE_mod && \
-            cd DSGE_mod && \
-            git checkout ${{ github.sha }} && \
-            sed -i -e '/^    dynare/ s/$/ console/' run_all_files.m && \
-            matlab -batch 'run_all_files'"
+  dynare_5_4_matlab_r2023a:
+    uses: ./.github/workflows/dynare-matlab-common.yml
+    with:
+      dynare-version: "5.4"
+    secrets:
+      matlab-licensefile-base64: ${{ secrets.MATLAB_LICENSEFILE_BASE64 }}
