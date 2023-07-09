@@ -1,7 +1,6 @@
 [![DOI](https://zenodo.org/badge/34334463.svg)](https://zenodo.org/badge/latestdoi/34334463)
-[![Dynare 4.6.4](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-4.6.4-matlab.yml/badge.svg)](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-4.6.4-matlab.yml)
-[![Dynare 5.4](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-5.4-matlab.yml/badge.svg)](https://github.com/JohannesPfeifer/DSGE_mod/actions/workflows/dynare-5.4-matlab.yml)
-
+[![Dynare 4.6.4](../../actions/workflows/dynare-4.6.4-matlab.yml/badge.svg)](../../actions/workflows/dynare-4.6.4-matlab.yml)
+[![Dynare 5.4](../../actions/workflows/dynare-5.4-matlab.yml/badge.svg)](../../actions/workflows/dynare-5.4-matlab.yml)
 # DSGE_mod 
 
 A collection of Dynare models. It aims at demonstrating Dynare best practices 

@@ -1,0 +1,52 @@
+name: Common Dynare with MATLAB Workflow
+# You need to provide a valid license to the container (the different options are described here: https://de.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html).
+# This is a recommended way:
+# 1) Check whether your license allows for cloud and container usage: https://mathworks.com/help/install/license/licensing-for-mathworks-products-running-on-the-cloud.html
+# 2) Generate a license file using MATHWORKS License Center, see Option 2 https://de.mathworks.com/matlabcentral/answers/235126-how-do-i-generate-a-matlab-license-file#answer_190013
+#    The host id is the MAC address used below in the env block, make sure that you pass the same MAC address to the docker run command.
+#    The user is called matlab.
+# 3) Edit the license.lic file with a text editor and remove all the blocks except for MATLAB, Distrib_Computing_Toolbox, GADS_Toolbox, Optimization_Toolbox, Statistics_Toolbox, Symbolic_Toolbox, Control_Toolbox, Econometrics_Toolbox.
+# 4) Use base64 to encode the stripped down file into a Base64 string: base64 -i license.lic -o license.lic.base64 as described here https://docs.github.com/en/actions/security-guides/encrypted-secrets#storing-base64-binary-blobs-as-secrets
+# 5) Copy the content of license.lic.base64 and paste it as a Github secret named MATLAB_LICENSEFILE_BASE64.
+
+on:
+  workflow_call:
+    inputs:
+      dynare-version:
+        required: true
+        type: string
+    secrets:
+      matlab-licensefile-base64:
+        required: true
+
+jobs:
+  Run_all_files:
+    runs-on: ubuntu-latest
+    env:
+      DYNARE_VERSION: ${{ inputs.dynare-version }}
+      MATLAB_LICENSEFILE_BASE64: ${{ secrets.matlab-licensefile-base64 }}
+      MAC_ADDRESS_FOR_LICENSE: "A6-7E-1A-F4-9A-92"
+      USERNAME_IN_CONTAINER: "matlab"
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: pull docker container with pre-compiled Dynare and pre-configured MATLAB from Docker Hub
+        run: docker pull docker.io/dynare/dynare:${{ env.DYNARE_VERSION }}
+      
+      - name: Retrieve the secret and decode the base64 encoded license file
+        run: |
+          echo $MATLAB_LICENSEFILE_BASE64 | base64 --decode > ${{ github.workspace }}/license.lic
+
+      - name: run_all_files.m in Docker container
+        run: |
+          docker run --rm --shm-size=512M --mac-address ${{ env.MAC_ADDRESS_FOR_LICENSE }} \
+            -v ${{ github.workspace }}/license.lic:/licenses/license.lic:ro \
+            -v ${{ github.workspace }}:/home/matlab/${{ github.event.repository.name }} \
+            -e MLM_LICENSE_FILE=/licenses/license.lic \
+            docker.io/dynare/dynare:${{ env.DYNARE_VERSION }} /bin/bash -c "\
+            sudo chown -R ${{ env.USERNAME_IN_CONTAINER }}:${{ env.USERNAME_IN_CONTAINER }} /home/${{ env.USERNAME_IN_CONTAINER }}/${{ github.event.repository.name }} && \
+            cd /home/${{ env.USERNAME_IN_CONTAINER }}/${{ github.event.repository.name }} && \
+            sed -i -e '/^    dynare/ s/$/ console/' run_all_files.m && \
+            matlab -batch 'run_all_files'"
