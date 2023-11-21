@@ -14,6 +14,7 @@
  *          tb_y = 1-(c+i+(phi/2)*(k-k(-1))^2)/y;
  *      Note that this change does not affect any of the results presented in the paper, because they were obtained at first order
  *      and the first order derivative of this term is 0.
+ * - Thanks go to Camilo Marchesini for spotting a mistake.
  *   
  * This implementation was written by Johannes Pfeifer. If you spot any mistakes, 
  * email me at jpfeifer@gmx.de.
@@ -22,7 +23,7 @@
  */
 
 /*
- * Copyright (C) 2015 Johannes Pfeifer
+ * Copyright (C) 2015-2023 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -260,7 +261,7 @@ parameters beta ${\beta}$;
 
 model;
     [name='Eq. (29), Evolution of debt']
-    d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2+psi_3*(d-d_bar)^2;
+    d = (1+exp(r(-1)))*d(-1)- exp(y)+exp(c)+exp(i)+(phi/2)*(exp(k)-exp(k(-1)))^2+psi_3/2*(d-d_bar)^2;
     [name='Eq. (5), Production function']
     exp(y) = exp(a)*(exp(k(-1))^alpha)*(exp(h)^(1-alpha));
     [name='Eq. (6), Law of motion for capital']
