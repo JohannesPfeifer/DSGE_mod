@@ -599,8 +599,8 @@ variance.y_gap=oo_.var(y_gap_pos,y_gap_pos);
 options_old=options_;
 options_.nocorr=1;
 options_.noprint=1;
-lambda_unconditional_technology=csolve('get_consumption_equivalent_unconditional_welfare',0,[],1e-8,1000)
-lambda_conditional_technology=csolve('get_consumption_equivalent_conditional_welfare',lambda_unconditional_technology,[],1e-8,1000)
+lambda_unconditional_technology=csolve('get_consumption_equivalent_unconditional_welfare',0,[],1e-8,1000,M_,oo_,options_)
+lambda_conditional_technology=csolve('get_consumption_equivalent_conditional_welfare',lambda_unconditional_technology,[],1e-8,1000,M_,oo_,options_)
 options_=options_old;
  
 %display results
@@ -634,8 +634,8 @@ variance.y_gap=oo_.var(y_gap_pos,y_gap_pos);
 options_old=options_;
 options_.nocorr=1;
 options_.noprint=1;
-lambda_unconditional_demand=csolve('get_consumption_equivalent_unconditional_welfare',0,[],1e-8,1000)
-lambda_conditional_demand=csolve('get_consumption_equivalent_conditional_welfare',lambda_unconditional_demand,[],1e-8,1000)
+lambda_unconditional_demand=csolve('get_consumption_equivalent_unconditional_welfare',0,[],1e-8,1000,M_,oo_,options_)
+lambda_conditional_demand=csolve('get_consumption_equivalent_conditional_welfare',lambda_unconditional_demand,[],1e-8,1000,M_,oo_,options_)
 options_=options_old;
 
 %display results

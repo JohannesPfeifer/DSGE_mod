@@ -1,11 +1,11 @@
-function outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambda)
-% function outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambda)
+function outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambda,M_,oo_,options_)
+% outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambda,M_,oo_,options_)
 % computes the conditional welfare difference between the given model equilibrium and the 
 % alternative with a consumption-equivalent of lambda lost compared to the
 % natural/flex-price allocation; it uses Dynare's simult_-function to compute the lifetime utility 
 % defined in the model for a given state vector (here the steady state)
 
-% Copyright (C) 2018-21 Johannes Pfeifer and Benjamin Born
+% Copyright (C) 2018-23 Johannes Pfeifer and Benjamin Born
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -20,21 +20,22 @@ function outvalue=get_consumption_equivalent_conditional_welfare(par_value_lambd
 % For a copy of the GNU General Public License,
 % see <http://www.gnu.org/licenses/>.
 
-global oo_ M_ options_
 
 if par_value_lambda>1 %do not allow negative consumption
     outvalue=1e5+par_value_lambda^2;
 end
 
-set_param_value('lambda_utility',par_value_lambda)  %set consumption equivalent lambda
+M_.params(strmatch('lambda_utility',M_.param_names,'exact'))=par_value_lambda;  %set consumption equivalent lambda
 if isempty(options_.qz_criterium)
     options_.qz_criterium = 1+1e-6;
 end
 dyn_ver = dynare_version;
 if str2double(dyn_ver(1))< 5
     [oo_.dr, info, M_, options_, oo_] = resol(0, M_, options_, oo_); %get decision rules
-    else
+elseif str2double(dyn_ver(1))< 6
     [oo_.dr,info,M_,oo_] = resol(0,M_,options_,oo_); %get decision rules
+else
+    [oo_.dr,info] = resol(0,M_,options_,oo_.dr,oo_.steady_state,oo_.exo_steady_state,oo_.exo_steady_state); %get decision rules
 end
 if info(1) %filter out error codes
     outvalue=1e5+par_value_lambda^2;
