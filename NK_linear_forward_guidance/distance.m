@@ -30,8 +30,8 @@ function resid=distance(shock_values,shock_name,target_value,target_name,M_,opti
 %  see <http://www.gnu.org/licenses/>.
 
 oo_.exo_simul(M_.maximum_lag+1:M_.maximum_lag+length(shock_values),strmatch(shock_name,M_.exo_names,'exact'))=shock_values;
-oo_ = perfect_foresight_solver_core(M_,options_,oo_);
-if ~oo_.deterministic_simulation.status
+[oo_.endo_simul, success]= perfect_foresight_solver_core(oo_.endo_simul,oo_.exo_simul,oo_.steady_state,oo_.exo_steady_state,M_,options_);
+if ~success
     resid=repmat(options_.huge_number,size(target_value));
 else
     resid=(target_value-oo_.endo_simul(strmatch(target_name,M_.endo_names,'exact'),M_.maximum_lag+1:M_.maximum_lag+length(target_value)))';

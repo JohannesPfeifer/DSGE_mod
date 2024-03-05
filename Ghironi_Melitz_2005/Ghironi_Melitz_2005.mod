@@ -250,7 +250,7 @@ Horizon = (1:length(oo_.irfs.C_eps_Z)+1)/4;
 zeroline = (zeros(length(oo_.irfs.C_eps_Z)+1,1))';
 
 subplot(4,4,1)
-plot(Horizon,[0 ; (C_eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , (oo_.irfs.C_eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('C','Fontsize',12);
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -258,7 +258,7 @@ xlim([0 max(Horizon)])
 ylim([0 0.5])
 
 subplot(4,4,2)
-plot(Horizon,[0 ; (C__eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , (oo_.irfs.C__eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('C*','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -266,7 +266,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.05]);
 
 subplot(4,4,3)
-plot(Horizon,[0 ; (Ne_eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , (oo_.irfs.Ne_eps_Z)*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Ne','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -274,7 +274,7 @@ xlim([0 max(Horizon)])
 ylim([-0.25 4]);
 
 subplot(4,4,4)
-plot(Horizon,[0 ; Nd_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Nd_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Nd','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -282,7 +282,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.55]); 
 
 subplot(4,4,5)
-plot(Horizon,[0 ; zx_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.zx_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('z_{x}','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -290,7 +290,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.17]);
 
 subplot(4,4,6)
-plot(Horizon,[0 ; Nx_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Nx_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Nx','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -298,7 +298,7 @@ xlim([0 max(Horizon)])
 ylim([-0.1 0.2]);
 
 subplot(4,4,7)
-plot(Horizon,[0 ; Ne__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Ne__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Ne*','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -306,7 +306,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.05]);
 
 subplot(4,4,8)
-plot(Horizon,[0 ; Nd__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Nd__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Nd*','Fontsize',12)    
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -314,7 +314,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.05]); 
 
 subplot(4,4,9)
-plot(Horizon,[0 ; zx__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.zx__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('z_{x}*','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -322,7 +322,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.05]);
 
 subplot(4,4,10)
-plot(Horizon,[0 ; Nx__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Nx__eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Nx*','Fontsize',12)        
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -330,7 +330,7 @@ xlim([0 max(Horizon)])
 ylim([0 0.15]);
 
 subplot(4,4,11)
-plot(Horizon,[0 ; TOL_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.TOL_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('TOL','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -338,7 +338,7 @@ xlim([0 max(Horizon)])
 ylim([-0.12 0.07]);
 
 subplot(4,4,12)
-plot(Horizon,[0 ; Qtilde_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Qtilde_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Q~','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -346,7 +346,7 @@ xlim([0 max(Horizon)])
 ylim([-0.12 0.05]);
 
 subplot(4,4,13)
-plot(Horizon,[0 ; Q_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Q_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Q','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)
@@ -354,7 +354,7 @@ xlim([0 max(Horizon)])
 ylim([-0.05 0.055]);
 
 subplot(4,4,14)
-plot(Horizon,[0 ; Z_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
+plot(Horizon,[0 , oo_.irfs.Z_eps_Z*100],'Color','r','LineWidth',2.5,'LineStyle','-'); hold on
 plot(Horizon,zeroline,'Color','k','LineWidth',1.0);
 title('Z','Fontsize',12)
 ylabel('% deviation from SS', 'FontSize', 8)

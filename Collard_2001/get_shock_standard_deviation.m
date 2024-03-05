@@ -39,7 +39,7 @@ estim_params_.var_exo=NaN(1,9);
 estim_params_.var_exo(1,1)=strmatch(shock_name,M_.exo_names,'exact');
 bounds.lb=0;
 bounds.ub=Inf;
-estim_params=check_for_calibrated_covariances(starting_value,estim_params_,M_);
+estim_params=check_for_calibrated_covariances(estim_params_,M_);
 
 %run solver
 options_.noprint=1;

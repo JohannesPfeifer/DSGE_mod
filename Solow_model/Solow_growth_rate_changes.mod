@@ -36,6 +36,10 @@
  * For a copy of the GNU General Public License,
  * see <http://www.gnu.org/licenses/>.
  */
+@#ifndef TFP_growth
+    @#define TFP_growth=true
+@#endif
+
 
 //****************************************************************************
 //Define variables
@@ -112,178 +116,182 @@ g_k_per_capita=g_k_intensive+g;
 g_k_aggregate=g_k_intensive+g+n; 
 end;
 
-//****************************************************************************
-//initval-block: set initial condition to steady state value with g=g_initial
-//and n=n_initial
-//****************************************************************************
-initval;
-    g=g_initial;
-    n=n_initial;
-    k=((delta+n+g_initial+n*g_initial)/s)^(1/(alpha-1));
-    y=k^alpha;
-    c=(1-s)*y;
-    invest=y-c;
-    log_y=log(y);
-    log_c=log(c);
-    log_invest=log(invest);
-    log_k=log(k);
-    g_k_intensive=0;
-    g_k_per_capita=g_k_intensive+g; 
-    g_k_aggregate=g_k_intensive+g+n;
-end;
 
-//****************************************************************************
-//endval-block: set 
-//      i)  g=0 for all periods after the initial one
-//      ii) terminal condition to steady state value with g=0;
-//****************************************************************************
-endval;
-    g=0;
-    n=n_initial;
-    k=((delta+n+g+n*g)/s)^(1/(alpha-1));
-    y=k^alpha;
-    c=(1-s)*y;
-    invest=y-c;
-    log_y=log(y);
-    log_c=log(c);
-    log_invest=log(invest);
-    log_k=log(k);
-    g_k_intensive=0;
-    g_k_per_capita=g_k_intensive+g; 
-    g_k_aggregate=g_k_intensive+g+n;
-end;
-//****************************************************************************
-//steady-command: compute the steady state conditional on the value of the exogenous 
-//  states and use them for endval (redundant here, because we provided the steady states
-//  analytically) 
-//****************************************************************************
-steady;
+@#if TFP_growth
+    //****************************************************************************
+    //initval-block: set initial condition to steady state value with g=g_initial
+    //and n=n_initial
+    //****************************************************************************
+    initval;
+        g=g_initial;
+        n=n_initial;
+        k=((delta+n+g_initial+n*g_initial)/s)^(1/(alpha-1));
+        y=k^alpha;
+        c=(1-s)*y;
+        invest=y-c;
+        log_y=log(y);
+        log_c=log(c);
+        log_invest=log(invest);
+        log_k=log(k);
+        g_k_intensive=0;
+        g_k_per_capita=g_k_intensive+g; 
+        g_k_aggregate=g_k_intensive+g+n;
+    end;
+    
+    //****************************************************************************
+    //endval-block: set 
+    //      i)  g=0 for all periods after the initial one
+    //      ii) terminal condition to steady state value with g=0;
+    //****************************************************************************
+    endval;
+        g=0;
+        n=n_initial;
+        k=((delta+n+g+n*g)/s)^(1/(alpha-1));
+        y=k^alpha;
+        c=(1-s)*y;
+        invest=y-c;
+        log_y=log(y);
+        log_c=log(c);
+        log_invest=log(invest);
+        log_k=log(k);
+        g_k_intensive=0;
+        g_k_per_capita=g_k_intensive+g; 
+        g_k_aggregate=g_k_intensive+g+n;
+    end;
+    //****************************************************************************
+    //steady-command: compute the steady state conditional on the value of the exogenous 
+    //  states and use them for endval (redundant here, because we provided the steady states
+    //  analytically) 
+    //****************************************************************************
+    steady;
+    
+    //****************************************************************************
+    //perfect_foresight_setup: set up the simulation for 100 periods
+    //you can check the settings in oo_.endo_simul (and oo_.exo_simul if there 
+    //were exogenous variables)
+    //****************************************************************************
+    perfect_foresight_setup(periods=100);
+    
+    //****************************************************************************
+    //perfect_foresight_solver: compute the solution
+    //****************************************************************************
+    perfect_foresight_solver;
+    send_endogenous_variables_to_workspace;
+    //****************************************************************************
+    //rplot command: display simulation results
+    //****************************************************************************
+    rplot k y c invest;
+    
+    rplot log_k log_y log_c log_invest;
+    
+    figure('Name','Change in g')
+    subplot(4,1,1)
+    plot(log_k)
+    axis tight
+    title('Log k in intensive form')
+            
+    subplot(4,1,2)
+    plot(g_k_intensive)
+    axis tight
+    title('Growth rate of k in intensive form')
+    
+    subplot(4,1,3)
+    plot(g_k_per_capita)
+    axis tight
+    title('Growth rate of per capita k')
+    
+    subplot(4,1,4)
+    plot(g_k_aggregate)
+    axis tight
+    title('Growth rate of aggregate k')
 
-//****************************************************************************
-//perfect_foresight_setup: set up the simulation for 100 periods
-//you can check the settings in oo_.endo_simul (and oo_.exo_simul if there 
-//were exogenous variables)
-//****************************************************************************
-perfect_foresight_setup(periods=100);
-
-//****************************************************************************
-//perfect_foresight_solver: compute the solution
-//****************************************************************************
-perfect_foresight_solver;
-
-//****************************************************************************
-//rplot command: display simulation results
-//****************************************************************************
-rplot k y c invest;
-
-rplot log_k log_y log_c log_invest;
-
-figure('Name','Change in g')
-subplot(4,1,1)
-plot(log_k)
-axis tight
-title('Log k in intensive form')
-        
-subplot(4,1,2)
-plot(g_k_intensive)
-axis tight
-title('Growth rate of k in intensive form')
-
-subplot(4,1,3)
-plot(g_k_per_capita)
-axis tight
-title('Growth rate of per capita k')
-
-subplot(4,1,4)
-plot(g_k_aggregate)
-axis tight
-title('Growth rate of aggregate k')
-
-%%%%%%%%%%%%%% Now consider change in n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-//****************************************************************************
-//initval-block: set initial condition to steady state value with g=g_initial
-//and n=n_initial        
-//****************************************************************************
-initval;
-    g=g_initial;
-    n=n_initial;
-    k=((delta+n+g_initial+n*g_initial)/s)^(1/(alpha-1));
-    y=k^alpha;
-    c=(1-s)*y;
-    invest=y-c;
-    log_y=log(y);
-    log_c=log(c);
-    log_invest=log(invest);
-    log_k=log(k);
-    g_k_intensive=0;
-    g_k_per_capita=g_k_intensive+g; 
-    g_k_aggregate=g_k_intensive+g+n;
-end;
-
-//****************************************************************************
-//endval-block: set 
-//      i)  n=0 for all periods after the initial one
-//      ii) terminal condition to steady state value with n=0;
-//****************************************************************************
-endval;
-    g=g_initial;
-    n=0;
-    k=((delta+n+g+n*g)/s)^(1/(alpha-1));
-    y=k^alpha;
-    c=(1-s)*y;
-    invest=y-c;
-    log_y=log(y);
-    log_c=log(c);
-    log_invest=log(invest);
-    log_k=log(k);
-    g_k_intensive=0;
-    g_k_per_capita=g_k_intensive+g; 
-    g_k_aggregate=g_k_intensive+g+n;
-end;
-//****************************************************************************
-//steady-command: compute the steady state conditional on the value of the exogenous 
-//  states and use them for endval (redundant here, because we provided the steady states
-//  analytically) 
-//****************************************************************************
-steady;
-
-//****************************************************************************
-//perfect_foresight_setup: set up the simulation for 100 periods
-//you can check the settings in oo_.endo_simul (and oo_.exo_simul if there 
-//were exogenous variables)
-//****************************************************************************
-perfect_foresight_setup(periods=100);
-
-//****************************************************************************
-//perfect_foresight_solver: compute the solution
-//****************************************************************************
-perfect_foresight_solver;
-
-//****************************************************************************
-//rplot command: display simulation results
-//****************************************************************************
-rplot k y c invest;
-
-rplot log_k log_y log_c log_invest;
-
-figure('Name','Change in n')
-subplot(4,1,1)
-plot(log_k)
-axis tight
-title('Log k in intensive form')
-        
-subplot(4,1,2)
-plot(g_k_intensive)
-axis tight
-title('Growth rate of k in intensive form')
-
-subplot(4,1,3)
-plot(g_k_per_capita)
-axis tight
-title('Growth rate of per capita k')
-
-subplot(4,1,4)
-plot(g_k_aggregate)
-axis tight
-title('Growth rate of aggregate k')
+@#else
+    %%%%%%%%%%%%%% Now consider change in n %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    //****************************************************************************
+    //initval-block: set initial condition to steady state value with g=g_initial
+    //and n=n_initial        
+    //****************************************************************************
+    initval;
+        g=g_initial;
+        n=n_initial;
+        k=((delta+n+g_initial+n*g_initial)/s)^(1/(alpha-1));
+        y=k^alpha;
+        c=(1-s)*y;
+        invest=y-c;
+        log_y=log(y);
+        log_c=log(c);
+        log_invest=log(invest);
+        log_k=log(k);
+        g_k_intensive=0;
+        g_k_per_capita=g_k_intensive+g; 
+        g_k_aggregate=g_k_intensive+g+n;
+    end;
+    
+    //****************************************************************************
+    //endval-block: set 
+    //      i)  n=0 for all periods after the initial one
+    //      ii) terminal condition to steady state value with n=0;
+    //****************************************************************************
+    endval;
+        g=g_initial;
+        n=0;
+        k=((delta+n+g+n*g)/s)^(1/(alpha-1));
+        y=k^alpha;
+        c=(1-s)*y;
+        invest=y-c;
+        log_y=log(y);
+        log_c=log(c);
+        log_invest=log(invest);
+        log_k=log(k);
+        g_k_intensive=0;
+        g_k_per_capita=g_k_intensive+g; 
+        g_k_aggregate=g_k_intensive+g+n;
+    end;
+    //****************************************************************************
+    //steady-command: compute the steady state conditional on the value of the exogenous 
+    //  states and use them for endval (redundant here, because we provided the steady states
+    //  analytically) 
+    //****************************************************************************
+    steady;
+    
+    //****************************************************************************
+    //perfect_foresight_setup: set up the simulation for 100 periods
+    //you can check the settings in oo_.endo_simul (and oo_.exo_simul if there 
+    //were exogenous variables)
+    //****************************************************************************
+    perfect_foresight_setup(periods=100);
+    
+    //****************************************************************************
+    //perfect_foresight_solver: compute the solution
+    //****************************************************************************
+    perfect_foresight_solver;
+    send_endogenous_variables_to_workspace;
+    //****************************************************************************
+    //rplot command: display simulation results
+    //****************************************************************************
+    rplot k y c invest;
+    
+    rplot log_k log_y log_c log_invest;
+    
+    figure('Name','Change in n')
+    subplot(4,1,1)
+    plot(log_k)
+    axis tight
+    title('Log k in intensive form')
+            
+    subplot(4,1,2)
+    plot(g_k_intensive)
+    axis tight
+    title('Growth rate of k in intensive form')
+    
+    subplot(4,1,3)
+    plot(g_k_per_capita)
+    axis tight
+    title('Growth rate of per capita k')
+    
+    subplot(4,1,4)
+    plot(g_k_aggregate)
+    axis tight
+    title('Growth rate of aggregate k')
+@#endif

@@ -157,12 +157,12 @@ log_y_nonstationary_antic(1,1)=0;
 
 // reaccumulate the non-stationary level series
 for ii=2:options_.irf+1
-    log_a_surprise(ii,1)=log_a_surprise(ii-1,1)+mu_a_epsilon(ii-1,1);
-    log_a_antic(ii,1)=log_a_antic(ii-1,1)+mu_a_u(ii-1,1);
-    log_mu_y_surprise(ii,1)=mu_y_epsilon(ii-1,1)+log_mu_y_surprise(ii-1,1);
-    log_y_nonstationary_surprise(ii,1)=y_epsilon(ii-1,1)+log_mu_y_surprise(ii,1);
-    log_mu_y_antic(ii,1)=mu_y_u(ii-1,1)+log_mu_y_antic(ii-1,1);
-    log_y_nonstationary_antic(ii,1)=y_u(ii-1,1)+log_mu_y_antic(ii,1);
+    log_a_surprise(ii,1)=log_a_surprise(ii-1,1)+oo_.irfs.mu_a_epsilon(1,ii-1);
+    log_a_antic(ii,1)=log_a_antic(ii-1,1)+oo_.irfs.mu_a_u(1,ii-1);
+    log_mu_y_surprise(ii,1)=oo_.irfs.mu_y_epsilon(1,ii-1)+log_mu_y_surprise(ii-1,1);
+    log_y_nonstationary_surprise(ii,1)=oo_.irfs.y_epsilon(1,ii-1)+log_mu_y_surprise(ii,1);
+    log_mu_y_antic(ii,1)=oo_.irfs.mu_y_u(1,ii-1)+log_mu_y_antic(ii-1,1);
+    log_y_nonstationary_antic(ii,1)=oo_.irfs.y_u(1,ii-1)+log_mu_y_antic(ii,1);
 end
 
 //Make the plot

@@ -66,7 +66,7 @@ z3 = permute(reshape(1:z_nbr^3,z_nbr,z_nbr,z_nbr),[3 2 1]); % index for columns 
 
 %% dynamic Jacobians
 [~, d1f, d2f, d3f] = feval([M_.fname,'.dynamic'], oo_.steady_state(I), oo_.exo_steady_state', M_.params, oo_.steady_state, 1); % get derivatives of dynamic model from script files evaluated at non-stochastic steady-state in declaration order
-d3f = unfold_g3(d3f,z_nbr); % d3f does not contain symmetric elements, so we need to unfold it
+d3f = identification.unfold_g3(d3f,z_nbr); % d3f does not contain symmetric elements, so we need to unfold it
 d1f_d1y0 = d1f(:,nonzeros(M_.lead_lag_incidence(2,oo_.dr.order_var))); % first derivative of dynamic model with respect to y0
 d1f_d1yp = d1f(:,nonzeros(M_.lead_lag_incidence(3,oo_.dr.order_var))); % first derivative of dynamic model with respect to yp (one time)
 d2f_d2yp = d2f(:,z2(nonzeros(M_.lead_lag_incidence(3,oo_.dr.order_var)),nonzeros(M_.lead_lag_incidence(3,oo_.dr.order_var)))); % second derivative of dynamic model with respect to yp (two times)

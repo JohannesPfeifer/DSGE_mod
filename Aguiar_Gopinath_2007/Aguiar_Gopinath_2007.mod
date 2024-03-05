@@ -156,13 +156,12 @@ check;
 //%%%%%%%%%%%%%%%%%%%%%% Plot impulse response functions  %%%%%%%%%%%%%%%%
 stoch_simul(order=1,nomoments,nofunctions) nx c_y_percentage i_y_percentage;
 
-
-
 //%%%%%%%%%%%%%%%%%%%%%% Plot impulse response functions of  %%%%%%%%%%%%%%
 //%%%%%%%%%%%%%%%%%%%%%% non-stationary time series          %%%%%%%%%%%%%%
 
 //generate IRF of stationary model variables
 stoch_simul(order=1,nograph) log_y log_c log_i g;
+send_irfs_to_workspace;
 
 //Now back out IRF of non-stationary model variables by adding trend growth back
 
@@ -208,7 +207,7 @@ end;
 
 // Simulate series on which to compute moments (Paper uses analytical moments)
 stoch_simul(irf=0,order=1,periods=100000,nomoments,nofunctions) log_y delta_y c invest nx;
-
+send_endogenous_variables_to_workspace;    
 
 // Rebuild non-stationary time series by remultiplying with trend Gamma_{t-1}
 

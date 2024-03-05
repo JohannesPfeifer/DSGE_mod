@@ -352,7 +352,8 @@ try
     close all; clearvars all; clearvars -global;
     cd('../Solow_model');
     dynare Solow_SS_transition
-    dynare Solow_growth_rate_changes
+    dynare Solow_growth_rate_changes -DTFP_growth=false
+    dynare Solow_growth_rate_changes -DTFP_growth=true
     dynare Solow_nonstationary
 catch ME
     fid = fopen('error.txt', 'w'); fprintf(fid,'%s',ME.message);fclose(fid);

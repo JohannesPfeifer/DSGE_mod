@@ -206,11 +206,11 @@ var e = sigma^2; //picked to set output volatility to 1
 end;
 
 steady;
-stoch_simul(order = 1,irf=0) y_growth c_growth i_growth ; 
-
-
+% stoch_simul(order = 1,irf=0) y_growth c_growth i_growth ; 
+stoch_simul(order = 2) r_f r_k;
+% return;
 stoch_simul(order = 2,irf=0,periods=50000) V_k d r_f r_k;
-
+send_endogenous_variables_to_workspace;
 E_r_f=mean(exp(log_r_f)-1)*400
 
 R=gamma*(exp(log_V_k(2:end))+exp(log_d(2:end)))./exp(log_V_k(1:end-1));

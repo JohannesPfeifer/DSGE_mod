@@ -544,7 +544,7 @@ set_param_value('epsilon',10); %reset to baseline
             for phi_y_iter=1:length(phi_y_vec)
                 set_param_value('phi_pi',phi_pi_mat(phi_pi_iter,phi_y_iter));
                 set_param_value('phi_y',phi_y_mat(phi_pi_iter,phi_y_iter));
-                [dr,info]=resol(0,M_,options_,oo_);
+                [dr,info]=resol(0,M_,options_,oo_.dr, oo_.steady_state, oo_.exo_steady_state, oo_.exo_det_steady_state);
                 info_mat(phi_pi_iter,phi_y_iter)=info(1);
             end
         end

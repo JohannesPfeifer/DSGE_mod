@@ -183,6 +183,7 @@ write_latex_dynamic_model;
 
 %% get second order decision rules
 stoch_simul(order=2,periods=100000,drop=1000,irf=0) c l k y E_t_R_k R_f;
+send_endogenous_variables_to_workspace;
 
 %%plot densities
 verbatim;
