@@ -40,3 +40,21 @@ jobs:
           command: |            
             addpath("D:\hostedtoolcache\windows\dynare-6.0\matlab");
             run_all_files;
+
+      - name: Prepare log files for artifact upload
+        if: always()
+        run: |
+          New-Item -ItemType Directory -Force -Path artifacts
+          Get-ChildItem -Path . -Filter *.log -Recurse | ForEach-Object {
+            $destPath = Join-Path -Path "artifacts" -ChildPath $_.DirectoryName.Substring($pwd.Path.Length)
+            New-Item -ItemType Directory -Force -Path $destPath
+            Copy-Item -Path $_.FullName -Destination $destPath
+          }
+        shell: pwsh
+
+      - name: Upload log artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files-dynare-6-0-matlab-r2023b-windows
+          path: artifacts/
