@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/34334463.svg)](https://zenodo.org/badge/latestdoi/34334463)
-[![Dynare 4.6.4](../../actions/workflows/dynare-4.6.4-matlab-docker.yml/badge.svg)](../../actions/workflows/dynare-4.6.4-matlab-docker.yml)
-[![Dynare 5.4](../../actions/workflows/dynare-5.4-matlab-docker.yml/badge.svg)](../../actions/workflows/dynare-5.4-matlab-docker.yml)
 [![Dynare 6.0](../../actions/workflows/dynare-6.0-matlab-windows.yml/badge.svg)](../../actions/workflows/dynare-6.0-matlab-windows.yml)
+[![Dynare 6.0](../../actions/workflows/dynare-6.0-matlab-macos.yml/badge.svg)](../../actions/workflows/dynare-6.0-matlab-macos.yml)
+[![Dynare 6.0](../../actions/workflows/dynare-6.0-matlab-ubuntu.yml/badge.svg)](../../actions/workflows/dynare-6.0-matlab-ubuntu.yml)
 # DSGE_mod 
 
 A collection of Dynare models. It aims at demonstrating Dynare best practices 
@@ -15,8 +15,9 @@ in the respective papers.
 
 ## Compatibility
 
-These mod-files have been tested against Dynare 4.6.4 and 5.4. Compatibility with 
-earlier versions is not guaranteed. For Dynare 4.5 version, please use the 4.5 branch of this repository
+These mod-files have been tested against Dynare 6.0.
+Users are advised to reference specific branches of this repository
+tailored to earlier versions of Dynare to ensure compatibility.
 
 # Contributing your own mod-files
 
