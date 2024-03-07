@@ -1,15 +1,14 @@
-name: Dynare 4.6.4 with MATLAB R2021a
+name: Dynare 4.6.4 with MATLAB R2021a using Docker
 
 on:
   push:
     branches:
-      - main
-      - master
+      - 4.6
   workflow_dispatch:
 
 jobs:
-  dynare_4_6_4_matlab_r2021a:
-    uses: ./.github/workflows/dynare-matlab-common.yml
+  dynare_4_6_4_matlab_r2021a_docker:
+    uses: ./.github/workflows/dynare-matlab-docker-common.yml
     with:
       dynare-version: "4.6.4"
     secrets:
