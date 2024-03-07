@@ -46,3 +46,16 @@ jobs:
           command: |            
             addpath("Dynare-6.0-arm64/matlab");
             run_all_files;
+
+      - name: Prepare log files for artifact upload
+        if: always()
+        run: |
+          mkdir artifacts
+          find . -name '*.log' -exec bash -c 'mkdir -p artifacts/$(dirname {}); cp {} artifacts/{};' \;
+      
+      - name: Upload log artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-files-dynare-6-0-matlab-r2023b-macos
+          path: artifacts/
