@@ -27,7 +27,7 @@
  */
 
 /*
- * Copyright (C) 2013-15 Johannes Pfeifer
+ * Copyright (C) 2013-2024 Johannes Pfeifer
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -169,6 +169,9 @@ log_Gamma_0=0; //Initialize Level of Technology at t=0;
 log_Gamma(1,1)=g_eps_g(1,1)+log_Gamma_0; //Level of Tech. after shock in period 1
 
 // reaccumulate the non-stationary level series; note that AG2007 detrend with X_t-1, thus the technology level in the loop is shifted by 1 period 
+log_y_nonstationary = zeros(options_.irf,1);
+log_c_nonstationary = zeros(options_.irf,1);
+log_i_nonstationary = zeros(options_.irf,1);
 for ii=2:options_.irf
     log_Gamma(ii,1)=g_eps_g(ii,1)+log_Gamma(ii-1,1);
     log_y_nonstationary(ii,1)=log_y_eps_g(ii,1)+log_Gamma(ii-1,1);
@@ -215,7 +218,9 @@ log_Gamma_0=0; //Initialize Level of Technology at t=0;
 log_Gamma(1,1)=g(1,1)+log_Gamma_0; //Level of Tech. after shock in period 1
 
 // reaccumulate the non-stationary level series
-
+log_y_nonstationary = zeros(options_.periods,1);
+log_c_nonstationary = zeros(options_.periods,1);
+log_i_nonstationary = zeros(options_.periods,1);
 for ii=2:options_.periods
     log_Gamma(ii,1)=g(ii,1)+log_Gamma(ii-1,1);
     log_y_nonstationary(ii,1)=log_y(ii,1)+log_Gamma(ii-1,1);
