@@ -1,4 +1,4 @@
-name: Dynare 5.4 with MATLAB R2023a
+name: Dynare 5.4 with MATLAB R2023a using Docker
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  dynare_5_4_matlab_r2023a:
-    uses: ./.github/workflows/dynare-matlab-common.yml
+  dynare_5_4_matlab_r2023a_docker:
+    uses: ./.github/workflows/dynare-matlab-docker-common.yml
     with:
       dynare-version: "5.4"
     secrets:

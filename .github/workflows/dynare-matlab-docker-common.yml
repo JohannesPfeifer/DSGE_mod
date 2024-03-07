@@ -1,4 +1,4 @@
-name: Common Dynare with MATLAB Workflow
+name: Common Dynare with MATLAB using Docker workflow
 # You need to provide a valid license to the container (the different options are described here: https://de.mathworks.com/help/cloudcenter/ug/matlab-container-on-docker-hub.html).
 # This is a recommended way:
 # 1) Check whether your license allows for cloud and container usage: https://mathworks.com/help/install/license/licensing-for-mathworks-products-running-on-the-cloud.html

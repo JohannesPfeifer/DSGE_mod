@@ -1,5 +1,6 @@
 clearvars all; clearvars -global;
-    
+bad_folders = [];
+
 %% Aguiar_Gopinath_2007
 try
     close all;

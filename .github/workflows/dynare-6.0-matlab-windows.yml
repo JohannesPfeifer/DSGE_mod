@@ -1,0 +1,42 @@
+name: 'Dynare 6.0 with MATLAB R2023b on Windows '
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  dynare_6_0_matlab_r2023b_windows:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      
+      - name: Add console option to Dynare calls in run_all_files
+        run: |
+          (Get-Content run_all_files.m) | ForEach-Object {
+            if ($_ -match '^    dynare') { $_ + " console" } else { $_ }
+          } | Set-Content run_all_files.m
+        shell: pwsh
+      
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: R2023b
+          products: Symbolic_Math_Toolbox Statistics_and_Machine_Learning_Toolbox Optimization_Toolbox Econometrics_Toolbox Parallel_Computing_Toolbox Control_System_Toolbox Global_Optimization_Toolbox
+          cache: true
+      
+      - name: Download and unzip Dynare 6.0
+        run: |
+          curl -L "https://www.dynare.org/release/windows-zip/dynare-6.0-win.zip" -o "dynare-6.0-win.zip"
+          Expand-Archive -Path "dynare-6.0-win.zip" -DestinationPath "D:\hostedtoolcache\windows"
+        shell: pwsh
+          
+      - name: run_all_files
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |            
+            addpath("D:\hostedtoolcache\windows\dynare-6.0\matlab");
+            run_all_files;
