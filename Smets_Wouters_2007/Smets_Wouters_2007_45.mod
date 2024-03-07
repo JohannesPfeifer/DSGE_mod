@@ -401,8 +401,14 @@ end;
 
 varobs dy dc dinve labobs pinfobs dw robs;
 
-prior_function(function='PC_slope');
-PC_slope_vec=cell2mat(oo_.prior_function_results(:,1));
+all_positive = false;
+while ~all_positive
+    prior_function(function='PC_slope');
+    PC_slope_vec=cell2mat(oo_.prior_function_results(:,1));
+    if all(PC_slope_vec>0)
+        all_positive = true;
+    end
+end
 [f,xi] = ksdensity(PC_slope_vec,'Support','positive');
 figure('Name','Prior Slope of the Phillips Curve')
 plot(xi,f);

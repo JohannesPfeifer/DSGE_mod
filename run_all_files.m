@@ -1,5 +1,4 @@
 clearvars all; clearvars -global;
-bad_folders = [];
 
 %% Aguiar_Gopinath_2007
 try
@@ -232,7 +231,7 @@ try
     cd('../Jermann_Quadrini_2012_NK');
     dynare Jermann_Quadrini_2012_NK
 catch ME
-    bad_folders = [bad_folders; "Jermann_Quadrini_2012"];
+    fid = fopen('error.txt', 'w'); fprintf(fid,'%s',ME.message);fclose(fid);
 end
 
 %% McCandless_2008
@@ -270,7 +269,7 @@ try
     dynare RBC_baseline
     dynare RBC_baseline_first_diff_bayesian
 catch ME
-    bad_folders = [bad_folders; "RBC_baseline"];
+    fid = fopen('error.txt', 'w'); fprintf(fid,'%s',ME.message);fclose(fid);
 end
 
 %% RBC_baseline_welfare
