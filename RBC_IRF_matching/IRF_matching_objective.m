@@ -1,5 +1,5 @@
-function [fval, IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matrix)
-% function  [fval, IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matrix)
+function [fval, IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matrix,M_,oo_,options_)
+% function [fval,IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matrix,M_,oo_,options_)
 % Computes the quadratic deviation of the simulated IRFs from the empirical
 % ones; does so by calling stoch_simul.m from Dynare to compute IRFs
 %
@@ -22,7 +22,7 @@ function [fval, IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matr
 %   - The empirical IRFs and model IRFs use an impulse size of 1 percent. Thus, there is no uncertainty about the
 %       initial impact. The IRF matching therefore only targets the G-response starting in the second period.
 
-% Copyright (C) 2017 Johannes Pfeifer
+% Copyright (C) 2017-2024 Johannes Pfeifer
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -36,22 +36,20 @@ function [fval, IRF_model]=IRF_matching_objective(xopt,IRF_target,weighting_matr
 %
 % For a copy of the GNU General Public License, see <http://www.gnu.org/licenses/>.
 
-global oo_ M_ options_ %required input structures for call to stoch_simul
-
 %% set parameter for use in Dynare
-set_param_value('root_g_1',xopt(1)); % first autoregressive root
-set_param_value('root_g_2',xopt(2)); % second autoregressive root
+M_.params(strmatch('root_g_1',M_.param_names,'exact'))=xopt(1); % first autoregressive root
+M_.params(strmatch('root_g_2',M_.param_names,'exact'))=xopt(2); % second autoregressive root
 
 if any(xopt<=-1) || any(xopt(1)>=1) %make sure roots are between 0 and 1
-    fval=10e6+sum([xopt].^2); %penalty function
+    fval=10e6+sum(xopt.^2); %penalty function
     return
 end
 
 var_list={'ghat','log_y'};
-[info, oo_, options_, M_] = stoch_simul(M_, options_, oo_, var_list); %run stoch_simul to generate IRFs with the options specified in the mod-file
+[info, oo_] = stoch_simul(M_, options_, oo_, var_list); %run stoch_simul to generate IRFs with the options specified in the mod-file
 
-if info %solution was not successful
-    fval=10e6+sum([xopt].^2); %return with penalty 
+if info(1) %solution was not successful
+    fval=10e6+sum(xopt.^2); %return with penalty 
 else
     IRF_model=[oo_.irfs.ghat_eps_g' oo_.irfs.log_y_eps_g']; %select desired IRFs
     % compute objective function (omitting the impact response of G as that is targeted with the shock size)
