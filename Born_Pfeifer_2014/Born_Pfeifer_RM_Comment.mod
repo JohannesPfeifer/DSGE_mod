@@ -274,8 +274,8 @@ burnin=4000; //periods for convergence
 shocks_mat_with_zeros=zeros(burnin,M_.exo_nbr); //shocks set to 0 to simulate without uncertainty
 %% Note that simult_FGRU.m uses the original non-standard pruning scheme
 out_noshock = simult_FGRU(oo_.dr.ys,oo_.dr,shocks_mat_with_zeros,options_.order,zeros(size(oo_.dr.ys)),zeros(M_.exo_nbr,1)); //simulate series
-%% To simulate serires with proper pruning scheme as in Andreasen et al. (2013), use the following code
-% out_noshock = simult_(oo_.dr.ys,oo_.dr,shocks_mat_with_zeros,options_.order); //simulate series
+%% To simulate series with proper pruning scheme as in Andreasen et al. (2013), use the following code
+%out_noshock = simult_(M_,options_,oo_.dr.ys,oo_.dr,shocks_mat_with_zeros,options_.order); //simulate series
 
 log_deviations_SS_noshock=out_noshock-oo_.dr.ys*ones(1,burnin+M_.maximum_lag); //subtract steady state to get deviations from steady state
 ergodicmean_no_shocks=out_noshock(:,end); //EMAS is the final point
@@ -539,7 +539,7 @@ eval(['print -depsc2 Current_Account',country_string,end_save_string])
 
     //options_.qz_criterium = 1+1e-6; //required because it is empty by default, leading to a crash in k_order_pert
     [shock_mat]=generate_FGRU_shocks(estimation_replications,winsorizing_dummy);
-    [fhat,xhat] = csminwel(@smm_diff_function,x_start,H0,[],crit,nit,target,estimation_replications,shock_mat(:,:,1:estimation_replications));
+    [fhat,xhat] = csminwel(@smm_diff_function,x_start,H0,[],crit,nit,target,estimation_replications,shock_mat(:,:,1:estimation_replications),M_,oo_,options_);
 
 @# endif
 

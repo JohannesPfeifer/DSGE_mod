@@ -1,5 +1,5 @@
-function [fval, simulated_moments]=smm_diff_function(xopt,target,replications,shocks)
-% function [fval, simulated_moments]=smm_diff_function(xopt,target,replications,shocks)
+function [fval, simulated_moments]=smm_diff_function(xopt,target,replications,shocks,M_,oo_,options_)
+% function [fval, simulated_moments]=smm_diff_function(xopt,target,replications,shocks,M_,oo_,options_)
 % Computes the quadratic deviation of the simulated moments from the target
 % moments in the data
 % Inputs:
@@ -30,7 +30,6 @@ function [fval, simulated_moments]=smm_diff_function(xopt,target,replications,sh
 %
 % For a copy of the GNU General Public License, see <http://www.gnu.org/licenses/>.
 
-global oo_ M_ options_ % get Dynare structures; used to pass them on to resol.m
 tic
 
 %% simulate data from monthly model
@@ -48,8 +47,14 @@ if xopt(2)<0 %make sure adjustment cost is positive; using log-transformation as
     toc
     return
 end
-
-[oo_.dr,info,M_,options_,oo_] = resol(0,M_,options_,oo_); %run model solution in Dynare
+dyn_ver = dynare_version;
+if str2double(dyn_ver(1))< 5
+    [oo_.dr, info, M_, options_, oo_] = resol(0, M_, options_, oo_); %get decision rules
+elseif str2double(dyn_ver(1))< 6
+    [oo_.dr,info,M_,oo_] = resol(0,M_,options_,oo_); %get decision rules
+else
+    [oo_.dr,info] = resol(0,M_,options_,oo_.dr,oo_.steady_state,oo_.exo_steady_state,oo_.exo_steady_state); %get decision rules
+end
 
 if info %solution was not successful
     fval=10e6+sum([xopt(1),xopt(2),xopt(3),log(xopt(4)) ].^2); %return with penalty 
