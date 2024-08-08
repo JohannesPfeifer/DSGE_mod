@@ -317,10 +317,10 @@ estimated_params;
         psi, , , ,uniform_pdf,  , , 0, 5;
     @# endif
 
-    stderr g_y, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.13);
-    stderr g_c, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.19);
-    stderr g_invest, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.51);
-    stderr tb_y, , , ,uniform_pdf, ,  , sqrt(0.0001), sqrt(0.13);
+    stderr g_y, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.013);
+    stderr g_c, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.019);
+    stderr g_invest, , , ,uniform_pdf, , , sqrt(0.0001), sqrt(0.051);
+    stderr tb_y, , , ,uniform_pdf, ,  , sqrt(0.0001), sqrt(0.013);
 end;
     
 estimated_params_init(use_calibration); //Use their posterior as starting values for estimation; for measurement error, only the 
