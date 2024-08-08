@@ -6,7 +6,7 @@
  * to achieve a given path of the nominal interest rate: fixed at the steady state for three periods, followed 
  * by a drop of 100 basis points annualized (25bp quarterly).
  *
- * THIS MOD-FILE REQUIRES DYNARE 4.5 OR HIGHER
+ * THIS MOD-FILE REQUIRES DYNARE 6.0 OR HIGHER
  *
  *
  * This implementation was written by Johannes Pfeifer. In case you spot mistakes,
