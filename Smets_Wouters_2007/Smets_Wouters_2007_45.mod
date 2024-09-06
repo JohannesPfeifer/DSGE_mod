@@ -11,10 +11,10 @@
  *      denoted by b in this code, by the coefficient c_3. In the code this prefactor is omitted by setting the 
  *      coefficient to 1. As a consequence, b in this code actually is b:=c_3*\varepsilon_t^b. As a consequence, in 
  *      the arbitrage equation for the value of capital in the paper, equation (4), the term 1*\varepsilon_t^b
- *      is replaced by 1/c_3*b, which is equal to \varepsilon_t^b given the above redefinition. This rescaling also explains why the 
- *      standard deviation of the risk premium shock in the AR(1)-process for b has a different standard deviation than reported
- *      in the paper. However, the results are unaffected by this scaling factor (except for the fact that the posterior distribution
- *      reported in the paper cannot be directly translated to the present mod-file due to parameter correlation in the posterior.  
+ *      is replaced by 1/c_3*b, which is equal to \varepsilon_t^b given the above redefinition. However, the standard deviation
+ *      of \varepsilon_t^b in the mode-file is 0.24, which is the value reported in the Table 1B of the paper. This suggest that
+ *      the paper actually reports the standard deviation of b=c_3*\varepsilon_t^b and not the \varepsilon_t^b in terms of the 
+ *      paper notation. 
  *  - As pointed out in Del Negro/Schorfheide (2012): "Notes on New-Keynesian Models"
  *      in the code implementation of equation (8) for both the flex price and the sticky price/wage economy, 
  *      there is a (1+cbetabar*cgamma) missing in the i_2 in front of q_t (denoted qs in the code). 
