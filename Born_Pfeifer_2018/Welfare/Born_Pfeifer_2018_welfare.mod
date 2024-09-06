@@ -8,6 +8,16 @@
  * It computes consumption equivalents relative to the flex-price natural allocation as described
  * in the paper. For doing so, it uses a solver to find the correct consumption equivalent lambda
  * based on the recursive lifetime welfare measures defined within the model block.
+ * 
+ * Notes: 
+ *  - In September 2024 we have been made aware by Juan Paez-Farrell that the original code erroneously 
+ *      had switched the weights of the composite_targeting target. Instead of
+ *          Pi_w^(lambda_w/(lambda_w+lambda_p))*Pi^(lambda_p/(lambda_w+lambda_p))=1;
+ *      it had used
+ *          Pi^(lambda_w/(lambda_w+lambda_p))*Pi_w^(lambda_p/(lambda_w+lambda_p))=1;
+ *    Thus, instead of roughly a 85% weight on price inflation, only a 15% weight was put on it.
+ *    This mistake leaves the qualitative results of the paper unaffected, but moves the results for the composite 
+ *    target case closer to the inflation targeting case, while it was rather close to the wage targeting case before.
  *
  * THIS MOD-FILE REQUIRES DYNARE 5.0 OR HIGHER
  *
@@ -19,7 +29,7 @@
  */
 
 /*
- * Copyright (C) 2018 Johannes Pfeifer and Benjamin Born
+ * Copyright (C) 2018-2024 Johannes Pfeifer and Benjamin Born
  *
  * This is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -312,7 +322,7 @@ model;
                     Pi_w=1;
                 @#else
                     @#if composite_targeting ==1
-                        Pi^(lambda_w/(lambda_w+lambda_p))*Pi_w^(lambda_p/(lambda_w+lambda_p))=1;
+                        Pi_w^(lambda_w/(lambda_w+lambda_p))*Pi^(lambda_p/(lambda_w+lambda_p))=1;
                     @#endif
                 @#endif
             @#endif                
@@ -324,7 +334,7 @@ model;
                     R=1/betta*Pi_w^phi_pi;
                 @#else
                     @#if composite_targeting ==1
-                        R=1/betta*(Pi^(lambda_w/(lambda_w+lambda_p))*Pi_w^(lambda_p/(lambda_w+lambda_p)))^phi_pi;
+                        R=1/betta*(Pi_w^(lambda_w/(lambda_w+lambda_p))*Pi^(lambda_p/(lambda_w+lambda_p)))^phi_pi;
                     @#endif
                 @#endif       
             @#endif
