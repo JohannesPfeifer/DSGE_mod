@@ -105,7 +105,7 @@ model(linear);
 #psi_n_ya=(1+varphi)/(siggma*(1-alppha)+varphi+alppha); %defined on page 62
 [name='Definition efficient interest rate, below equation (7)']
 r_e=siggma*(y_e(+1)-y_e)+(1-rho_z)*z;
-[name='Definition efficient output']
+[name='Definition efficient output, e.g. page 155']
 y_e=psi_n_ya*a;
 [name='Definition linking various output gaps, middle page 128']
 y_gap=x+(y_e-y_nat);
