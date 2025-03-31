@@ -54,7 +54,7 @@ jobs:
               libsuitesparse-dev flex libfl-dev bison texlive texlive-publishers \
               texlive-latex-extra texlive-fonts-extra texlive-font-utils texlive-latex-recommended \
               texlive-science texlive-plain-generic lmodern python3-sphinx tex-gyre latexmk \
-              libjs-mathjax x13as liboctave-dev octave-control octave-econometrics octave-io \
+              libjs-mathjax x13as octave-dev octave-control octave-econometrics octave-io \
               octave-statistics octave-struct octave-parallel gnuplot fonts-freefont-otf \
               ghostscript epstool git git-lfs
      
