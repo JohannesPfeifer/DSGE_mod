@@ -324,6 +324,10 @@ that requires recalibrating the model.
 This file replicates the estimation of the New Keynesian model of Jermann/Quadrini (2012) conducted and 
 described in Pfeifer (2016).
 
+### Kiyotaki_Moore_1997
+This file simulates a version of the model studied in Section 2 of Kiyotaki/Moore (1997): "Credit Cycles"
+and is based on Eric Sims's lecture notes.
+
 ## McCandless_2008
 
 This folder contains replication files for George McCandless (2008): The ABCs of RBCs - An Introduction to Dynamic 

@@ -234,10 +234,19 @@ catch ME
     fid = fopen('error.txt', 'w'); fprintf(fid,'%s',ME.message);fclose(fid);
 end
 
+%% Kiyotaki_Moore_1997
+try
+    close all; clearvars all; clearvars -global;
+    cd('../../Kiyotaki_Moore_1997');
+    dynare Kiyotaki_Moore_1997
+catch ME
+    fid = fopen('error.txt', 'w'); fprintf(fid,'%s',ME.message);fclose(fid);
+end
+
 %% McCandless_2008
 try
     close all; clearvars all; clearvars -global;
-    cd('../../McCandless_2008');
+    cd('../McCandless_2008');
     dynare McCandless_2008_Chapter_9
     dynare McCandless_2008_Chapter_13
 catch ME
