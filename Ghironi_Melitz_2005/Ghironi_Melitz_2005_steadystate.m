@@ -32,6 +32,7 @@ function [ys,params,check] = Ghironi_Melitz_2005_steadystate(ys,exo,M_,options_)
 %  see <http://www.gnu.org/licenses/>.
 
 %% Steady state model
+delta=0; %make sure name is known to not conflict with built-in functions
 
 % read out parameters to access them with their name
 NumberOfParameters = M_.param_nbr;
