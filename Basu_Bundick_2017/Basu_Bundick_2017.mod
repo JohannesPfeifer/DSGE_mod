@@ -309,7 +309,7 @@ IRF_periods=20;
 @#if true_stochastic_steady_state_IRFs
     burnin=5000; %periods for convergence
 @#else
-    burnin=5000; %periods for convergence
+    burnin=200; %periods for convergence
 @#endif
 
 shock_mat_with_zeros=zeros(burnin+IRF_periods,M_.exo_nbr); %shocks set to 0 to simulate without uncertainty
