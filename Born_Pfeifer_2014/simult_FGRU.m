@@ -93,14 +93,13 @@ else
             k2 = dr.state_var;
         else
             k2 = [];
-        end;
+        end
         order_var = 1:endo_nbr;
         dr.order_var = order_var;
     else
-        k2 = dr.kstate(find(dr.kstate(:,2) <= M_.maximum_lag+1),[1 2]);
-        k2 = k2(:,1)+(M_.maximum_lag+1-k2(:,2))*endo_nbr;
+        k2 = M_.nstatic+(1:M_.nspred);
         order_var = dr.order_var;
-    end;
+    end
     
     switch iorder
       case 3 % do FGRU pruning

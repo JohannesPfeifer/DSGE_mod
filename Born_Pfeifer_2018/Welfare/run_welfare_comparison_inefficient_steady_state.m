@@ -207,9 +207,9 @@ if Ramsey==0
         fprintf(fidTeX,' \\\\ \n');
     end
     
-    fprintf(fidTeX,'    \\cmidrule(rl){2-13}')
-    fprintf(fidTeX,'   & \\multicolumn{12}{c}{Demand Shock} \\\\')
-    fprintf(fidTeX,'    \\cmidrule(rl){2-13}')
+    fprintf(fidTeX,'    \\cmidrule(rl){2-13}');
+    fprintf(fidTeX,'   & \\multicolumn{12}{c}{Demand Shock} \\\\');
+    fprintf(fidTeX,'    \\cmidrule(rl){2-13}');
     
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+4:size(results_EHL_Calvo_mat_display,1)
@@ -238,9 +238,9 @@ if Ramsey==0
         fprintf(fidTeX,' \\\\ \n');
     end
     
-    fprintf(fidTeX,'    \\cmidrule(rl){2-13}')
-    fprintf(fidTeX,'   & \\multicolumn{12}{c}{Demand Shock} \\\\')
-    fprintf(fidTeX,'    \\cmidrule(rl){2-13}')
+    fprintf(fidTeX,'    \\cmidrule(rl){2-13}');
+    fprintf(fidTeX,'   & \\multicolumn{12}{c}{Demand Shock} \\\\');
+    fprintf(fidTeX,'    \\cmidrule(rl){2-13}');
     
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+4:size(results_EHL_Calvo_mat_display,1)
@@ -280,9 +280,9 @@ else
         fprintf(fidTeX,' \\\\ \n');
     end
     
-    fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
-    fprintf(fidTeX,'   & \\multicolumn{14}{c}{Demand Shock} \\\\')
-    fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
+    fprintf(fidTeX,'    \\cmidrule(rl){2-15}');
+    fprintf(fidTeX,'   & \\multicolumn{14}{c}{Demand Shock} \\\\');
+    fprintf(fidTeX,'    \\cmidrule(rl){2-15}');
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+1:size(results_EHL_Calvo_mat_display,1)
         fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));
@@ -314,9 +314,9 @@ else
         fprintf(fidTeX,' \\\\ \n');
     end
     
-    fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
-    fprintf(fidTeX,'   & \\multicolumn{14}{c}{Demand Shock} \\\\')
-    fprintf(fidTeX,'    \\cmidrule(rl){2-15}')
+    fprintf(fidTeX,'    \\cmidrule(rl){2-15}');
+    fprintf(fidTeX,'   & \\multicolumn{14}{c}{Demand Shock} \\\\');
+    fprintf(fidTeX,'    \\cmidrule(rl){2-15}');
     
     for ii=size(results_EHL_Calvo_mat_display,1)/2+1:size(results_EHL_Calvo_mat_display,1)
         fprintf(fidTeX,label_format_leftbound,deblank(labels_string_tex{ii,:}));

@@ -9,7 +9,7 @@ function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0
 %    plot_var_name  [string]   string denoting the name of the variable for which to plot the
 %                              policy function
 %    y0             [double]   n*1 vector, initial value, defaults to SS, if not specified (n is the number of declared endogenous variables plus the number 
-%                              of auxilliary variables for lags and leads)
+%                              of auxiliary variables for lags and leads)
 %    plot_dummy     [scalar]   dummy whether plot should be created
 %
 % OUTPUTS
@@ -19,7 +19,7 @@ function [x,y,policyfun]=plot_policy_fun(state_name,state_range,plot_var_name,y0
 % SPECIAL REQUIREMENTS
 %    none
 
-% Copyright (C) 2013-20 Johannes Pfeifer
+% Copyright (C) 2013-26 Johannes Pfeifer
 %
 % This is free software: you can redistribute it and/or modify
 % it under the terms of the GNU General Public License as published by
@@ -51,19 +51,18 @@ if options_.block
         k2 = oo_.dr.state_var;
     else
         k2 = [];
-    end;
+    end
     order_var = 1:M_.endo_nbr;
     oo_.dr.order_var = order_var;
 else
-    k2 = oo_.dr.kstate(find(oo_.dr.kstate(:,2) <= M_.maximum_lag+1),[1 2]);
-    k2 = k2(:,1)+(M_.maximum_lag+1-k2(:,2))*M_.endo_nbr;
+    k2 = M_.nstatic+(1:M_.nspred);
     order_var = oo_.dr.order_var;
-end;
+end
 
 if ismember(state_name,M_.endo_names(order_var(k2),:))
     xlabelstring=[state_name,'(-1)'];
 elseif ismember(state_name,M_.exo_names)
-    xlabelstring=[state_name];
+    xlabelstring=state_name;
 elseif ismember(state_name,M_.endo_names) && ~ismember(state_name,M_.endo_names(order_var(k2),:))
     error([state_name,' is not a state variable'])
 else
