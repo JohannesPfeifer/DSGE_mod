@@ -13,7 +13,7 @@ function oo_ = perturbation_solver_nonsymmetric_order3(M_,oo_,SIGMA2,SIGMA3)
 %   write your own codes and not use Dynare's simult_.m function, see for
 %   example simult_nonsymmetric_order3.m
 % - ghs2, ghxss, ghuss need to be re-computed only if SIGMA2≠M_.Sigma_e(:)
-% - this implementation is not really efficient; one should probably exploitmake
+% - this implementation is not really efficient; one should probably exploit 
 %   sparsity and symmetry by e.g. using sparse_hessian_times_B_kronecker_C and A_times_B_kronecker_C
 % NOTATION
 % - y0 denotes CURRENT endogenous variables at t
@@ -56,7 +56,6 @@ function oo_ = perturbation_solver_nonsymmetric_order3(M_,oo_,SIGMA2,SIGMA3)
 % =========================================================================
 
 %% some useful indices
-[I,~] = find(M_.lead_lag_incidence');              % index for dynamic variables that actually appear in the model, in declaration order
 y_ = transpose(M_.nstatic+(1:M_.nspred));          % index for state variables in DR order
 yp = transpose(M_.nstatic+M_.npred+(1:M_.nsfwrd)); % index for jumper variables in DR order
 z_nbr = nnz(M_.lead_lag_incidence) + M_.exo_nbr;   % number of dynamic variables in Jacobian (including exogenous)
@@ -65,7 +64,19 @@ z2 = permute(reshape(1:z_nbr^2,z_nbr,z_nbr),[2 1]); % index for columns in secon
 z3 = permute(reshape(1:z_nbr^3,z_nbr,z_nbr,z_nbr),[3 2 1]); % index for columns in third dynamic derivative matrix g3
 
 %% dynamic Jacobians
-[~, d1f, d2f, d3f] = feval([M_.fname,'.dynamic'], oo_.steady_state(I), oo_.exo_steady_state', M_.params, oo_.steady_state, 1); % get derivatives of dynamic model from script files evaluated at non-stochastic steady-state in declaration order
+if ver_less_than(dynare_version,'7.0')
+    [I,~] = find(M_.lead_lag_incidence');              % index for dynamic variables that actually appear in the model, in declaration order
+    [~, d1f, d2f, d3f] = feval([M_.fname,'.dynamic'], oo_.steady_state(I), oo_.exo_steady_state', M_.params, oo_.steady_state, 1); % get derivatives of dynamic model from script files evaluated at non-stochastic steady-state in declaration order
+else
+    yy0=repmat(oo_.dr.ys, 3, 1);
+    [g1, T, T_order] = feval([M_.fname,'.dynamic_g1'], yy0, oo_.exo_steady_state', M_.params, oo_.dr.ys, M_.dynamic_g1_sparse_rowval, M_.dynamic_g1_sparse_colval, M_.dynamic_g1_sparse_colptr);
+    [g2_v, T, T_order] = feval([M_.fname,'.dynamic_g2'], yy0, oo_.exo_steady_state', M_.params, oo_.dr.ys, T, T_order);
+    g3_v = feval([M_.fname,'.dynamic_g3'], yy0, oo_.exo_steady_state', M_.params, oo_.dr.ys, T, T_order);
+    d1f = identification.legacy_dynamic_g1(g1, M_);
+    d2f = identification.legacy_dynamic_g2(g2_v, M_);
+    d3f = identification.legacy_dynamic_g3(g3_v, M_);
+
+end
 d3f = identification.unfold_g3(d3f,z_nbr); % d3f does not contain symmetric elements, so we need to unfold it
 d1f_d1y0 = d1f(:,nonzeros(M_.lead_lag_incidence(2,oo_.dr.order_var))); % first derivative of dynamic model with respect to y0
 d1f_d1yp = d1f(:,nonzeros(M_.lead_lag_incidence(3,oo_.dr.order_var))); % first derivative of dynamic model with respect to yp (one time)

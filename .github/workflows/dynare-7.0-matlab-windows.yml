@@ -1,4 +1,4 @@
-name: 'Dynare 6.0 with MATLAB R2023b on Windows '
+name: 'Dynare 7.0 with MATLAB R2025b on Windows '
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  dynare_6_0_matlab_r2023b_windows:
+  dynare_7_0_matlab_r2025b_windows:
     runs-on: windows-latest
     steps:
       - name: Check out repository
@@ -24,21 +24,21 @@ jobs:
       - name: Set up MATLAB
         uses: matlab-actions/setup-matlab@v2
         with:
-          release: R2023b
+          release: R2025b
           products: Symbolic_Math_Toolbox Statistics_and_Machine_Learning_Toolbox Optimization_Toolbox Econometrics_Toolbox Parallel_Computing_Toolbox Control_System_Toolbox Global_Optimization_Toolbox
           cache: true
       
-      - name: Download and extract Dynare 6.0
+      - name: Download and extract Dynare 7.0
         run: |
-          curl -L "https://www.dynare.org/release/windows-7z/dynare-6.0-win.7z" -o "dynare-6.0-win.7z"
-          7z x "dynare-6.0-win.7z" "-oD:\hostedtoolcache\windows" -y
+          curl -L "https://www.dynare.org/release/windows-7z/dynare-7.0-win.7z" -o "dynare-7.0-win.7z"
+          7z x "dynare-7.0-win.7z" "-oD:\hostedtoolcache\windows" -y
         shell: pwsh
           
       - name: run_all_files
         uses: matlab-actions/run-command@v2
         with:
           command: |            
-            addpath("D:\hostedtoolcache\windows\dynare-6.0\matlab");
+            addpath("D:\hostedtoolcache\windows\dynare-7.0\matlab");
             run_all_files;
 
       - name: Prepare log files for artifact upload
@@ -56,5 +56,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: log-files-dynare-6-0-matlab-r2023b-windows
+          name: log-files-dynare-7-0-matlab-r2025b-windows
           path: artifacts/

@@ -97,27 +97,27 @@ nx_y_EMAS=EMAS(strmatch('NX_Y',M_.endo_names,'exact'),end);
 
 %% compute cyclical components
 %FGRU Aggregation
-[~, Y_cyc_FGRU]=hpfilter(Y_quarterly_sum_aggregation',1600);
-[~, C_cyc_FGRU]=hpfilter(C_quarterly_sum_aggregation',1600);
-[~, I_cyc_FGRU]=hpfilter(I_quarterly_sum_aggregation',1600);
+[~, Y_cyc_FGRU]=hpfilter(Y_quarterly_sum_aggregation',Smoothing=1600);
+[~, C_cyc_FGRU]=hpfilter(C_quarterly_sum_aggregation',Smoothing=1600);
+[~, I_cyc_FGRU]=hpfilter(I_quarterly_sum_aggregation',Smoothing=1600);
 %Correct NX definition, but with incorrect aggegation as in FGRU
-[~, NX_cyc_correct_definition_wrong_aggregation]=hpfilter(NX_quarterly_sum_aggregation',1600);
+[~, NX_cyc_correct_definition_wrong_aggregation]=hpfilter(NX_quarterly_sum_aggregation',Smoothing=1600);
 %NX definition via logs with incorrect aggegation as in FGRU
-[~, NX_cyc_FGRU]=hpfilter(net_exp_wrong_aggregation_wrong_definition',1600);
+[~, NX_cyc_FGRU]=hpfilter(net_exp_wrong_aggregation_wrong_definition',Smoothing=1600);
 %Cyclicality of Net-export-to-output ratio
-[~, NX_Y_cyc]=hpfilter(NX_Y_quarterly_sum_aggregation',1600);
+[~, NX_Y_cyc]=hpfilter(NX_Y_quarterly_sum_aggregation',Smoothing=1600);
 
 
 %Correct Aggregation
-[~, Y_cyc_mean_aggregation]=hpfilter(Y_quarterly_mean_aggregation',1600);
-[~, C_cyc_mean_aggregation]=hpfilter(C_quarterly_mean_aggregation',1600);
-[~, I_cyc_mean_aggregation]=hpfilter(I_quarterly_mean_aggregation',1600);
+[~, Y_cyc_mean_aggregation]=hpfilter(Y_quarterly_mean_aggregation',Smoothing=1600);
+[~, C_cyc_mean_aggregation]=hpfilter(C_quarterly_mean_aggregation',Smoothing=1600);
+[~, I_cyc_mean_aggregation]=hpfilter(I_quarterly_mean_aggregation',Smoothing=1600);
 %Correct NX definition and correct aggregation
-[~, NX_cyc_mean_aggregation]=hpfilter(NX_quarterly_mean_aggregation',1600);
+[~, NX_cyc_mean_aggregation]=hpfilter(NX_quarterly_mean_aggregation',Smoothing=1600);
 %Incorrect NX definition via logs, but with correct aggregation
-[~, NX_cyc_FGRU_definition_mean_aggregation]=hpfilter(net_exp_mean_aggregation_correct_definition',1600);
+[~, NX_cyc_FGRU_definition_mean_aggregation]=hpfilter(net_exp_mean_aggregation_correct_definition',Smoothing=1600);
 %Cyclicality of Net-export-to-output ratio
-[~, NX_Y_cyc_mean_aggregation]=hpfilter(TB_Y_quarterly',1600);
+[~, NX_Y_cyc_mean_aggregation]=hpfilter(TB_Y_quarterly',Smoothing=1600);
 
 row_label={'$\sigma_Y$'
 '$\sigma_C/\sigma_Y$' 

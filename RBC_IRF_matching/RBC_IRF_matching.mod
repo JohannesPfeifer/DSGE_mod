@@ -199,7 +199,7 @@ stoch_simul(order = 1,irf=@{IRF_periods}) log_y log_c ghat;
 
 
 %% get empirical IRFs and weighting matrix
-[IRF_empirical,IRF_weighting,IRF_quantiles]=get_empirical_IRFs(@{IRF_periods})
+[IRF_empirical,IRF_weighting,IRF_quantiles]=get_empirical_IRFs(@{IRF_periods});
          
 
 x_start=[root_g_1 root_g_2]; %use calibration as starting point

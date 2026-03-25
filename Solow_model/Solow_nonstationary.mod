@@ -152,8 +152,8 @@ end;
 //shocks-block: define path of exogenous variables
 //****************************************************************************
 
-shock_vals_A=cumprod((1+g)*ones(@{simulation_periods},1))
-shock_vals_L=cumprod((1+n)*ones(@{simulation_periods},1))
+shock_vals_A=cumprod((1+g)*ones(@{simulation_periods},1));
+shock_vals_L=cumprod((1+n)*ones(@{simulation_periods},1));
 
 shocks;
     var A;

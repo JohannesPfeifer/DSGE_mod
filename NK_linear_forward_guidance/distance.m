@@ -14,7 +14,7 @@ function resid=distance(shock_values,shock_name,target_value,target_name,M_,opti
 % - resid           [double]    distance vector
 %
 
-% Copyright (C) 2021 Johannes Pfeifer
+% Copyright (C) 2021-2026 Johannes Pfeifer
 %
 %  This is free software: you can redistribute it and/or modify
 %  it under the terms of the GNU General Public License as published by
@@ -30,7 +30,11 @@ function resid=distance(shock_values,shock_name,target_value,target_name,M_,opti
 %  see <http://www.gnu.org/licenses/>.
 
 oo_.exo_simul(M_.maximum_lag+1:M_.maximum_lag+length(shock_values),strmatch(shock_name,M_.exo_names,'exact'))=shock_values;
-[oo_.endo_simul, success]= perfect_foresight_solver_core(oo_.endo_simul,oo_.exo_simul,oo_.steady_state,oo_.exo_steady_state,M_,options_);
+if ver_less_than(dynare_version,'7.0')
+    [oo_.endo_simul, success]= perfect_foresight_solver_core(oo_.endo_simul,oo_.exo_simul,oo_.steady_state,oo_.exo_steady_state,M_,options_);
+else
+    [oo_.endo_simul, success]= perfect_foresight_solver_core(oo_.endo_simul,oo_.exo_simul,oo_.steady_state,oo_.exo_steady_state,[],M_,options_);
+end
 if ~success
     resid=repmat(options_.huge_number,size(target_value));
 else
